@@ -1,0 +1,421 @@
+.signup_content {
+    background: url(../../../assets/img/sign.png) no-repeat center center / cover;
+    border-radius: 50px;
+    width: 100%;
+    height: 90vh;
+    margin-top: 5%;
+    display: flex;
+    justify-self: center;
+}
+
+.content_auth {
+    background: rgba(174, 149, 123, 0.5);
+    backdrop-filter: blur(20px);
+    width: 50%;
+    margin-left: 0%;
+    z-index: 1;
+    height: 100%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.signup_content .text_content,
+.signup_content form,
+.signup_content .signUp,
+.signup_content .title,
+.signup_content .form,
+.signup_content .auth,
+.signup_content h5,
+.signup_content h1,
+.signup_content .dropdown,
+.signup_content option,
+.signup_content i,
+.signup_content .auth,
+.signup_content .email,
+.signup_content .password,
+.signup_content .Confirm_Password,
+.signup_content .auth,
+.signup_content .email,
+.signup_content .password,
+.signup_content label,
+.error_message,
+.message,
+.alert,
+.forget_password,
+.forget_password a,
+h2,
+p,
+.btn,
+.modal .email,
+form,
+.close,
+.close button i {
+    background: transparent;
+}
+
+.signup_content .signUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.signup_content .title,
+.signup_content .form {
+    text-align: center;
+    margin-top: 10%;
+}
+
+.signup_content .auth,
+.signup_content .email,
+.signup_content .password,
+.signup_content .Confirm_Password {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    place-items: center;
+
+}
+
+.signup_content .auth {
+    margin-top: 10%;
+    gap: 40px;
+    place-items: center;
+
+}
+
+.signup_content input {
+    width: 60%;
+    border-radius: 100px;
+    border: none;
+    height: 50px;
+    background: rgba(230, 204, 178, 0.8);
+}
+
+
+.signup_content label {
+    font-size: 25px;
+    color: #7F5539;
+    width: 50%;
+    font-weight: 600;
+    text-align: start !important;
+}
+
+.signup_content h5:hover,
+.signup_content h5:focus,
+.signup_content i:hover,
+.signup_content i:focus,
+.signup_content .signUp:hover,
+.signup_content .signUp:focus {
+    color: #5a3c28;
+    cursor: pointer;
+
+}
+
+.signup_content h5:hover,
+.signup_content h5:focus {
+    border-bottom: 2px solid #5a3c28;
+    width: 100px;
+}
+
+
+
+.signup_content .title_dropdown {
+    width: 170px;
+    border-radius: 100px;
+    border: none;
+    height: 40px;
+    background: rgba(230, 204, 178, 0.8);
+    color: #7F5539;
+    place-content: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+
+.signup_content .dropdown {
+    width: 170px;
+    border-radius: 20px;
+    height: 90px;
+    background: rgba(230, 204, 178, 0.8);
+    color: #7F5539;
+    place-content: center;
+    /* display: none; */
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 400px;
+    position: absolute;
+}
+
+.signup_content .dropdown option {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/* .signup_content .title_dropdown i {
+    rotate: 180deg;
+} */
+.rotated {
+    transform: rotate(180deg);
+}
+
+.not-rotated {
+    transform: rotate(0deg);
+}
+
+.signup_content .title_dropdown:hover,
+.signup_content .title_dropdown:focus {
+    cursor: pointer;
+}
+
+button {
+    width: 100px;
+    font-size: 20px;
+    height: 30px;
+    border-radius: 50px;
+    border: none;
+    background: #7F5539;
+    color: rgb(230, 204, 178);
+}
+
+button:hover,
+button:focus {
+
+    background: #6e4a31;
+    color: rgb(230, 184, 139);
+}
+
+.message {
+    place-content: center;
+    place-items: center;
+}
+
+.error_message {
+    margin-top: 1rem;
+    width: 240px;
+    height: 100px;
+    background: rgba(240, 99, 99, 0.5);
+    border: 2px solid rgb(255, 39, 39);
+    color: black;
+    backdrop-filter: blur(50px);
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    border-radius: 50px;
+}
+
+.modal .error_message {
+    position: absolute;
+    margin-top: 1rem;
+    width: 300px;
+    height: 35px;
+    background: rgba(240, 99, 99, 0.5);
+    border: 2px solid rgb(255, 39, 39);
+    color: black;
+    backdrop-filter: blur(50px);
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    border-radius: 50px;
+}
+
+.succes_message {
+    width: 300px;
+    height: 100px;
+    background: rgba(149, 255, 149, 0.4);
+    border: 2px solid rgb(11, 188, 11);
+    backdrop-filter: blur(50px);
+    color: black;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    border-radius: 50px;
+}
+
+.modal .succes_message {
+    position: absolute;
+    width: 300px;
+    height: 100px;
+    background: rgba(149, 255, 149, 0.4);
+    border: 2px solid rgb(11, 188, 11);
+    backdrop-filter: blur(50px);
+    color: black;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    border-radius: 50px;
+}
+
+.alert {
+    color: rgb(223, 11, 11);
+}
+
+.forget_password {
+    width: 80%
+}
+
+.forget_password a {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.forget_password a:hover,
+.forget_password a:focus {
+    color: #5a3c28;
+    font-size: 20px;
+    transform: scale(1.2);
+}
+
+/* modals */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 50%;
+    height: 30vh;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    place-content: center;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.modal input {
+    margin-left: -20%;
+    width: 150%;
+    border-radius: 100px;
+    border: none;
+    height: 50px;
+    background: rgba(230, 204, 178, 0.8);
+    margin-bottom: 30px;
+}
+
+.modal .btn {
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 10px;
+    margin-top: -10%;
+}
+
+.close button {
+    width: 40px;
+    background: transparent;
+    border: 2px solid #7F5539;
+}
+
+.close button:hover,
+.close button:focus {
+    background: #ddb8a0;
+}
+@media(max-width:1000px) {
+    .signup_content label {
+        width: 50%;
+        font-size: 20px;
+    }
+
+    .signup_content {
+        margin-top: 70px;
+    }
+}
+
+@media(max-width:850px) {
+    .signup_content input {
+        width: 80%;
+    }
+
+    .signup_content label {
+        width: 70%;
+        font-size: 18px;
+    }
+
+    .signup_content h1 {
+        font-size: 40px;
+    }
+}
+
+@media(max-width:700px) {
+    .content_auth {
+        backdrop-filter: blur(20px);
+        width: 100%;
+        margin-left: 0%;
+        z-index: 1;
+        height: 100%;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+    }
+
+    .signup_content .signUp {
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    .signup_content h1 {
+        font-size: 70px;
+    }
+
+    .signup_content .title {
+        width: 100%
+    }
+
+    .signup_content .auth {
+        gap: 15px;
+
+    }
+
+    .modal input {
+        margin-left: 0%;
+        width: 100%;
+    }
+
+}
+
+@media(max-width:400px) {
+    .signup_content h1 {
+        font-size: 50px;
+    }
+
+    .modal .btn {
+        gap: 5px;
+    }
+
+    .modal .btn button {
+        width: 70px
+    }
+}

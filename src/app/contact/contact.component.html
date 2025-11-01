@@ -1,0 +1,102 @@
+<app-navbar></app-navbar>
+<div id="section">
+    <div class="container transparent center">
+        <div class="content center column transparent">
+            <div class="contact-section center row-xr ">
+                <div class="font center column transparent">
+                    <div class="title  transparent">
+                        Get In Touch
+                    </div>
+                    <div class="text  transparent">
+                        We'd love to hear from you! Whether you have a question, feedback, or need support,
+                        please don't hesitate to reach out.
+                    </div>
+                </div>
+                @if(successMessage){
+                <div class="message_succes transparent">
+                    <div class="succes_message">
+                        {{ successMessage }}
+                    </div>
+                </div>
+                }
+                 @if(errorMessage){
+            <div class="message transparent">
+                <div class="error_message">
+                    {{ errorMessage }}
+                </div>
+            </div>
+            }
+                <div class="form column transparent width100 center">
+                    <form (ngSubmit)="onSubmit()" class="column transparent width100">
+                        <div class="name transparent row-xd">
+                            <div class="column transparent width100">
+                                <label for="" class="transparent width100">First Name</label>
+                                <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required
+                                    firstName placeholder="  First Name">
+                            </div>
+                            <div class="column transparent width100">
+                                <label for="" class="transparent">Last Name</label>
+                                <input type="text" id="lastName" name=" lastName" [(ngModel)]="lastName" required
+                                    lastName placeholder="  Last Name">
+                            </div>
+                        </div>
+                        <label for="" class="transparent row"> Email <div class="alert transparent">*</div> </label>
+                        <input type="email" id="email" name="email" [(ngModel)]="email" required email
+                            placeholder="  Email" #emailRef="ngModel">
+                        @if (emailRef.invalid && (emailRef.dirty || emailRef.touched)) {
+                        <div class="alert transparent">
+                            @if (emailRef.hasError('required')) {
+                            <div class="alert transparent">
+                                Email is required.
+                            </div>
+                            }
+
+                            @if (emailRef.hasError('email')) {
+                            <div class="alert transparent">
+                                Email not valid.
+                            </div>
+                            }
+                        </div>
+                        }
+                        <label for="" class="transparent row"> Subject <div class="alert transparent">*</div></label>
+                        <input type="text" id="subject" name="subject" [(ngModel)]="subject" required subject
+                            placeholder="  subject.." #subjectRef="ngModel">
+                            @if (subjectRef.invalid && (subjectRef.dirty || subjectRef.touched)) {
+                        <div class="alert transparent">
+                            @if (subjectRef.hasError('required')) {
+                            <div class="alert transparent">
+                                Subject is required.
+                            </div>
+                            }
+                        </div>
+                        }
+                        <label for="" class="transparent row">Message <div class="alert transparent">*</div></label>
+                        <textarea name="message" id="message" [(ngModel)]="message" required message
+                            placeholder="  Message..." #messageRef="ngModel">
+                    </textarea>
+                        @if (messageRef.invalid && (messageRef.dirty || messageRef.touched)) {
+                        <div class="alert transparent">
+                            @if (messageRef.hasError('required')) {
+                            <div class="alert transparent">
+                                Message is required.
+                            </div>
+                            }
+                        </div>
+                        }
+                        <div class="width100 transparent">
+                            <button type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+<!-- <video class="header column center" autoplay muted loop style="position: relative;">
+            <source src="../../assets/video/ff4b758f74eb9aa93c5280407358d75b.mp4" type="video/mp4" >
+        </video> -->

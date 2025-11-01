@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="signup_content">
+        <div class="content_auth">
+            <div class="text_content">
+                <div class="signUp" (click)="toSignUp()">
+                    <h5>back to Sign up</h5>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+                <div class="title">
+                    <h1>Sign in</h1>
+                </div>
+                <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+                    <div class="form">
+                        <div class="auth">
+                            <div class="email">
+                                <label for="">Email</label>
+                                <input type="email" id="email" name="email" [(ngModel)]="email" required email
+                                    placeholder="  Email" #emailRef="ngModel" />
+                                @if (emailRef.invalid && (emailRef.dirty || emailRef.touched)) {
+                                <div class="alert">
+                                    @if (emailRef.hasError('required')) {
+                                    <div class="alert">
+                                        Email is required.
+                                    </div>
+                                    }
+
+                                    @if (emailRef.hasError('email')) {
+                                    <div class="alert">
+                                        Email not valid.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <div class="password">
+                                <label for="">Password</label>
+                                <input type="password" id="password" name="password" [(ngModel)]="psw" required
+                                    placeholder="  Password" #passwordRef="ngModel" minlength="4" />
+                                @if (passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)) {
+                                <div class="alert">
+                                    @if (passwordRef.hasError('required')) {
+                                    <div class="alert">
+                                        Password is required.
+                                    </div>
+                                    }
+
+                                    @if (passwordRef.hasError('minlength')) {
+                                    <div class="alert">
+                                        Password must be at least 4 characters long.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <button type="submit"> Save</button>
+                        </div>
+
+                        <div class="message" *ngIf="loginError">
+                            <div class="error_message">
+                                {{ loginError }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="forget_password">
+                    <a (click)="openModal()">Forgot password?</a>
+                    <!-- <button (click)="openModal()">Open Modal</button> -->
+
+                    <!-- Modal -->
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- modals Form -->
+<div class="modal-overlay" *ngIf="isModalOpen">
+    <div class="modal">
+        <div class="close">
+            <button type="button" (click)="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <h2>Reset Password</h2>
+        <p>Please enter your email address:</p>
+        <form #form="ngForm" (ngSubmit)="onsendEmail(form)">
+            <div class="email">
+                <input type="email" id="email" name="email" [(ngModel)]="email" required email placeholder="  Email"
+                    #emailpsw="ngModel" />
+                @if (emailpsw.invalid && (emailpsw.dirty || emailpsw.touched)) {
+                <div class="alert">
+                    @if (emailpsw.hasError('required')) {
+                    <div class="alert">
+                        Email is required.
+                    </div>
+                    }
+
+                    @if (emailpsw.hasError('email')) {
+                    <div class="alert">
+                        Email not valid.
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            <div class="btn">
+                <button (click)="closeModal()">Close</button>
+                <button type="submit">send</button>
+            </div>
+
+            <div class="message" *ngIf="messageRest" style="margin-top: 1rem;">
+                <div class="succes_message">
+                    {{ messageRest }}
+                </div>
+
+            </div>
+            <div class="message" *ngIf="messageResterror">
+                <div class="error_message">
+                    {{ messageResterror }}
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

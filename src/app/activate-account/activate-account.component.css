@@ -1,0 +1,131 @@
+
+
+.container_reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.carousel-container,.content_passwords {
+  position: relative;
+  width: 80%;
+  overflow: hidden;
+  margin: auto;
+  height: 60vh;
+  background: #ffff;
+  backdrop-filter: blur(20px);
+  border-radius: 50px;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 200%;
+  transition: transform 0.5s ease-in-out;
+  background: transparent;
+}
+
+.carousel-slide .content {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+.carousel-slide .content,
+form,
+h1,
+.code,
+p,.alert {
+  background: transparent;
+}
+
+ form,.active {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  margin-left: 5%;
+  width: 40%;
+  height: 100%;
+  gap: 20px;
+  place-items: center!important;
+}
+.content_code form {
+  gap:70px;
+}
+
+
+.code {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+ input {
+  width: 200px;
+  height: 40px;
+  border-radius: 50px;
+  border: 2px solid #6c4830;
+  background: transparent;
+}
+input:focus {
+ 
+  background: rgba(238, 181, 144, 0.4);
+}
+
+ button {
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50px;
+  border: 2px solid #6c4830;
+  font-weight: 700;
+  color: #6c4830;
+  background: #fff;
+}
+ .content_passwords input {
+  width: 80%;
+ 
+}
+ button:hover,
+button:focus {
+  border: 2px solid #6c4830;
+  color: #fff;
+  background: #6c4830;
+}
+
+.message {
+  place-content: center;
+  place-items: center;
+  background: transparent;
+}
+
+.error_message {
+  margin-top: -40px;
+  width: 300px;
+  height: 50px;
+  background: rgba(240, 99, 99, 0.5);
+  border: 2px solid rgb(255, 39, 39);
+  color: black;
+  backdrop-filter: blur(50px);
+  text-align: center;
+  font-size: 15px;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
+  border-radius: 50px;
+}
+.alert{
+  color: red;
+  font-size: 15px;
+}

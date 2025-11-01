@@ -1,0 +1,164 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    @if(successMessage){
+    <div class="message_succes transparent">
+        <div class="succes_message">
+            {{ successMessage }}
+        </div>
+    </div>
+    }
+    @if(errorMessage){
+    <div class="message transparent">
+        <div class="error_message">
+            {{ errorMessage }}
+        </div>
+    </div>
+    }
+    <div class="content transparent">
+        @if(allCustomers.length>0){
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Total Pieces</th>
+                    <th>Loyal Customer</th>
+                    <th>Promo Code</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+            <tbody>
+                @for(i of allCustomers; track i){
+                <tr>
+                    <td>
+                        <div class="center column transparent">
+                            @if(i.user.photo){
+                            <img src={{i.user.photo.filePath}} alt="photo profil">
+                            }@if(i.user.nom){
+                            {{i.user.nom}}
+                            }@else {
+                            Anonyme
+                            }
+
+                        </div>
+                    </td>
+                    <td>{{i.nbre}}</td>
+                    <td>
+                        <div class="row transparent center">
+                            <label class="red checkbox column transparent"
+                                (click)="makeItNotFidele(i.id_user_customer)">
+                                <input type="checkbox" [checked]="!i.fidele" />No
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="green checkbox column  transparent"
+                                (click)="makeItFidele(i.id_user_customer)">
+                                <input type="checkbox" [checked]="i.fidele" />Yes
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="center transparent column code">
+                            @if(i.fidele){
+                            <button (click)="openModalEdit(i.user.id_user)"><i class="fa-solid fa-pen"></i></button>
+                            }@else {
+                            <button (click)="NotFifele()"><i class="fa-solid fa-pen"></i></button>
+                            }
+                            <button (click)="openModalContent(i.user.id_user)">
+                                <i class="fa-solid fa-eye"></i></button>
+                        </div>
+                    </td>
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+        }@else {
+        <div class="transparent center width100" style="height: 50vh;">
+            <div class="first_child">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="second transparent">
+                <div class="second-hild">
+                    <i class="fa-solid fa-ban transparent"></i>
+                </div>
+            </div>
+
+
+        </div>
+        }
+
+    </div>
+
+
+    <!-- modal valid -->
+    @if(isModalOpen){
+    <div class="modal-overlay">
+        <div class="modal" style="width: 50%;height: 30%;">
+            <div class="close transparent">
+                <button type="button" (click)="closeModal()" class="transparent">
+                    <i class="fa-solid fa-xmark transparent"></i>
+                </button>
+            </div>
+            @if(edit){
+            <div class="title transparent">
+                <h2 class="transparent">Edit Promo Code (Percent-Based Only)</h2>
+            </div>
+            <form (ngSubmit)="addCodePromo()" class="transparent width100 center">
+                <div class="column transparent width100 center">
+                    <div class="row transparent width100 center">
+                        <input type="number" name="percent" id="percent" min="0" max="100" [(ngModel)]="perecent"
+                            placeholder="10" required #perecentRef="ngModel">
+                        <div class="percent center">%</div>
+
+                    </div>
+                    @if (perecentRef.dirty || perecentRef.touched) {
+                    <div class="alert transparent">
+                        @if (perecentRef.hasError('required')) {
+                        <div class="alert red transparent">
+                            Enter Discount (%) – Numbers Only.
+                        </div>
+                        }
+                        @if (perecentRef.hasError('min')) {
+                        <div class="alert red transparent">
+                            Minimum allowed discount is 0%.
+                        </div>
+                        }
+                        @if (perecentRef.hasError('max')) {
+                        <div class="alert red transparent">
+                            Maximum allowed discount is 100%.
+                        </div>
+                        }
+                    </div>
+                    }
+                    <button type="submit" class=" center ">Save</button>
+                </div>
+
+
+            </form>
+            }
+            @if(content){
+            <div class="title transparent" style="margin-bottom: 50px;">
+                <h2 class="transparent">Promo Code</h2>
+            </div>
+            <div class="transparent center column">
+               <div class="row transparent width100" style="margin-bottom: 10px; color:#9e6e4e ;"> Name: <h4 class="transparent" style="margin-left: 10px; cursor: text;">{{codePromo.name}}</h4></div> 
+               <div class="row transparent width100" style="margin-bottom: 10px; color:#9e6e4e ;"> Percent: <h4 class="transparent" style="margin-left: 10px; cursor: text;">{{codePromo.percent}}%</h4> <i class="fa-solid fa-pen transparent" (click)="openModalEdit(id_user)" style="margin-left: 10px; cursor: pointer;"></i> </div>
+            </div>
+
+            }
+
+
+
+        </div>
+    </div>
+    }
+</div>
+
+<app-footer></app-footer>

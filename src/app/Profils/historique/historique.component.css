@@ -1,0 +1,122 @@
+.section-history button{
+cursor: pointer;
+}
+.section-history .content button{
+border-radius: 20px;
+border: 2px solid #7F5539;
+width: 100px;
+color: #7F5539;
+font-size: 18px;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.section-history .content button:hover,.content button:focus{
+border: 2px solid #593b28;
+color: #593b28;
+}
+.section-history .card {
+    width: 100%;
+    height: auto;
+    background: rgba(230, 204, 178, 0.5);
+    border-radius: 20px;
+    cursor: pointer;
+}
+.section-history .content_card {
+width: 95%;
+gap: 5%;
+}
+.section-history .content_card .img_content{
+width: 280px;
+border-radius: 50px;
+cursor: pointer;
+}
+.section-history .carousel_container {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  display: flex;
+  background: rgba(127, 85, 57,0.3);
+  border-radius: 20px;
+}
+.section-history .carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%; 
+  position: relative;
+}
+.section-history .carousel-slide {
+  flex: 0 0 100%;
+}
+
+.section-history .carousel-slide img {
+  object-fit: cover;
+  height: 150px;
+  border-radius: 20px;  
+  width: auto;
+  max-width: 280px;
+}
+.section-history .btns{
+  height:auto;
+  margin-top: -10px;
+}
+.section-history .btns button{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.section-history .close{
+ margin-top: 10px;
+ color: #7F5539;
+ font-size: 30px;
+ font-weight: 400; 
+}
+.section-history .close:hover{
+ color: #593b28;
+}
+.section-history .text,.section-history .text_content {
+  height: 100%;
+  text-align: justify;
+}
+.section-history .title{
+  font-size: 20px;
+  font-weight: 500;
+  color: #7F5539;
+  text-transform: capitalize;
+}
+.section-history .subtitle{
+  font-size: 18px;
+  color: #a06f4e; 
+  text-transform: capitalize;
+  font-weight: 500;
+  display: flex;
+  place-items: end;
+  margin-left: 10px;
+}
+.section-history .start{
+text-align: start;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border: 2px solid #7F5539;
+  text-align: center;
+}
+.column-row{
+  display: flex;
+  flex-direction: row;
+}
+@media(max-width:700px){
+  .column-row{
+  display: flex;
+  flex-direction: column;
+  }
+}

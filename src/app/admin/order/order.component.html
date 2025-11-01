@@ -1,0 +1,321 @@
+<app-navbar></app-navbar>
+<div class="contanier">
+    <div class="content">
+         @if(message){
+        <div class="error_message">
+            {{message }}
+        </div>
+        }
+        @if(order.length>0 || refusedOrder.length>0 || validOrder.length>0){
+        @if(order.length>0){
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock Left</th>
+                    <th>Color</th>
+                    <th>size</th>
+                    <th>valid</th>
+                    <th>Cancel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(i of order; track i){
+                @if(i.date_conf_by_admin==null){
+                <tr>
+                    <td>
+                        <div class="column">
+                            <div class="imags">
+                                <div class="carousel_container transparent">
+                                    <div class="carousel-wrapper"
+                                        [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for (photo of i.product.photos; track photo.id_photo) {
+                                        <div class="carousel-slide">
+                                            <img src={{photo.filePath}} alt="" style="width: auto;height: 150px;">
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            @if(i.product.photos.length>1){
+                                <div class="btns">
+                                <button class="center"  type="button" (click)="prevSlide(i.id_cmditem)"><i
+                                        class="fa-solid fa-angle-left"></i></button>
+                                <button class="center" type="button"
+                                    (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"><i
+                                        class="fa-solid fa-angle-right"></i></button>
+                            </div>                                
+                            }
+                            
+                        </div>
+                    </td>
+                    <td>{{i.product.name}} </td>
+                    <td>
+                        @if(i.product.discount_price){
+                        {{i.product.discount_price}}
+                        }@else {
+                        {{i.product.sale_price}}
+                        }
+                    </td>
+                    <td>
+                         {{ i.product.rest_qte }}
+                    </td>
+                    <td>
+                        @if(i.color!=null){
+                        <div class="color" [style.background]="i.color" [style.color]="i" tabindex="0">
+                        </div>
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>@if(i.size!=null){
+                        {{i.size}}
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="valid" (click)="OpenValidModal(i.id_cmditem)">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="center" type="button" (click)="OpenCancelModal(i.id_cmditem)">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </td>
+                </tr>
+                }
+                }
+            </tbody>
+        </table>
+        }
+        @if(validOrder.length>0){
+        <h3 style="margin-top: 10px;margin-bottom: 10px;"> Confirmed Order</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Date Confirmation</th>
+                    <th>Color</th>
+                    <th>size</th>
+                    <th>valid</th>
+                    <th>Cancel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(i of validOrder; track i){
+                <tr>
+                    <td>
+                        <div class="column">
+                            <div class="imags">
+                                <div class="carousel_container">
+                                    <div class="carousel-wrapper"
+                                        [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for (photo of i.product.photos; track photo.id_photo) {
+                                        <div class="carousel-slide">
+                                            <img src={{photo.filePath}} alt="" style="width: auto;height: 150px;">
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            @if(i.product.photos.length>1){
+                              <div class="btns transparent">
+                                <button class="center" (click)="prevSlide(i.id_cmditem)" class="transparent">
+                                    <i class="fa-solid fa-angle-left transparent"></i></button>
+                                <button class="center" (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"
+                                    class="transparent">
+
+                                    <i class="fa-solid fa-angle-right transparent"></i></button>
+                            </div>
+                            }
+                            
+
+                        </div>
+                    </td>
+                    <td>{{i.product.name}} </td>
+                    <td>
+                        @if(i.product.discount_price){
+                        {{i.product.discount_price}}
+                        }@else {
+                        {{i.product.sale_price}}
+                        }
+                    </td>
+                    <td>
+                         {{ i.date_conf_by_admin | date:'medium' }}
+                    </td>
+                    <td>
+                        @if(i.color!=null){
+                        <div class="color" [style.background]="i.color" [style.color]="i" tabindex="0">
+                        </div>
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>@if(i.size!=null){
+                        {{i.size}}
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="valid" (click)="OpenValidModal(i.id_cmditem)">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div type="button" (click)="OpenCancelModal(i.id_cmditem)">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </td>
+                </tr>
+
+
+                }
+            </tbody>
+        </table>
+        }
+        @if(refusedOrder.length>0){
+        <h3 style="margin-top: 10px;margin-bottom: 10px;"> Refused Order</h3>
+
+        <table class="styled-table" style="margin-top: 50px; margin-bottom: 50px;">
+            <thead>
+                <tr>
+                    <th>image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Date Confirmation</th>
+                    <th>Color</th>
+                    <th>size</th>
+                    <th>valid</th>
+                    <th>Cancel</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(i of refusedOrder; track i){
+                <tr>
+                    <td>
+                        <div class="column">
+                            <div class="imags">
+                                <div class="carousel_container">
+                                    <div class="carousel-wrapper"
+                                        [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for (photo of i.product.photos; track photo.id_photo) {
+                                        <div class="carousel-slide">
+                                            <img src={{photo.filePath}} alt="" style="width: auto;height: 150px;">
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            @if(i.product.photos.length>1){
+                                <div class="btns">
+                                <button class="center" (click)="prevSlide(i.id_cmditem)" class="transparent">
+                                    <i class="fa-solid fa-angle-left transparent"></i></button>
+                                <button class="center" (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"
+                                    class="transparent">
+                                    <i class="fa-solid fa-angle-right transparent"></i></button>
+                            </div>
+                            }
+                            
+                        </div>
+                    </td>
+                    <td>{{i.product.name}} </td>
+                    <td>
+                        @if(i.product.discount_price){
+                        {{i.product.discount_price}}
+                        }@else {
+                        {{i.product.sale_price}}
+                        }
+                    </td>
+                    <td>
+                         {{ i.date_conf_by_admin | date:'medium' }}
+                    </td>
+                    <td>
+                        @if(i.color!=null){
+                        <div class="color" [style.background]="i.color" [style.color]="i" tabindex="0">
+                        </div>
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>@if(i.size!=null){
+                        {{i.size}}
+                        }@else {
+                        <i class="fa-solid fa-ban"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="valid" (click)="OpenValidModal(i.id_cmditem)">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </td>
+                    <td>
+                        <div  type="button" (click)="OpenCancelModal(i.id_cmditem)">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                    </td>
+                </tr>
+
+
+                }
+            </tbody>
+        </table>
+        }
+        
+        } @else {
+        <div class="column amptycontent">
+            <div class="empty">
+                <div class="empty_content center heigth70vh column">
+                    <div class="big">
+                        <i class="fa-solid fa-cart-shopping" style="font-size: 500%;"></i>
+                    </div>
+                    <div class="text">
+                        There are no Orders available .
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <!-- modal valid -->
+    @if(isModalOpen){
+    <div class="modal-overlay-delete ">
+        <div class="modal" style="width: 50%;height: 30%;">
+            <div class="close" style="width:100%; margin-top: -10px;">
+                <button type="button" (click)="closeModal()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            @if(isValidOpen){
+            <h3>Are you sure you want to confirm this order?</h3>
+            }@if(isCancelOpen){
+            <h3>Are you sure you want to cancel this order?</h3>
+            }
+            <div class="btn" style="margin-top: 10px; gap: 30%;">
+                <button type="button" style="width: 200px;height: 30px;" (click)="closeModal()"
+                    class="close_btn">Close</button>
+                @if(isValidOpen){
+                <button type="button" style="width: 200px;height: 30px;" (click)="validercmd()"
+                    class="delete_btn">Confirm Order</button>
+                }@if(isCancelOpen){
+                <button type="button" style="width: 200px;height: 30px;" (click)="Cancelcmd()" class="delete_btn">Cancel
+                    Order</button>
+                }
+            </div>
+
+
+        </div>
+    </div>
+    }
+</div>
+
+<app-footer></app-footer>

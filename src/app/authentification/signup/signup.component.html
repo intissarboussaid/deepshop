@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="signup_content">
+        <div class="content_auth">
+            <div class="text_content">
+                <div class="signIn" (click)="toSignIn()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <h5>back to login</h5>
+                </div>
+                <div class="title">
+                    <h1>Sign Up</h1>
+                </div>
+                <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+                    <div class="form">
+                        <div class="auth">
+                            <div class="email">
+                                <label for="">Email</label>
+                                <input type="email" id="email" name="email" [(ngModel)]="email" email #emailRef="ngModel" required placeholder="  Email ..">
+                                @if(myForm.invalid){
+                                @if (emailRef.invalid && (emailRef.dirty || emailRef.touched)) {
+                                <div class="alert">
+                                    @if (emailRef.hasError('required')) {
+                                    <div class="alert">
+                                        Email is required.
+                                    </div>
+                                    }
+
+                                    @if (emailRef.hasError('email')) {
+                                    <div class="alert">
+                                        Email not valid.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                                }
+                            </div>
+                            <div class="password">
+                                <label for="">Password</label>
+                                <input type="password" id="psw" name="psw" [(ngModel)]="psw" minlength="4"
+                                    #pswRef="ngModel" required placeholder="  Password ..">
+                                @if(myForm.invalid){
+                                @if (pswRef.invalid && (pswRef.dirty || pswRef.touched)) {
+                                <div class="alert">
+                                    @if (pswRef.hasError('required')) {
+                                    <div class="alert">
+                                        Password is required.
+                                    </div>
+                                    }
+                                    @if (pswRef.hasError('minlength')) {
+                                    <div class="alert">
+                                        Password must be at least 4 characters long.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                                }
+                            </div>
+                            <div class="Confirm_Password">
+                                <label for="">Confirm Password</label>
+                                <input type="password" id="confirmationpsw" name="confirmationpsw"
+                                    [(ngModel)]="confirmationpsw" minlength="4" #confirmationpswRef="ngModel" required
+                                    placeholder="  Confirmation Password ..">
+                                @if(myForm.invalid){
+                                @if (confirmationpswRef.invalid&& (confirmationpswRef.dirty ||
+                                confirmationpswRef.touched)) {
+                                <div class="alert">
+                                    @if (confirmationpswRef.hasError('required')) {
+                                    <div class="alert">
+                                        Confirmation Password is required.
+                                    </div>
+                                    }
+                                    @if (confirmationpswRef.hasError('minlength')) {
+                                    <div class="alert">
+                                        Confirmation Password must be at least 4 characters long.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                                }
+                            </div>
+                            <div class="title_dropdown" (click)="toggleDropdown()">
+                                {{ selectedRole || 'Role' }}
+                                <i class="fa-solid fa-angle-down" (click)="toggleRotation()"
+                                    [ngStyle]="{'transform': isRotated ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                            </div>
+                            <div class="dropdown" *ngIf="isDropdownOpen">
+                                <div class="dropdown-item" *ngFor="let r of roles" (click)="selectRole(r)">
+                                    {{ r }}
+                                </div>
+                            </div>
+                            <div class="message" *ngIf="roleError" style="margin-top: 1rem;">
+                                <div class="alert">
+                                    {{ roleError }}
+                                </div>
+                            </div>
+                            <button type="submit"> Save</button>
+                        </div>
+                        @if(myForm.invalid && myForm.submitted){
+                        <div class="message" style="margin-top: 1rem;">
+                            <div class="error_message">
+                                There's something missing! Please try again.
+                            </div>
+                        </div>
+                        }
+
+
+                        <div class="message" *ngIf="loginMessage" style="margin-top: 1rem;">
+                            <div class="succes_message">
+                                {{ loginMessage }}
+                            </div>
+
+                        </div>
+                        <div class="message" *ngIf="loginError" style="margin-top: 1rem;">
+                            <div class="error_message">
+                                {{ loginError }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

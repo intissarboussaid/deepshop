@@ -1,0 +1,723 @@
+<app-navbar></app-navbar>
+<div class="contanier">
+    <div class="content ">
+        @if(DeleteMessage){
+        <div class="message_succes">
+            <div class="succes_message">
+                {{DeleteMessage }}
+            </div>
+        </div>
+        }
+        @if(DeletePhotoMessage){
+        <div class="message_succes">
+            <div class="succes_message">
+                {{DeletePhotoMessage }}
+            </div>
+        </div>
+        }
+
+
+
+        @if(products.length>0){
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>image</th>
+                    <th>Name</th>
+                    <th>Stock Left</th>
+                    <th>view</th>
+                    <th>Order</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Discount price</th>
+                    <th>Date creation</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of products; track item.id_product){
+                    @if( !item.is_delete){
+
+                   
+                    <!-- modal discount  -->
+                @if(isModalDiscountOpen){
+                <div class="modal-overlay-delete ">
+                    <div class="modal" style="width: 60%;height: 50%;">
+                        <div class="close" style="width:100%; margin-top: -50px;">
+                            <button type="button" (click)="closeModal()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <br><br>
+                        <div class="row center width_50" style="gap: 20%; margin-left: 10%;">
+                            <h2>Add Discount</h2>
+                            <button (click)="openModalDeleteDiscount()" style="width: 70px;height: 50px; border-radius: 20px;"><i
+                                    class="fa-solid fa-trash" style="cursor: pointer;"></i></button>
+                        </div>
+
+                        <br><br>
+                        <form (ngSubmit)="OnsumbitDiscount(id_product)">
+                            <div class="column">
+                                <div class="dropdown">
+                                    <div class="title_dropdown width_100">
+                                        <div class="row">
+                                            <input type="number" name="discount_percentage" id="discount_percentage"
+                                                min="0" max="100" step="0.01" [(ngModel)]="discount_percentage"
+                                                placeholder="10" required #discountRef="ngModel">
+
+
+                                            <label for="" class="drop"
+                                                style="width: 50px; text-align: center; place-content:center;">%</label>
+
+                                        </div>
+                                    </div>
+
+                                    @if(product?.discount?.length>0){
+                                    <div class="menu">
+                                        @for(i of product.discount; track i ){
+                                        <div class="dropdown-item" (click)="selectdiscount(i.discount_percentage)">
+                                            {{i.discount_percentage}} %
+                                        </div>
+                                        }
+                                    </div>
+                                    }
+                                </div>
+
+                                @if (discountRef.dirty || discountRef.touched) {
+                                <div class="alert">
+                                    @if (discountRef.hasError('required')) {
+                                    <div class="alert">
+                                        Sale Price is required.
+                                    </div>
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <div class="btn" style="margin-top: 50px; gap: 30%;">
+                                <button type="button" (click)="closeModal()" class="close_btn">Close</button>
+                                <button type="submit" class="delete_btn">Save</button>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                }
+                <!-- fin modal discount  -->
+                <tr>
+                    <td>
+                        <div class="column">
+                            @if(item.photos){
+                            <div class="imags">
+                                <i (click)="openPhotoModal(item.id_product)" class="fa-solid fa-pen"></i>
+                                <div class="carousel_container">
+                                    <div class="carousel-wrapper"
+                                        [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for (photo of item.photos; track photo.id_photo) {
+                                        <div class="carousel-slide">
+                                            <img src="photo.src" [src]="photo.src" alt=""
+                                                style="width: 100%;height: 100%;">
+                                        </div>
+                                        }@empty {
+                                        <li>There are no image.</li>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            @if(item.photos.length>1){
+                                <div class="btns">
+                                <button type="button" (click)="prevSlide(item.id_product)"><i
+                                        class="fa-solid fa-angle-left"></i></button>
+                                <button type="button" (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                        class="fa-solid fa-angle-right"></i></button>
+                            </div>
+                            }
+                            
+                            }
+                        </div>
+                    </td>
+                    <td>{{item.name}} </td>
+                    <td>{{item.qte}} </td>
+                    <td>{{item.view}} </td>
+                    <td>{{item.nbre_cmd}} </td>
+                    <td>{{item.sale_price}} </td>
+                    <td>{{item.status}} </td>
+
+                    <td>
+
+                        <i class="fa-solid fa-pen" (click)="openDiscountModal(item.id_product)"></i>
+                        <div class="column">
+                            @if(item?.discount_price){
+                            {{item.discount_price}} {{item.currency}}
+                            }
+                        </div>
+
+                    </td>
+                    <td>
+                        {{item.date| date:'medium' }}
+                    </td>
+
+                    <td> <button type="button" style="border: none;" (click)="openModal(item.id_product)"><i
+                                class="fa-solid fa-pen"></i></button> </td>
+                    <td> <button type="button" style="border: none;" (click)="openModalDelete(item.id_product)"><i
+                                class="fa-solid fa-trash"></i> </button>
+                    </td>
+                </tr>
+                <!-- modals Form -->
+                @if(isModalOpen){
+                <div class="modal-overlay column">
+                    <div class="modal">
+                        <div class="content_modal">
+                            <div class="close">
+                                <button type="button" type="button" (click)="closeModal()"><i
+                                        class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <h2>Update Product Details</h2>
+                            <div class="column">
+                                @if(product.photos.length>0){
+                                <div class="imags">
+                                    <div class="carousel_container">
+                                        <div class="carousel-wrapper"
+                                            [style.transform]="'translateX(-' + getCurrentIndex(product.id_product) * 100 + '%)'"
+                                            style="display: flex; transition: transform 0.5s ease;">
+                                            @for (photo of product.photos; track photo.id_photo) {
+                                            <div class="carousel-slide">
+                                                <img src="photo.src" [src]="photo.src" alt=""
+                                                    style="width: 100%;height: 100%;">
+                                            </div>
+                                            }@empty {
+                                            <li>There are no image.</li>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="btns">
+                                    <button type="button" (click)="prevSlide(product.id_product)"><i
+                                            class="fa-solid fa-angle-left"></i></button>
+                                    <button type="button"
+                                        (click)="nextSlide(product.id_product, product.photos.length - 1)"><i
+                                            class="fa-solid fa-angle-right"></i></button>
+                                </div>
+
+                                }
+                            </div>
+                            <form (ngSubmit)="editProduct(id_product)">
+                                <div class="content_modal_edit" style=" margin-top: 20px;">
+                                    <div class="row width_100 gap_5">
+                                        <div class="column width_100 gap_20px ">
+                                            <div class="content_input width_100">
+                                                <div class="column width_90">
+                                                    <h5>
+                                                        <h3>ABOUT:</h3> {{product.name}}
+                                                    </h5>
+                                                    <div class="column width_100 ">
+                                                        <label for="">Name Product</label>
+                                                        <input type="text" name="name" id="name"
+                                                            [(ngModel)]="product.name" class="width_80" required
+                                                            #nameRef="ngModel">
+                                                    </div>
+                                                    <!-- description  -->
+                                                    <div class="column width_100 ">
+                                                        <label for="description">Product Description</label>
+                                                        <textarea id="description" name="description"
+                                                            [(ngModel)]="product.description" class="width_80" required
+                                                            #descriptionRef="ngModel">
+                                </textarea>
+                                                    </div>
+                                                    <!-- cost price & sale price  -->
+                                                    <div class="row width_100 gap_20px ">
+                                                        <div class="column width_100">
+                                                            <label for="">Cost Price</label>
+                                                            <input type="number" name="cost_price" id="cost_price"
+                                                                min="0" [(ngModel)]="product.cost_price" required
+                                                                #prix_iRef="ngModel" class="width_50">
+                                                        </div>
+                                                        <div class="column width_100">
+                                                            <label for="">Sale Price</label>
+                                                            <input type="number" name="sale_price" id="sale_price"
+                                                                min="0" [(ngModel)]="product.sale_price" required
+                                                                #prix_fRef="ngModel" class="width_50">
+                                                        </div>
+                                                        <div class=" column width_100">
+                                                            <label for="">Currency</label>
+                                                            <div class="dropdown">
+                                                                <div class="title_dropdown width_50"
+                                                                    (click)="toggleDropdownCurrency()">
+                                                                    <div class="width_50 height_40 drop">
+                                                                        <div class="row">
+                                                                            {{ currencySelected || '' }}
+                                                                            <i class="fa-solid fa-angle-down"
+                                                                                [ngStyle]="{'transform': isRotatedCurrency ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                @if(isDropdownCurrencyOpen){
+                                                                <div class="menu">
+                                                                    @for(i of currencyList;track i ){
+                                                                    <div class="dropdown-item"
+                                                                        (click)="SelectCurrency(i)">
+                                                                        {{ i }}
+                                                                    </div>
+                                                                    }
+                                                                </div>
+                                                                }
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row width_100 gap_20px center">
+                                                        <!-- Level -->
+                                                        <div class="column width_80">
+                                                            <label for="level">Level</label>
+                                                            <div class="dropdown">
+                                                                <div class="title_dropdown width_90"
+                                                                    (click)="toggleDropdownLevel()">
+                                                                    <div class="width_100 height_40 drop">{{
+                                                                        levelSelected
+                                                                        || product.level }}
+                                                                        <i class="fa-solid fa-angle-down"
+                                                                            [ngStyle]="{'transform': isRotatedLevel ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                                    </div>
+                                                                </div>
+                                                                @if(isDropdownLevelOpen){
+                                                                <div class="menu">
+                                                                    @for(i of levelList;track i ){
+                                                                    <div class="dropdown-item" (click)="SelectLevel(i)">
+                                                                        {{ i }}
+                                                                    </div>
+                                                                    }
+                                                                </div>
+                                                                }
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="column width_90">
+                                                        <h5>Inventory Informations</h5>
+                                                        <div class="row width_90 gap_20px ">
+                                                            <!-- status -->
+                                                            <div class="column width_100">
+                                                                <label for="status">Status</label>
+                                                                <div class="dropdown">
+                                                                    <div class="title_dropdown width_100"
+                                                                        (click)="toggleDropdownStatus()">
+                                                                        <div class="width_100 height_40 drop">{{ select
+                                                                            ||
+                                                                            product.status }}
+                                                                            <i class="fa-solid fa-angle-down"
+                                                                                [ngStyle]="{'transform': isRotatedStatus ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    @if(isDropdownStatusOpen){
+                                                                    <div class="menu">
+                                                                        @for(i of statusSelected;track i ){
+                                                                        <div class="dropdown-item"
+                                                                            (click)="selectStatus(i)">
+                                                                            {{ i }}
+                                                                        </div>
+                                                                        }
+                                                                    </div>
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- categoris -->
+                                                            <div class="column width_100">
+                                                                <label for="type">Category</label>
+                                                                <div class="dropdown">
+                                                                    <div class="title_dropdown width_100"
+                                                                        (click)="toggleDropdownCategoris()">
+                                                                        <div class="width_100 height_40 drop">{{
+                                                                            categorySelected || product.type }}
+                                                                            <i class="fa-solid fa-angle-down"
+                                                                                [ngStyle]="{'transform': isRotatedCategory ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    @if(isDropdownCategoryOpen){
+                                                                    <div class="menu">
+                                                                        @for(i of categoryList;track i ){
+                                                                        <div class="dropdown-item"
+                                                                            (click)="selectCategory(i)">
+                                                                            {{ i }}
+                                                                        </div>
+                                                                        }
+                                                                    </div>
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+                                                            <!-- categoris -->
+
+                                                        </div>
+                                                        <!-- product & Qte -->
+                                                        <div class="row width_90 gap_20px ">
+                                                            <div class="column width_100">
+                                                                <label for="product">Product</label>
+                                                                <div class="dropdown">
+                                                                    <div class="title_dropdown width_100"
+                                                                        (click)="toggleDropdownProduct()">
+                                                                        <div class="width_100 height_40 drop">{{
+                                                                            productSelected || product.product }}
+                                                                            <i class="fa-solid fa-angle-down"
+                                                                                [ngStyle]="{'transform': isRotatedProduct ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    @if(isDropdownProductOpen){
+                                                                    <div class="menu ">
+                                                                        @for(i of productList;track i ){
+                                                                        <div class="dropdown-item"
+                                                                            (click)="SelectProduct(i)">
+                                                                            {{ i }}
+                                                                        </div>
+                                                                        }
+                                                                    </div>
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="column width_100">
+                                                                <label for="qte">Quantity</label>
+                                                                <input type="number" name="qte" id="qte" min="0"
+                                                                    [(ngModel)]="product.qte" required
+                                                                    #qteRef="ngModel">
+                                                                @if (qteRef.dirty || qteRef.touched) {
+                                                                <div class="alert">
+                                                                    @if (qteRef.hasError('required')) {
+                                                                    <div class="alert">
+                                                                        Quantity is required.
+                                                                    </div>
+                                                                    }
+                                                                </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        <!-- quality & brand  -->
+                                                        <div class="row width_90 gap_20px ">
+                                                            @if(item.type==='Phone & Electronique' ||
+                                                            item.type==='SelfCare & Product'
+                                                            || item.type==='Books & Education' || item.type==='Animals'
+                                                            || item.type==='Sprots & Entertainement'
+                                                            || item.type==='Baby & Toy'){
+                                                            <div class="column width_100">
+                                                                <label for="quality">Quality</label>
+                                                                <input type="text" name="quality" id="quality"
+                                                                    class="width_100" [(ngModel)]="product.quality">
+                                                            </div>
+                                                            }
+                                                            @if(item.type==='Phone & Electronique' ||
+                                                            item.type==='SelfCare & Product' || item.type==='Books
+                                                            &Education'
+                                                            || item.type==='Animals' || item.type==='Sprots &
+                                                            Entertainement'
+                                                            || item.type==='Baby & Toy' ||
+                                                            item.type==='Clothes & Fashion' || item.type==='Kitchen &
+                                                            Home essentials'
+                                                            || item.type==='Gaming & Digitals' ||
+                                                            item.type==='Car & Accessoires'){
+                                                            <div class="column width_100">
+                                                                <label for="brand">Brand</label>
+                                                                <input type="text" name="brand" id="brand"
+                                                                    [(ngModel)]="brand">
+                                                            </div>
+                                                            }
+
+                                                        </div>
+                                                        <!-- size & colors -->
+                                                        <div class="row width_90 gap_20px ">
+                                                            <!-- @if(item.type==='Animals'|| item.type==='Sprots & Entertainement' || item.type==='Baby & Toy' || item.type==='Clothes & Fashion' || item.type==='Car & Accessoires'){ -->
+                                                            <div class="column width_100">
+                                                                <label for="size">Size</label>
+                                                                <input name="size" type="size" id="size"
+                                                                    class="width_100" [(ngModel)]="product.size"
+                                                                    (change)="selectSize($event)" />
+                                                                @if (selectedSize) {
+                                                                <div class="colors">
+                                                                    @for (size of selectedSize; track size) {
+                                                                    <div class="content-color">
+                                                                        <div class="delete" (click)="deletesize(size)">X
+                                                                        </div>
+                                                                        <div class="color">
+                                                                            {{size}}
+                                                                        </div>
+                                                                    </div>
+                                                                    }
+                                                                </div>
+
+                                                                }
+                                                            </div>
+                                                            <!-- } -->
+                                                            <div class="column width_100">
+                                                                <label for="color">Colors</label>
+                                                                <input name="color" type="color" id="color"
+                                                                    class="width_100" [(ngModel)]="product.color"
+                                                                    (change)="selectColors($event)" />
+                                                                <div class="colors">
+                                                                    @for (color of selectedColors; track color) {
+                                                                    <div class="content-color">
+                                                                        <div class="delete"
+                                                                            (click)="deleteColor(color)">X</div>
+                                                                        <div class="color" [style.background]="color"
+                                                                            [style.color]="color">
+                                                                        </div>
+                                                                    </div>
+                                                                    }
+                                                                </div>
+
+
+
+                                                                <!-- @if (selectedColors) {
+                                                                <div class="colors">
+                                                                    @for (color of product.color; track color) {
+                                                                    <div class="content-color">
+                                                                        <div class="delete"
+                                                                            (click)="deleteColor(color)">X</div>
+                                                                        <div class="color" [style.background]="color"
+                                                                            [style.color]="color">
+                                                                        </div>
+                                                                    </div>
+                                                                    }
+                                                                </div>
+                                                                } -->
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- weight & mateiral  -->
+                                                        <div class="row width_90 gap_20px ">
+                                                            @if( item.type==='Magasin' || item.type==='Baby & Toy'||
+                                                            item.type==='Car & Accessoires'|| item.type==='Sprots &
+                                                            Entertainement' || item.type==='Kitchen & Home essentials'
+                                                            ||
+                                                            item.type==='Animals' || item.type==='Phone & Electronique'
+                                                            || item.type==='SelfCare & Product'|| item.type==='Books &
+                                                            Education'){
+                                                            <div class="column width_100">
+                                                                <label for="weight">Weight</label>
+                                                                <input type="number" name="weight" id="weight" min="0"
+                                                                    class="width_100" [(ngModel)]="product.Weight">
+                                                            </div>
+                                                            }
+                                                            @if(item.type==='Phone & Electronique'
+                                                            ||item.type==='SelfCare & Product'|| item.type==='Animals'
+                                                            || item.type==='Kitchen & Home essentials' ||
+                                                            item.type==='Sprots & Entertainement' || item.type==='Car &
+                                                            Accessoires' || item.type==='Baby & Toy'){
+                                                            <div class="column width_100">
+                                                                <label for="mateiral">Material</label>
+                                                                <input type="text" name="material" id="material"
+                                                                    [(ngModel)]="material">
+                                                            </div>
+                                                            }
+                                                        </div>
+                                                        <!-- Flavor  -->
+                                                        <div class="column width_90 gap_20px ">
+                                                            @if(item.type==='Animals' || item.type==='Magasin'){
+                                                            <div class="column width_100">
+                                                                <label for="flavor">Flavor</label>
+                                                                <input type="textt" name="flavor" id="flavor"
+                                                                    [(ngModel)]="product.flavor">
+                                                            </div>
+                                                            }
+                                                        </div>
+                                                        <!-- dimension  -->
+                                                        <div class="column width_90 gap_20px ">
+                                                            @if(item.type==='Phone & Electronique' || item.type==='Books
+                                                            & Education' || item.type==='Animals'|| item.type==='Kitchen
+                                                            & Home essentials'|| item.type==='Sprots & Entertainement'||
+                                                            item.type==='Car & Accessoires' || item.type==='Baby &
+                                                            Toy'){
+                                                            <h4>Dimansion</h4>
+                                                            <div class="row width_100 gap_20px ">
+                                                                <div class="column width_50">
+                                                                    <label for="width">Width</label>
+                                                                    <input type="number" name="width" id="width" min="0"
+                                                                        [(ngModel)]="product.width">
+                                                                </div>
+                                                                <div class="column width_50">
+                                                                    <label for="height">Height</label>
+                                                                    <input type="number" name="height" id="height"
+                                                                        min="0" [(ngModel)]="product.height">
+                                                                </div>
+                                                                <div class="column width_50">
+                                                                    <label for="hauteur">Hauteur</label>
+                                                                    <input type="number" name="Hauteur" id="Hauteur"
+                                                                        min="0" [(ngModel)]="product.hauteur">
+                                                                </div>
+                                                            </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="btn">
+                                    <button type="button" (click)="closeModal()">Close</button>
+                                    <button class="submit" type="submit">save</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                }
+                <!-- fin edit modal  -->
+                }
+                 }
+            </tbody>
+        </table>
+        <!-- modal delete -->
+        @if(isModalDeleteOpen){
+        <div class="modal-overlay-delete ">
+            <div class="modal" style="width: 50%;height: 30%;">
+                <div class="close" style="width:100%; margin-top: -10px;">
+                    <button type="button" (click)="closeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                @if(isDeleteProduct){
+                <h2>Are you sure you want to delete this product permanently?</h2>
+                <div class="btn" style="margin-top: 10px; gap: 30%;">
+                    <button type="button" (click)="closeModalDelete()" class="close_btn">Close</button>
+                    <button type="button" (click)="deleteProduct(id_product)" class="delete_btn">delete</button>
+                </div>
+                }
+                @if(isremoveDiscount){
+                <h2>Are you sure you want to delete discount?</h2>
+                <div class="btn" style="margin-top: 10px; gap: 30%;">
+                    <button type="button" (click)="closeModalDelete()" class="close_btn">Close</button>
+                    <button type="button" (click)="RemoveDiscount()" class="delete_btn">delete</button>
+                </div>
+                }
+
+
+
+            </div>
+        </div>
+        }
+        }
+        @else {
+        <div class="column amptycontent">
+            <div class="empty">
+                There are no product.
+            </div>
+            <button type="button" class="addProduct" (click)="toAddProduct()">
+                add Product
+            </button>
+
+        </div>
+
+        }
+        @if(errorDelete){
+        <div class="error_message">
+            {{errorDelete }}
+        </div>
+        }
+
+        <!-- fin delete  -->
+        <!-- modal Photo -->
+        @if(isPhotoModalOpen){
+        <div class="modal-overlay-delete ">
+            <div class="modal" style="width:60%;height: 78%;">
+                <div class="close" style="width:100%; margin-top: 10px;">
+                    <button type="button" (click)="closeModal()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="content_input width_50 photo_modal" style="height: 50%;">
+                    <h2>Add Photos</h2>
+                    <label for="fileInput" class="column">
+                        <i class="fa-solid fa-camera"></i>
+                        Choose your images
+                    </label>
+                    <form #myForm="ngForm" (ngSubmit)="onSubmit(product.id_product)">
+                        <input type="file" id="fileInput" (change)="onFileSelected($event)" multiple
+                            style="display: none;" />
+                        <!-- </label> -->
+                        @if(previewUrls.length){
+                        <div class="imgs">
+                            <h3>Preview:</h3>
+                            @for(url of previewUrls; track url){
+                            <img [src]="url" />
+                            }
+
+                        </div>
+                        }
+                        <button class="btn_submit_add_photo" type="submit">save</button>
+                    </form>
+                </div>
+                <table class="styled-table" style="width:50%; margin-top: 30px;">
+                    <thead>
+                        <tr>
+                            <th>image</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (photo of product.photos; track photo.id_photo) {
+                        <tr>
+                            <td style="width:20%;height:50%;">
+                                <img src="photo.src" [src]="photo.src" alt="" style="width:100%;height:100%;">
+                            </td>
+                            <td style="width:20%;height:50%;">
+                                <i class="fa-solid fa-trash"  (click)="openDeletePhotoModal(photo.id_photo)"
+                                    style="font-size: 40px;"></i>
+                            </td>
+
+                        </tr>
+                        }@empty {
+                        <li>There are no image.</li>
+                        }
+
+                    </tbody>
+                </table>
+
+
+                <div class="btn" style="margin-top: 10px; gap: 30%;">
+                    <button type="button" (click)="closeModal()" class="close_btn">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        }
+        @if(isModalDeletePhoto){
+        <div class="modal-overlay-delete ">
+            <div class="modal" style="width: 60%;height: 50%;">
+                <div class="close" style="width:100%; margin-top: -10px;">
+                    <button type="button" (click)="closeModalDeletePhoto()">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <h2>Are you sure you want to delete this Photo permanently?</h2>
+                <div class="btn" style="margin-top: 10px; gap: 30%;">
+                    <button type="button" (click)="closeModalDeletePhoto()" class="close_btn">Close</button>
+                    <button type="button" (click)="DeletePhoto(id_photo)" class="delete_btn">delete</button>
+                </div>
+
+
+            </div>
+        </div>
+
+        }
+        @if(errorDelete){
+        <div class="error_message">
+            {{errorDelete }}
+        </div>
+        }
+
+        <!-- fin photo  -->
+    </div>
+</div>

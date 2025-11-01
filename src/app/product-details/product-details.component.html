@@ -1,0 +1,371 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+
+    <div class="column content gap100">
+        <div class="back">
+            <button (click)="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+        @if(commandeMessage){
+        <div class="message_succes"
+            style="position: absolute; inset-block-start: 0;inset-inline-end: 0; margin-top: 10%;">
+            <div class="succes_message">
+                {{ commandeMessage }}
+            </div>
+        </div>
+        }
+          @if(errorMessage){
+        <div class="error_message"
+            style="position: absolute; inset-block-start: 0;inset-inline-end: 0; margin-top: 10%;">
+            <div class="error_message">
+                {{ errorMessage }}
+            </div>
+        </div>
+        }
+        <div class="row-xr gap width100">
+
+            <div class="imags_container column">
+                @if(!isClick && allPhotos.length>0 ){
+                <div class="first">
+                    <img src={{allPhotos[0]}} alt="">
+                </div>
+                }@else {
+                <div class="first">
+                    <img src={{src}} alt="">
+                </div>
+                }
+                <div class="row all-photos">
+                    @for(item of allPhotos;let i= $index;track item) {
+                    @if(allPhotos.length>1 ) {
+                    <button (click)="photo(i)">
+                        <img src={{item}} alt="">
+                    </button>
+                    }@else{
+                    <button (click)="photo(i)" style="width: 140px;height: 140px; ">
+                        <img src={{item}} alt="">
+                    </button>
+                    }
+
+                    }
+                </div>
+            </div>
+            <div class="details">
+                <div class="content_details">
+
+                    @if(product.gender!=null){
+                    <div class="gender">
+                        For {{product.gender}}
+                    </div>
+                    }
+                    <div class="name">
+                        {{product.name}}
+                    </div>
+
+                    @if(product.discount_price){
+                    <div class="alert column gap15">
+                        <div class="sale row gap"> Sale <div class="percent"> {{product.discount_percent}}%</div> OFF
+                        </div>
+
+                        <div class="row gap">
+                            <div class="recent_price">
+                                {{product.sale_price}}{{product.currency}}
+                            </div>
+                            <div class="discount">
+                                {{product.discount_price}} {{product.currency}}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    }@else{
+                    <div class="price">
+                        {{product.sale_price}}{{product.currency}}
+                    </div>
+                    }
+                    <!-- <div class=" gap"> -->
+                    <div class="level row">
+                        Product level: <p>{{product.level}}</p>
+                    </div>
+                    <div class="status row">
+                        <i class="fa-solid fa-circle-exclamation"></i> This product is currently <div class="weight">
+                            {{product.status}}</div>
+                    </div>
+                    <!-- </div> -->
+
+                    <form (ngSubmit)="addCommande()">
+                        @if(product.color.length>0){
+                        <div class="colors flex_wrap gap">
+                            @for(item of product.color; track item){
+
+                            <div class="color" [style.background]="item" [style.color]="item"
+                                (click)="OnSelectColor(item)" tabindex="0" [class.active]="color === item">
+                            </div>
+                            }
+                        </div>
+                        }
+                        @if(product.size.length!=0){
+                        <div class="size_content">
+                            <h5 style="margin-bottom: 10px; font-size: 20px;">
+                                Select Size :
+                            </h5>
+                            <div class="flex_wrap gap">
+                                @for(item of product.size; track item){
+                                <div class="size" (click)="OnSelectSize(item)" tabindex="0"
+                                    [class.active]="size === item">
+                                    {{item}}
+                                </div>
+                                }
+
+                            </div>
+                        </div>
+                        }
+                        <div class="shop row gap">
+                            <div class="add_shop">
+                                <button type="submit">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
+                            <div class="fav">
+                                @if(isFav){
+                                <button (click)="addFav()"><i class="fa-solid fa-heart"></i></button>
+                                }@else {
+                                <button (click)="addFav()"><i class="fa-regular fa-heart"></i></button>
+                                }
+
+
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+                    <input type="checkbox" id="toggle">
+
+                    <div class="description">
+                        {{product.description}}
+                        <div class="flex_wrap">
+                            @if(product.quality){
+                            <div class="quality row">
+                                Product Quality is : <div class="weight">{{product.quality}}</div>
+                            </div>
+                            @if(product.author){
+                            <div class="quality">
+                                The Author Of thid book is : <div class="weight">{{product.author}}</div>
+                            </div>
+                            }
+                            @if(product.flavor){
+                            <div class="quality row">
+                                The product falvor is : <div class="weight">{{product.falvor}}</div>
+                            </div>
+                            }
+                            @if(product.material){
+                            <div class="quality row">
+                                The product material is : <div class="weight">{{product.material}}</div>
+                            </div>
+                            }
+                            @if(product.weight){
+                            <div class="quality row">
+                                Weight : <div class="weight">{{product.weight}}</div>
+                            </div>
+                            }
+                            @if(product.dimension){
+                            <div class="quality row">
+                                The product dimensions are : <div class="weight">{{product.dimension}}</div>
+                            </div>
+                            }
+                            }
+                        </div>
+                    </div>
+                    @if(isMore){
+                    <label for="toggle" class="more" (click)="readMore()">Read less</label>
+                    }@else {
+                    <label for="toggle" class="more" (click)="readMore()">Read more</label>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row-xr reviews_rating transparent gap50 center">
+            <div class=" border rating gap50 transparent center">
+                <div class=" row-start rating gap50 margin10 transparent center">
+                    <div class="column transparent center">
+                        <div class="row transparent center ">
+                            @if(isStarts){
+                            <div class="starts row transparent">
+                                <p class="transparent">{{product.rating| number:'1.2-2' }}</p> /5
+                            </div>
+                            }
+                        </div>
+                        <form (ngSubmit)="onsubmitStarts()">
+                            <div class="stars row gap15 transparent">
+                                @for(i of StartList ;track i ){
+                                <div class="transparent" (click)="selectStarts(i)">
+                                    @if(i<=listStartUser.length){ <button type="submit" class="transparent"><i
+                                            class="fa-solid fa-star"></i></button>
+                                        }@else {
+                                        <button type="submit"><i class="fa-regular fa-star"></i></button>
+                                        }
+                                </div>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                    <div class="review_starts column gap10px center transparent">
+                        @for(i of StartList ;track i ){
+                        @if(i==1){
+                        <div class="row gap transparent">
+                            <div class="row gap">
+                                <div class="transparent">({{listOf1.length}})</div>
+                                <div class="transparent">{{i}}</div>
+
+                            </div>
+                            <div class="" style="width:200px">
+                                @if(listOf1.length>0){
+                                <div class="line gap transparent" [style.width.px]="listOf1.length*10"></div>
+                                }
+                                @else {
+                                <div class="line gap transparent" [style.width.px]="2"></div>
+                                }
+                            </div>
+                        </div>
+                        }
+                        @if(i==2){
+                        <div class="row gap transparent">
+                            <div class="row gap transparent">
+                                <div class="transparent">({{listOf2.length}})</div>
+                                <div class="transparent">{{i}}</div>
+                            </div>
+                            <div class="" style="width:200px">
+                                @if(listOf2.length>0){
+                                <div class="line gap transparent" [style.width.px]="listOf2.length*10"></div>
+                                }
+                                @else {
+                                <div class="line gap transparent" [style.width.px]="2"></div>
+                                }
+                            </div>
+                        </div>
+                        }
+                        @if(i==3){
+                        <div class="row gap transparent">
+                            <div class="row gap transparent">
+                                <div class="transparent">({{listOf3.length}})</div>
+                                <div class="transparent">{{i}}</div>
+                            </div>
+                            <div class="" style="width:200px">
+                                @if(listOf3.length>0){
+                                <div class="line gap transparent" [style.width.px]="listOf3.length*10"></div>
+                                }
+                                @else {
+                                <div class="line gap transparent" [style.width.px]="2"></div>
+                                }
+                            </div>
+                        </div>
+                        }
+                        @if(i==4){
+                        <div class="row gap transparent">
+                            <div class="row gap transparent">
+                                <div class="transparent">({{listOf4.length}})</div>
+                                <div class="transparent">{{i}}</div>
+
+                            </div>
+                            <div class="" style="width:200px">
+                                @if(listOf4.length>0){
+                                <div class="line gap transparent" [style.width.px]="listOf4.length*10"></div>
+                                }
+                                @else {
+                                <div class="line gap transparent" [style.width.px]="2"></div>
+                                }
+                            </div>
+                        </div>
+                        }
+                        @if(i==5){
+                        <div class="row gap transparent">
+                            <div class="row gap transparent">
+                                <div class="transparent">({{listOf5.length}})</div>
+                                <div class="transparent">{{i}}</div>
+                            </div>
+                            <div class="" style="width:200px">
+                                @if(listOf5.length>0){
+                                <div class="line gap transparent" [style.width.px]="listOf5.length*10"></div>
+                                }
+                                @else {
+                                <div class="line gap transparent" [style.width.px]="2"></div>
+                                }
+                            </div>
+                        </div>
+                        }
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="column border reviews gap50 transparent">
+                @if(isCommentaire){
+                <div class="commentaires transparent column gap10px">
+                    @for(i of CommentaireList; track i){
+                    <div class="content_comment transparent">
+                        @if(i.user!=null){
+                        @if(i.user.photo){
+                        <img [src]="i.user.filePath" alt="">
+                        }@else{
+                        <img src='../../assets/img/photo_profil.jpg' alt="">
+                        }
+                        }
+                        @if(i.admin !=null){
+                        @if(i.admin.photo){
+                        <img [src]="i.admin.filePath" alt="">
+                        }@else{
+                        <img src='../../assets/img/photo_profil.jpg' alt="">
+                        }
+                        }
+
+                        <div class=" column transparent">
+                            @if(i.user!=null){
+                            <div class="fullname transparent">{{i.user.nom}} {{i.user.prenom}}</div>
+                            <div class="comment transparent">
+                                {{i.commentaire}}
+                            </div>
+                            }
+                            @if(i.admin!=null){
+                            <div class="fullname transparent">{{i.admin.nom}} {{i.admin.prenom}}</div>
+                            <div class="comment transparent">
+                                {{i.commentaire}}
+                            </div>
+                            }
+
+                        </div>
+                    </div>
+
+
+                    }
+
+                </div>
+                }
+                @if(isUser||isAdmin){
+                <div class="addComment transparent ">
+
+                    <form (ngSubmit)="OnsubmitCommantaire()" class="transparent">
+                        <div class="commentaire transparent">
+                            <label for="">Commentaire</label>
+                            <textarea id="commentaire" name="commentaire" [(ngModel)]="commentaire"
+                                placeholder="Write here.."></textarea>
+                        </div>
+                        <button type="submit"> save</button>
+                    </form>
+                </div>
+                }
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,401 @@
+
+
+
+.bag{
+  place-content: end;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.bag i{
+  font-size: 80px;
+}
+.bag .total{
+  font-size: 15px;
+  color: #7F5539;
+  place-items: end;
+  display: flex;
+}
+.back button{
+  border: none;
+  font-size: 40px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cards {
+  width: 100%;
+
+}
+.gapCards{
+  gap: 10%;
+  gap: 20px;
+}
+.gap50{
+  gap: 50px;
+}
+.content_card {
+  display: flex;
+  place-items: center;
+}
+.text{
+  font-size: 20px;
+  font-weight: 700;
+  color: #593b28;
+}
+.conf button{
+  height: 40px;
+  color: #593b28;
+  font-size: large;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #593b28;
+}
+.conf button:focus,.conf button:hover{
+  background: #593b28;
+  border: 2px solid #593b28;
+  color: #EDE0D4;
+}
+
+
+.added,.added i{
+  color: green;
+  background: transparent;
+}
+input{
+    width: 70%;
+    height: 40px;
+    border: 2px solid #593b28;
+    border-radius: 20px;
+
+}
+/*carousel*/
+.carousel_container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  place-content: center;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  text-align: center;
+}
+
+.carousel-slide img {
+  object-fit: cover;
+}
+
+.card {
+  width: 350px;
+  height: 510px;
+  background: rgba(230, 204, 178, 0.5);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.mini-card{
+  width: 80%;
+  height: 270px;
+  background: rgba(230, 204, 178, 0.5);
+  border-radius: 20px;
+  cursor: pointer; 
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+
+.card .img{
+  background: rgba(156, 102, 68, 0.5);
+  border-radius: 20px;
+  width: 320px;
+  height: 270px;
+  
+} 
+.mini-card .img{
+  /* background: rgba(156, 102, 68, 0.5); */
+  border-radius: 20px;
+  width: 320px;
+  height: 210px;
+  margin-top: 10px;
+} 
+.details-btn{
+  display: flex;
+  flex-direction: column;
+
+}
+.details{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.total{
+  height: 40px;
+  font-size: 30px;
+  color: #593b28;
+  margin-top: 10px;
+}
+
+.card img{
+  width: auto;
+  height: 250px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+.mini-card img {
+  width: auto;
+  height: 200px;
+  border-radius: 5px;
+}
+.cart-summary{
+  background: rgba(230, 204, 178, 0.2);
+  border-radius: 20px;
+}
+.delete {
+  width: 90%;
+  display: flex;
+  text-align: end;
+  place-content: end;
+  place-items: end;
+}
+.delete button{
+  font-size: 20px;
+  border: none;
+  color: #7F5539;
+  background: transparent;
+  margin-top: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.delete button:hover{
+  color: #EDE0D4;
+  background: #b12c11;
+}
+.btns button{
+  font-size: 20px;
+  border: 2px solid #7F5539;
+  color: #7F5539;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+.gap5{
+  gap: 5px;
+}
+.gap{
+  gap: 5%;
+}
+.details-btn button{
+  border: 2px solid #7F5539;
+  border-radius: 20px;
+  width: 110px;
+  height: 30px;
+  font-size: 18px;
+  color: #7F5539;
+  text-align: center;
+  background: transparent;
+  place-content: center;
+  place-items: center;
+}
+.color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 2px solid #593b28;
+    cursor: pointer;
+
+}
+.name{
+  color: #593b28;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.recent_price {
+    text-decoration: line-through;
+    color: #7f4539;
+    font-size: 18px;
+    margin-left: 15px;
+}
+.discount{
+    color: #b12c11;
+    font-size: 20px;
+    font-weight: 700; 
+    width: 100px; 
+}
+.sale {
+    text-align: center;
+    font-size: 15px;
+    color: #7F5539;
+}
+.percent,.weight {
+    color: #593b28;
+    font-weight: 700;
+
+}
+.size,.price{
+  color: #7F5539;
+  font-size: 20px;
+}
+.width200{
+  width: 200px;
+}
+.alert{
+  gap: 5%;
+}
+.big{
+  font-size: 300px;
+}
+
+
+
+/* modals */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 50%;
+    height: 30vh;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    place-content: center;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.modal .btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+}
+
+.modal .close {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 10px;
+}
+
+.modal .close button {
+    margin-top: -30px;
+    width: 40px;
+    background: transparent;
+    border-radius: 50%;
+    height: 40px;
+    border: 2px solid #7F5539;
+}
+
+.modal .btns button:hover,
+.modal .btns button:focus {
+    background: #593b28;
+    border: 2px solid #593b28;
+    color: white;
+}
+
+.modal .btns button {
+    border-radius: 50px;
+    width: 200px;
+    height: 40px;
+    border: 2px solid #7F5539;
+    color: #7F5539;
+    margin-top: 7px;
+}
+
+.close button:hover,
+.close button:focus {
+    background: #ddb8a0;
+}
+.row-column{
+  display: flex;
+  flex-direction: row;
+}
+.gap_mini{
+  gap: 50px;
+}
+
+/*end modal */
+@media(max-width:700px){
+.modal .btns{
+  display: flex;
+  flex-direction: column;
+}
+}
+@media(max-width:600px){
+.mini-card .name{
+  font-size: 15px;
+  text-transform: capitalize;
+}
+.mini-card{
+  height: 230px; 
+}
+.mini-card .discount{
+    font-size: 15px;
+}
+.mini-card .img{
+  width: auto ;
+  height: 170px;
+}
+.mini-card img{
+  height: 150px;
+}
+.mini-card  .recent_price {
+    font-size: 13px;
+    margin-left: 15px;
+}
+.modal{
+  height: 300px;
+}
+}
+@media(max-width:500px){
+  .big{
+  font-size: 200px;
+}
+.mini-card .row-column{
+  display: flex;
+  flex-direction: column;
+
+}
+.mini-card{
+  height: 350px; 
+}
+.mini-card .img{
+  width: auto ;
+  height: 200px;
+}
+.mini-card img{
+  height: 190px;
+}
+.modal{
+  height: 400px;
+}
+}
+@media(max-width:300px){
+  .big{
+  font-size: 150px;
+}
+.modal .btns button{
+  width: 150px;
+}
+}

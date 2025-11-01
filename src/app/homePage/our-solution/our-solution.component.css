@@ -1,0 +1,86 @@
+.content_ourSolution{
+    width:100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    gap: 15%;
+
+}
+.content_ourSolution .text_content{
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 50px;
+    width:50%
+}
+.content_ourSolution .img{
+   width: 80%;
+}
+.text_content .btn {
+  background: transparent;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.text_content .btn button {
+  width: 170px;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 50px;
+  border: #e6ccb2 solid 3px;
+  color:  #7F5539;
+  background: #e6ccb2;
+}
+
+.text_content .btn button:focus, .text_content .btn button:hover{
+  border: #7F5539 solid 3px;
+  background:  #7F5539;
+  color: white;
+  cursor: pointer;
+}
+
+@media(max-width:800px){
+.text_content .title {
+  width:100%;
+}
+}
+@media(max-width:700px){
+.content_ourSolution{
+  margin-top: 110%;
+}
+}
+
+@media(max-width:650px){
+.content_ourSolution{
+    width:100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column-reverse;
+
+}
+.content_ourSolution .text_content{
+    margin-left: 15%;
+}
+.text_content .title {
+  width:150%;
+}
+.text_content .sub_title{
+  width:150%;
+  margin-top: 20px;
+  font-size: 100%;
+}
+.text_content .btn{
+margin-left: 30%;
+margin-top: 20px;
+}
+.text_content .btn button{
+  font-size: 20px;
+   width: 150px;
+}
+}
+
+@media(max-width:300px){
+.content_ourSolution{
+  margin-top: 130%;
+}
+}
+

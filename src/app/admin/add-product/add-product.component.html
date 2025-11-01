@@ -1,0 +1,589 @@
+<app-navbar></app-navbar>
+<!-- <div class="relative"> -->
+<!-- </div> -->
+<div class="contanier">
+
+    <div class="content ">
+        <div class="title">
+            <h1>
+                Add New product
+            </h1>
+        </div>
+        <div style="margin-top: 20px;">
+            <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)" enctype="multipart/form-data">
+                @if(successMessage){
+                <div class="message_succes">
+                    <div class="succes_message">
+                        {{ successMessage }}
+                    </div>
+                </div>
+                }
+                <div class="row width_100 gap_5">
+                    <div class="column width_100 gap_20px ">
+                        <div class="content_input width_100">
+                            <div class="column width_90">
+                                <h5>General Information</h5>
+                                <div class="column width_100 ">
+                                    <label for="">Name Product</label>
+                                    <input type="text" name="name" id="name" [(ngModel)]="name" required
+                                        #nameRef="ngModel">
+                                    @if (nameRef.dirty || nameRef.touched) {
+                                    <div class="alert">
+                                        @if (nameRef.hasError('required')) {
+                                        <div class="alert">
+                                            Name is required.
+                                        </div>
+                                        }
+                                    </div>
+                                    }
+                                </div>
+                                <!-- description  -->
+                                <div class="column width_100 ">
+                                    <label for="description">Product Description</label>
+                                    <textarea id="description" name="description" [(ngModel)]="description" required
+                                        #descriptionRef="ngModel">
+                                </textarea>
+                                    @if (descriptionRef.dirty || descriptionRef.touched) {
+                                    <div class="alert">
+                                        @if (descriptionRef.hasError('required')) {
+                                        <div class="alert">
+                                            DescriptionRef is required.
+                                        </div>
+                                        }
+                                    </div>
+                                    }
+                                </div>
+                                <!-- cost price & sale price  -->
+                                <div class="row width_100 gap_20px ">
+                                    <div class="column width_100 gap_20px ">
+                                        <label for="">Cost Price</label>
+                                        <input type="number" name="cost_price" id="cost_price" min="0"
+                                            [(ngModel)]="cost_price" required #cost_priceRef="ngModel">
+                                        @if (cost_priceRef.dirty || cost_priceRef.touched) {
+                                        <div class="alert">
+                                            @if (cost_priceRef.hasError('required')) {
+                                            <div class="alert">
+                                                Cost Price is required.
+                                            </div>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                    <div class="column width_100 gap_20px ">
+                                        <label for="">Sale Price</label>
+                                        <input type="number" name="sale_price" id="sale_price" min="0"
+                                            [(ngModel)]="sale_price" required #sale_priceRef="ngModel">
+                                        @if (sale_priceRef.dirty || sale_priceRef.touched) {
+                                        <div class="alert">
+                                            @if (sale_priceRef.hasError('required')) {
+                                            <div class="alert">
+                                                Sale Price is required.
+                                            </div>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                    <div class=" column width_50 gap_20px ">
+                                        <label for="">Currency</label>
+                                        <div class="dropdown">
+                                            <div class="title_dropdown width_100" (click)="toggleDropdownCurrency()">
+                                                <div class="width_100 height_40 drop">
+                                                    <div class="row">
+                                                        {{ currencySelected || '' }}
+                                                        <i class="fa-solid fa-angle-down"
+                                                            [ngStyle]="{'transform': isRotatedCurrency ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @if(isDropdownCurrencyOpen){
+                                            <div class="menu">
+                                                @for(i of currencyList;track i ){
+                                                <div class="dropdown-item" (click)="SelectCurrency(i)">
+                                                    {{ i }}
+                                                </div>
+                                                }
+                                            </div>
+                                            }
+                                            @if (currencySelected=='') {
+                                            <div class="alert">
+                                                Currency is required.
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row width_100 gap_20px ">
+                                    <!-- Level -->
+                                    <div class="column width_100 gap_20px  ">
+                                        <label for="level">Level</label>
+                                        <div class="dropdown">
+                                            <div class="title_dropdown width_100" (click)="toggleDropdownLevel()">
+                                                <div class="width_100 height_40 drop">{{ levelSelected || 'Level' }}
+                                                    <i class="fa-solid fa-angle-down"
+                                                        [ngStyle]="{'transform': isRotatedLevel ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                </div>
+                                            </div>
+                                            @if(isDropdownLevelOpen){
+                                            <div class="menu">
+                                                @for(i of levelList;track i ){
+                                                <div class="dropdown-item" (click)="SelectLevel(i)">
+                                                    {{ i }}
+                                                </div>
+                                                }
+                                            </div>
+                                            }
+                                            @if (levelSelected=='') {
+                                            <div class="alert">
+                                                Level is required.
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- status & Category & Product & Qte Quality & Brand & size & colors & weight & mateiral & dimension -->
+                        <div class="content_input">
+                            <div class="column width_90">
+                                <h5>Inventory Informations</h5>
+                                <div class="row width_100 gap_20px ">
+                                    <!-- status -->
+                                    <div class="column width_100 gap_20px  ">
+                                        <label for="status">Status</label>
+                                        <div class="dropdown">
+                                            <div class="title_dropdown width_100" (click)="toggleDropdownStatus()">
+                                                <div class="width_100 height_40 drop">{{ select || 'Status' }}
+                                                    <i class="fa-solid fa-angle-down"
+                                                        [ngStyle]="{'transform': isRotatedStatus ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                </div>
+                                            </div>
+                                            @if(isDropdownStatusOpen){
+                                            <div class="menu">
+                                                @for(i of statusSelected;track i ){
+                                                <div class="dropdown-item" (click)="selectStatus(i)">
+                                                    {{ i }}
+                                                </div>
+                                                }
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <!-- categoris -->
+                                    <div class="column width_100 gap_20px ">
+                                        <label for="type">Category</label>
+                                        <div class="dropdown">
+                                            <div class="title_dropdown width_100" (click)="toggleDropdownCategoris()">
+                                                <div class="width_100 height_40 drop">{{ categorySelected || 'Category'
+                                                    }}
+                                                    <i class="fa-solid fa-angle-down"
+                                                        [ngStyle]="{'transform': isRotatedCategory ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                </div>
+                                            </div>
+                                            @if(isDropdownCategoryOpen){
+                                            <div class="menu ">
+                                                @for(i of categoryList;track i ){
+                                                <div class="dropdown-item" (click)="selectCategory(i)">
+                                                    {{ i }}
+                                                </div>
+                                                }
+                                            </div>
+                                            }
+                                            @if (categorySelected=='') {
+                                            <div class="alert">
+                                                Category is required.
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- product -->
+                                <div class="row width_100 gap_20px ">
+                                    <div class="column width_100 ">
+                                        <label type="button" for="product"
+                                            style="margin-top: 5px;margin-bottom: 16px;">Product</label>
+                                        <div class="dropdown">
+                                            <div class="title_dropdown width_100" (click)="toggleDropdownProduct()">
+                                                <div class="width_100 height_40 drop">{{ productSelected || 'Product' }}
+                                                    <i class="fa-solid fa-angle-down"
+                                                        [ngStyle]="{'transform': isRotatedProduct ? 'rotate(180deg)' : 'rotate(0deg)'}"></i>
+                                                </div>
+                                            </div>
+                                            @if(isDropdownProductOpen){
+                                            <div class=" column menu ">
+                                                @for(i of productList;track i ){
+                                                <div class="dropdown-item" (click)="SelectProduct(i)">
+                                                    {{ i }}
+                                                </div>
+                                                }
+                                            </div>
+                                            }
+                                            @if (productSelected=='') {
+                                            <div class="alert">
+                                                Product is required.
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- quality & brand  -->
+                                <div class="row width_100 gap_20px ">
+                                    @if(isQuality){
+                                    <div class="column width_100">
+                                        <label for="quality">Quality</label>
+                                        <input type="text" name="quality" id="quality" class="width_100"
+                                            [(ngModel)]="quality">
+                                    </div>
+                                    }
+                                    @if(isBrand){
+                                    <div class="column width_100">
+                                        <label for="brand">Brand</label>
+                                        <input type="text" name="brand" id="brand" [(ngModel)]="brand">
+                                    </div>
+                                    }
+
+                                </div>
+                                @if(isGender){
+                                <div class="column width_100">
+                                    <label for="Gender">Gender: </label>
+                                    <div class="row width100 center gap_20px ">
+                                        <div class="row">
+                                            <input type="radio" name="gender" value="male" [(ngModel)]="gender">
+                                            <h6>Male</h6>
+                                        </div>
+                                        <div class="row">
+                                            <input type="radio" name="gender" value="female" [(ngModel)]="gender">
+                                            <h6>Female</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                                <!-- size & colors & qte -->
+                                <!-- @for(item of colorsBody; track item){ -->
+                                <div class="row width_100 gap_20px ">
+                                    @if(isSize){
+                                    <div class="column width_100">
+                                        <label for="size">Size</label>
+                                        <!-- <input name="size" type="size" id="size" class="width_100" [(ngModel)]="size"
+                                            (change)="selectSize($event)" /> -->
+                                        <input type="text" name="size" id="size" class="width_100"
+                                            [(ngModel)]="currentSize" name="size" required />
+                                        @if (selectedSize) {
+                                        <div class="colors">
+                                            @for (size of selectedSize; track size) {
+                                            <div class="content-color">
+                                                <div class="delete" (click)="deletesize(size)">X</div>
+                                                <div class="color">
+                                                    {{size}}
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+
+                                        }
+                                    </div>
+                                    }
+                                    @if(isColors){
+                                    <div class="column width_100">
+                                        <label for="color">Colors</label>
+                                        <!-- <input name="color" type="color" id="color" class="width_100"
+                                            [(ngModel)]="color" (change)="selectColors($event)" /> -->
+                                        <input name="color" id="color" class="width_100" type="color"
+                                            [(ngModel)]="currentColor" name="color" required />
+                                        @if (selectedColors) {
+                                        <div class="colors">
+                                            @for (color of selectedColors; track color) {
+                                            <div class="content-color">
+                                                <div class="delete" (click)="deleteColor(color)">X</div>
+                                                <div class="color" [style.background]="color" [style.color]="color">
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+
+                                        }
+                                    </div>
+                                    }
+                                    <div class="column width_100">
+                                        <label for="qte">Quantity</label>
+                                        <!-- <input type="number" name="qte" id="qte" min="0" [(ngModel)]="qte" required
+                                            #qteRef="ngModel"> -->
+                                        <input name="qte" id="qte" type="number" [(ngModel)]="currentQuantity"
+                                            name="quantity" min="0" required #qteRef="ngModel" />
+                                        @if (qteRef.dirty || qteRef.touched) {
+                                        <div class="alert">
+                                            @if (qteRef.hasError('required')) {
+                                            <div class="alert">
+                                                Quantity is required.
+                                            </div>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <!-- } -->
+                                <div class="width100 center">
+                                <button class="transparent center" type="button" (click)="addColorQteSier()" style="border: 2px solid #7f5539 ;border-radius: 20px; width: 40%;height: 40px; color: #7f5539;font-size: 20px; margin-bottom: 10px" >Add color size & Quantity</button>
+                                </div>
+
+
+                                @if(color_size_qte.length>0){
+                                <div>
+                                    <h4>Added :</h4>
+                                    <table class="width100 transparent" style="margin-bottom: 10px;">
+                                        <tr style="border: 2px solid #7f5539 ;border-radius: 20px;">
+                                            <th style="border: 2px solid #7f5539 ; color: #7f5539;">Color</th>
+                                            <th style="border: 2px solid #7f5539 ; color: #7f5539;">Size</th>
+                                            <th style="border: 2px solid #7f5539 ; color: #7f5539;">Quantity</th>
+                                            <!-- <th style="border: 2px solid #7f5539 ;border-radius: 20px;">Actions</th> -->
+                                        </tr>
+                                        @for(item of color_size_qte; track item){
+                                        <tr >
+                                            <td style="border: 2px solid #7f5539 ;" class="center">
+                                                @if(item.color){
+                                                <div class="color" [style.background]="item.color" [style.color]="item.color"></div>
+                                                }@else {
+                                                    <i class="fa-solid fa-ban "></i>
+                                                }
+                                            </td >
+                                            <td style="border: 2px solid #7f5539 ;" >
+                                                <div class="center"  style="color: #7f5539;">
+                                                     @if(item.size){
+                                                {{item.size}}
+                                                }@else {
+                                                    <i class="fa-solid fa-ban "></i>
+                                                }
+                                                </div>
+                                                
+                                            </td>
+                                            <td style="border: 2px solid #7f5539 ;">
+                                                <div class="center" style="color: #7f5539;">
+                                                    @if( item.qte ){
+                                               {{ item.qte }}
+                                                }@else {
+                                                    <i class="fa-solid fa-ban "></i>
+                                                }
+                                                </div>
+                                                
+                                                </td>
+                                            <!-- <td><button (click)="colorsBody.splice(i, 1)">Remove</button></td> -->
+                                        </tr>
+                                        }
+
+                                    </table>
+                                </div>
+                                }
+
+
+                                <!-- weight & mateiral  -->
+                                <div class="row width_100 gap_20px ">
+                                    @if(isWeight){
+                                    <div class="column width_100">
+                                        <label for="weight">Weight</label>
+                                        <input type="number" name="weight" id="weight" min="0" class="width_100"
+                                            [(ngModel)]="Weight">
+                                    </div>
+                                    }
+                                    @if(isMaterial){
+                                    <div class="column width_100">
+                                        <label for="mateiral">Material</label>
+                                        <input type="text" name="material" id="material" [(ngModel)]="material">
+                                    </div>
+                                    }
+                                </div>
+                                <!-- flavor  -->
+                                <div class="row width_100 gap_20px ">
+                                    @if(isFlavor){
+                                    <div class="column width_100">
+                                        <label for="flavor">Flavor</label>
+                                        <input type="text" name="flavor" id="flavor" class="width_100"
+                                            [(ngModel)]="flavor">
+                                    </div>
+                                    }
+                                </div>
+
+                                <!-- dimension  -->
+                                <div class="column width_100 gap_20px ">
+                                    @if(isDimension){
+                                    <h4>Dimansion</h4>
+                                    <div class="row width_100 gap_20px ">
+                                        <div class="column width_50">
+                                            <label for="width">Width</label>
+                                            <input type="number" name="width" id="width" min="0" [(ngModel)]="width">
+                                        </div>
+                                        <div class="column width_50">
+                                            <label for="height">Height</label>
+                                            <input type="number" name="height" id="height" min="0" [(ngModel)]="height">
+                                        </div>
+                                        <div class="column width_50">
+                                            <label for="hauteur">Hauteur</label>
+                                            <input type="number" name="Hauteur" id="Hauteur" min="0"
+                                                [(ngModel)]="hauteur">
+                                        </div>
+                                    </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product_media width_100 height">
+                        <h2>Product Media</h2>
+                        <label for="fileInput" class="column">
+                            <i class="fa-solid fa-camera"></i>
+                            Choose your images
+                        </label>
+                        <!-- </div> -->
+                        <input type="file" id="fileInput" (change)="onFileSelected($event)" multiple />
+                        <!-- </label> -->
+
+                        <div *ngIf="previewUrls.length" class="imgs">
+                            <h3>Preview:</h3>
+                            <div *ngFor="let url of previewUrls">
+                                <img [src]="url" />
+                            </div>
+                        </div>
+                        @if (previewUrls.length==0) {
+                        <div class="alert">
+                            Image is required. Please select at least one image
+                        </div>
+                        }
+                    </div>
+                </div>
+                <div class="btn">
+                    <button type="submit"> save</button>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="center" style="margin-top: 15px;">
+            @if(invalid!="" && submit){
+            <div class="message">
+                <div class="error_message">
+                    {{ invalid }}
+                </div>
+            </div>
+            }
+            @if(errorMessage){
+            <div class="message">
+                <div class="error_message">
+                    {{ errorMessage }}
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<!-- 
+<div class="row width_100 gap_20px ">
+                                    @if(isSize){
+                                    <div class="column width_100">
+                                        <label for="size">Size</label>
+                                        <input name="size" type="size" id="size" class="width_100" [(ngModel)]="size"
+                                            (change)="selectSize($event)" />
+                                        @if (selectedSize) {
+                                        <div class="colors">
+                                            @for (size of selectedSize; track size) {
+                                            <div class="content-color">
+                                                <div class="delete" (click)="deletesize(size)">X</div>
+                                                <div class="color">
+                                                    {{size}}
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+
+                                        }
+                                    </div>
+                                    }
+                                    @if(isColors){
+                                    <div class="column width_100">
+                                        <label for="color">Colors</label>
+                                        <input name="color" type="color" id="color" class="width_100"
+                                            [(ngModel)]="color" (change)="selectColors($event)" />
+                                        @if (selectedColors) {
+                                        <div class="colors">
+                                            @for (color of selectedColors; track color) {
+                                            <div class="content-color">
+                                                <div class="delete" (click)="deleteColor(color)">X</div>
+                                                <div class="color" [style.background]="color" [style.color]="color">
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+
+                                        }
+                                    </div>
+                                    }
+                                    <div class="column width_100">
+                                        <label for="qte">Quantity</label>
+                                        <input type="number" name="qte" id="qte" min="0" [(ngModel)]="qte" required
+                                            #qteRef="ngModel">
+                                        @if (qteRef.dirty || qteRef.touched) {
+                                        <div class="alert">
+                                            @if (qteRef.hasError('required')) {
+                                            <div class="alert">
+                                                Quantity is required.
+                                            </div>
+                                            }
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+	double cost_price;
+	double sale_price;
+	String name; 
+	String description;
+	double discount;
+	String currency;
+    	int qte;
+	String type;
+	String product;
+	String status;
+
+
+	String brand;
+	String quality;
+	 String size; 
+	 double Weight ;
+	 String dimensions;
+	 String material ;
+	 String author ;
+	 String flavor;
+	 String gender;
+
+
+
+
+
+
+
+x	List  color;
+	 String level;
+    String stock; -->

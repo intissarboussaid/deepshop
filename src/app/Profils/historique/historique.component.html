@@ -1,0 +1,172 @@
+<app-navbar></app-navbar>
+<div class="container section-history">
+  <div class="width100 start">
+    <div class="back" style="cursor: pointer;">
+      <button style="border: none;border-radius: none;font-size: 40px;cursor: pointer;" (click)="goBack()"><i
+          class="fa-solid fa-arrow-left"></i></button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="wrap gap5">
+      <button class="transparent" (click)="all()">All</button>
+      <!-- <button class="transparent" (click)="product()">Product</button> -->
+      <button class="transparent" (click)="discount()">Discount</button>
+      <button class="transparent" (click)="product()">Comment</button>
+    </div>
+    @if(isAll){
+    <div class="column transparent  " style="gap: 20px;">
+      @for(i of AllList; track i) {
+      @if(i.id_product){
+      <div class="transparent ">
+        <div class="card transparent">
+          <div class="content_card transparent row width100">
+            <div class="column-row transparent width100">
+              <div class="img_content transparent center column">
+              <div class="carousel_container transparent">
+                <div class="carousel-wrapper transparent"
+                  [style.transform]="'translateX(-' + getCurrentIndex(i.id_product) * 100 + '%)'"
+                  style="display: flex; transition: transform 0.5s ease;">
+                  @for(j of i.photos; track j.id_photo) {
+                  <div class="carousel-slide transparent">
+                    <img src={{j.filePath}} alt="">
+                  </div>
+                  }
+                </div>
+              </div>
+              @if(i.photos.length>1){
+              <div class="btns transparent row " style="gap: 2px;">
+                <button class="transparent" (click)="prevSlide(i.id_product)"><i
+                    class="pointer fa-solid fa-angle-left transparent"></i></button>
+                <button class="transparent" (click)="nextSlide(i.id_product, i.photos.length - 1)"><i
+                    class="pointer fa-solid fa-angle-right transparent"></i></button>
+              </div>
+              }
+            </div>
+            <div class="text_content width100 transparent" style="margin-left: 50px;">
+              <div class="text transparent column center width100">
+                <div class="row transparent start width100">
+                  <div class="title transparent">Product Name:</div>
+                  <div class="subtitle transparent">{{i.name}}</div>
+                </div>
+                <div class="row transparent start width100">
+                  <div class="title transparent">creation date:</div>
+                  <div class="subtitle transparent">{{i.date| date:'medium'}}</div>
+                </div>
+                <div class="row transparent start width100">
+                  <div class="title transparent">discount detail:</div>
+                  <div class="subtitle transparent center pointer" (click)="discount()"> See more..</div>
+                </div>
+
+              </div>
+            </div>
+            </div>            
+            <div class="review transparent" style="margin-top: 10px;">
+              <div class="view transparent row" style="gap: 2px;">
+                <i class="fa-solid fa-eye transparent" style="font-size: 20px;"></i>
+                <div class="title transparent">{{i.view}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      }
+
+    </div>
+    }
+    @if(isDiscount){
+    <div class="column transparent  " style="gap: 20px;">
+      <h2 class="transparent">Discount History </h2>
+      @for(i of AllList; track i) {
+      @if(i.discount.length>0){
+      <div class="transparent ">
+        <div class="card transparent" style="height: auto;">
+          <div class="close transparent width90 row pointer" style="display: flex; place-content: end;">
+                <i class="fa-solid fa-eye transparent" style="font-size: 20px;"></i>
+                <div class="title transparent">{{i.view}}</div>
+            </div>
+          <div class="content_card  transparent column-row">
+            <div class="img_content transparent center column">
+              <div class="carousel_container transparent">
+                <div class="carousel-wrapper transparent"
+                  [style.transform]="'translateX(-' + getCurrentIndex(i.id_product) * 100 + '%)'"
+                  style="display: flex; transition: transform 0.5s ease;">
+                  @for(j of i.photos; track j.id_photo) {
+                  <div class="carousel-slide transparent">
+                    <img src={{j.filePath}} alt="">
+                  </div>
+                  }
+                </div>
+              </div>
+              @if(i.photos.length>1){
+              <div class="btns transparent row " style="gap: 1%;">
+                <button class="transparent" (click)="prevSlide(i.id_product)"><i
+                    class="pointer fa-solid fa-angle-left transparent"></i></button>
+                <button class="transparent" (click)="nextSlide(i.id_product, i.photos.length - 1)"><i
+                    class="pointer fa-solid fa-angle-right transparent"></i></button>
+              </div>
+              }
+            </div>
+            <div class="text_content width100 transparent">
+              <div class="text transparent column center width100">
+                <!-- <div class="row transparent start width100"> 
+                <div class="title transparent">Product Name:</div>
+                <div class="subtitle transparent">{{i.name}}</div>
+              </div>
+               <div class="row transparent start width100"> 
+                <div class="title transparent">creation date:</div> 
+                <div class="subtitle transparent">{{i.date| date:'medium'}}</div> 
+              </div>  -->
+                <div class="column transparent start width100">
+                  <!-- <div class="title transparent">discount detail:</div> -->
+                  <table class="styled-table transparent">
+                    <thead class="transparent">
+                      <tr class="transparent">
+                        <th class="transparent"><div class="title transparent">creation date </div> </th>
+                        <th class="transparent"><div class="title transparent">percent</div></th>
+                        <th class="transparent"><div class="title transparent">price </div> </th>
+
+                      </tr>
+                    </thead>
+                    <tbody class="transparent">
+                      @for(j of i.discount; track j){
+                      <tr class="transparent">
+                        <td class="transparent">
+                          <div class=" transparent">
+                            <!--  -->
+                            <div class="subtitle transparent">{{j.date| date:'medium'}}</div>
+                          </div>
+                        </td>
+                        <td class="transparent">
+                          <div class=" transparent">
+                            <!--   -->
+                            <div class="subtitle transparent">{{j.discount_percent}}</div>
+                          </div>
+                        </td>
+                        <td class="transparent">
+                          <div class=" transparent">
+                            <!--    -->
+                            <div class="subtitle transparent">{{j.discount_price}}</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- <div class="row transparent start" style="gap: 5px;">                                               
+                 </div>  -->
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>            
+          </div>
+          
+        </div>
+
+      </div>
+      }
+      }
+
+    </div>
+    }
+  </div>
+</div>

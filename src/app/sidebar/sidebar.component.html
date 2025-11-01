@@ -1,0 +1,186 @@
+<div class="conatiner" >
+    <div class="sidebar" >
+        <div class="content column">
+            <div class="title center">
+                <h1> <a href="">DeepShop</a></h1>
+            </div>
+            <div class="menu column">
+                <li class="row" (click)="dashboard()"> <i class="fa-solid fa-folder-open"></i><a >Dashboard</a> </li>
+                <!-- <li class="row"> <i class="fa-solid fa-chart-pie"></i><a href="">Analytics</a></li> -->
+                <div class="products transparent">
+                 <li class="row transparent"> <i class="fa-solid fa-tag transparent"></i><a class="transparent" >Products</a></li>
+                <div class="product_menu column">
+                    <li (click)="AddProduct()"><i class="fa-solid fa-circle-plus"></i><a>Add Product</a></li>
+                    <li (click)="AllProducts()"><i class="fa-solid fa-folder-open"></i><a>ALL Products</a></li>
+                </div>                   
+                </div>
+                <li class="row" (click)="orders()">
+                    
+                    <i class="fa-solid fa-clipboard-list"></i><a >
+                   
+                   @if(order.length>0){
+                    @if(order.length>99){
+                       Orders <div class="cercle center" > +99</div>
+                    }@else {
+                        Orders  <div class="cercle center"> {{order.length}}</div> 
+                    }
+                    
+
+                   }@else{
+                    Orders
+                   }
+                    
+                </a>
+                </li>
+                <li class="row" (click)="customers()"> <i class="fa-solid fa-users"></i><a >Customers</a> </li>
+                <!-- <li class="row"> <i class="fa-solid fa-tags"></i><a href="">Marketing</a> </li> -->
+                <li class="row" (click)="profil()"> <i class="fa-solid fa-sliders"></i><a >Settings</a> </li>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 
+
+✅ 1. Dashboard (Overview)
+Shows a high-level snapshot of the business:
+
+Total Sales
+
+Orders Today / This Month
+
+Active Users / Customers
+
+Revenue Trends
+
+Top-Selling Products
+
+Low Stock Alerts
+
+Recent Orders
+
+Quick Links (e.g., Add Product, View Orders)
+
+✅ 2. Analytics (Analyse)
+Detailed data insights:
+
+Sales Reports (daily, weekly, monthly)
+
+Conversion Rate
+
+Customer Retention / Churn
+
+Traffic Sources
+
+Cart Abandonment Rate
+
+Best Times to Sell
+
+Average Order Value
+
+✅ 3. Products
+Manage your product catalog:
+
+List of Products (with filters and search)
+
+Add/Edit/Delete Products
+
+Stock Levels
+
+Categories & Tags
+
+Discounts / Sale Items
+
+Bulk Upload / Import Products
+
+✅ 4. Orders
+Track customer purchases:
+
+Order History
+
+Order Status (Pending, Shipped, Delivered, Cancelled)
+
+Invoice Downloads
+
+Shipping Tracking
+
+Refund / Return Requests
+
+✅ 5. Customers
+Manage your user base:
+
+Customer List & Profiles
+
+Order History
+
+Account Status
+
+Contact Info
+
+Segmented Lists (e.g., VIPs, Repeat Buyers)
+
+✅ 6. Marketing
+Promotions and communication:
+
+Email Campaigns
+
+Push Notifications
+
+Discount Codes / Coupons
+
+Banner Ads
+
+Product Recommendations
+
+✅ 7. Reviews & Feedback
+Customer interactions:
+
+Product Reviews
+
+Customer Ratings
+
+Feedback Management
+
+Reply to Reviews
+
+✅ 8. Settings / Configuration
+Platform controls:
+
+User Roles & Permissions
+
+Payment Gateways
+
+Shipping Options
+
+Taxes & Currency
+
+Storefront Settings (Logo, Colors)
+
+✅ 9. Reports / Exports
+Download and analyze data:
+
+Sales Reports
+
+Product Reports
+
+Customer Reports
+
+Export to CSV / Excel / PDF
+
+✅ Optional (Advanced) Modules:
+Inventory Management
+
+Supplier Management
+
+Multi-language / Multi-currency Support
+
+Affiliate Management
+
+Live Chat Support
+
+Audit Logs / Activity History
+
+Mobile App Insights (if applicable)
+ -->

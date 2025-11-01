@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="width100 start ">
+        <div class="back">
+            <button (click)="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+    </div>
+    
+    <div class="content_fav center transparent">
+    @if(listFav.length>0){
+        <div class="carousel_card wrap center gap50 transparent">
+            @for(i of listFav; track i){
+                <div class="content tra">
+                    <div class="card transparent" >
+                <div class="content_card transparent">
+                    <div class="img_content transparent">
+                        <div class="carousel_container" (click)="onSaveProduct(i.product.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(i.product.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(j of i.product.photos; track j.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src={{j.filePath}}  alt="">
+                                </div>
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button (click)="prevSlide(i.product.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(i.product.id_product, i.product.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                    </div>
+
+                    @if(i.product.admin.photo!=null){
+                    <div class="card_meta gap50 transparent">
+                        <div class="user transparent">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{i.product.admin.photo.filePath}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{i.product.admin.nom}} {{i.product.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="card_meta_right left transparent">
+                            <div class="heart transparent" >
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div> -->
+                    </div>
+                        }@else{
+                        
+                         <div class="card_meta transparent" >
+                        <div class="user transparent" style="margin-top: 10px;">
+                            <i class="fa-solid fa-user" style="font-size: 20px;"></i>
+                        </div>
+                        <!--<div class="card_meta_right left">
+                            <div class="heart transparent" >
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div> -->
+                    </div>
+                        }
+                </div>
+            </div>
+                </div>
+            }
+        </div>
+    } @else {
+        <div class="empty_content center heigth70vh column">
+        <div class="big" style="width: 100%; font-size: 1500%;">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+        <div class="text" style="color: #60402a; font-size: 18px;">
+            You don't have any adored items at the moment
+        </div>
+    </div>
+    }  
+    </div>
+ 
+</div>
+<app-footer></app-footer>

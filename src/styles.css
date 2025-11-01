@@ -1,0 +1,480 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  background-color: #EDE0D4;
+  font-family: 'outfit', sans-serif;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+a {
+  color: #7F5539;
+  font-family: "inter", sans-serif;
+}
+
+button {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover,
+button:focus {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.container {
+  margin-top: 5%;
+  width: 90%;
+  margin-left: 5%;
+}
+.flex_wrap{
+display: flex;
+flex-wrap: wrap;
+}
+.text_content .about_us,
+.text_content .title,
+.text_content .sub_title {
+  margin-top: 2%;
+  background: transparent;
+  color: #7F5539;
+}
+.width100{
+  width: 100%;
+}
+
+.text_content .title {
+  font-weight: 1000;
+  font-size: 50px;
+}
+
+.text_content .sub_title {
+  font-weight: 10;
+  font-size: 20px;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+}
+input::placeholder{
+font-size: 15px;
+width: 100%;
+}
+.succes_message{
+    width: 300px;
+    height: 100px;
+    background: rgba(149, 255, 149, 0.4);
+    border: 2px solid rgb(11, 188, 11);
+    backdrop-filter:  blur(50px);
+    color: black;
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.error_message{
+    width: 300px;
+    height: 100px;
+    background: rgba(240, 99, 99,0.5);
+    border: 2px solid rgb(255, 39, 39);
+    color: black;
+     backdrop-filter:  blur(50px);
+    font-size: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    place-content: center;
+    border-radius: 50px;
+}
+.relative{
+  position: absolute;
+  z-index: 100;
+  background: transparent;
+}
+.center{
+  display: flex;
+  place-items: center;
+  place-content: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+}
+.end{
+  display: flex;
+  place-items: end;
+  place-content: end;
+  text-align: end;
+}
+.end-top{
+  display: flex;
+  /* place-content: start; */
+  text-align: end;
+  width: 100%;
+}
+.width50{
+  width: 50%;
+}
+.start{
+  text-align: start;
+  display: flex;
+  place-content: start;
+}
+.width90{
+  width: 90%;
+}
+/* image  */
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.transparent{
+    background: transparent;
+}
+.heigth70vh{
+  height: 70vh;}
+
+.red{
+    color: red;
+  }
+  .green{
+    color: green;
+  }
+@media(max-width:1224px) {
+  .text_content .title {
+    font-weight: 600;
+    font-size: 45px;
+  }
+}
+
+@media(max-width:850px) {
+  .text_content .title {
+    font-weight: 600;
+    font-size: 30px;
+    /* width: 100%; */
+  }
+}
+
+@media(max-width:700px) {
+  .text_content .title {
+    width: 50%;
+    font-size: 25px;
+  }
+}
+
+@media(max-width:500px) {
+  .text_content .title {
+    font-size: 20px;
+  }
+  .succes_message{
+    width: 100%;
+
+}
+
+.error_message{
+    width: 100%;
+}
+}
+
+@media(max-width:400px) {
+  .text_content .title {
+    font-size: 18px;
+    font-weight: 400;
+    width: 60%;
+  }
+
+}
+
+@media(max-width:350px) {
+  .text_content .title {
+    font-size: 15px;
+  }
+
+  .text_content .sub_title {
+    margin-top: 350px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+/* categoris product */
+.content_fashion {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel_content {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    height: 5vh;
+    padding: 0 50px;
+    background: rgba(230, 204, 178, 0.7);
+}
+
+
+ol,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    perspective: 100px;
+    overflow: hidden;
+    cursor: grab;
+    background: transparent;
+}
+.carousel_card{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    background: transparent;
+    cursor: grab;
+
+}
+.viewport {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    background: transparent;
+    cursor: grab;
+    user-select: none;
+}
+
+.viewport:active {
+    cursor: grabbing;
+}
+.wrap{
+    display: flex;
+  flex-wrap: wrap;
+}
+.viewport::-webkit-scrollbar {
+    width: 0;
+}
+
+.viewport::-webkit-scrollbar-track,.carousel_card::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.viewport::-webkit-scrollbar-thumb,.carousel_card {
+    background: transparent;
+    border: none;
+}
+
+ .carousel_card::-webkit-scrollbar {
+    margin-top: 50px;
+    height: 8px; 
+}
+
+ .carousel_card::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+ .carousel_card::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #e6ccb2, #7F5539);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+ .carousel_card::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg,#c1a284, #60402a);
+} 
+
+.carousel::before,
+.carousel::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    translate: -50% 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.carousel::before {
+    top: -480%;
+}
+
+.carousel::after {
+    bottom: -480%;
+}
+
+.slide {
+    position: relative;
+    flex: 0 0 27%;
+    width: 100%;
+    background: transparent;
+}
+
+.slide:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -40%, 70px);
+}
+.pointer{
+  cursor: pointer;
+}
+.snapper a {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.content_fashion .cards {
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    justify-content: center;
+}
+
+.content_fashion .card {
+    width: 300px;
+    height: 350px;
+    background: rgba(230, 204, 178, 0.5);
+    border-radius: 50px;
+}
+.content_fashion .card:first-child {
+margin-left: 650px;
+}
+.content_fashion .content_card ,.content_fashion .img_content,.content_fashion .card_meta,.content_fashion .user,.content_fashion .heart,.content_fashion .save {
+    background: transparent;
+}
+.content_fashion .content_card{
+display: flex;
+flex-direction: column;
+justify-content: center;
+/* text-align: center; */
+place-items: center;
+/* align-items: center; */
+}
+.content_fashion .content_card .img_content  {
+width: 270px;
+height: 270px;
+margin-top: 15px;
+border-radius: 50px;
+text-align: center;
+
+}
+.content_fashion .content_card .img_content img {
+width: 250px;
+height: 270px;
+
+background: rgba(156, 102, 68,0.5);
+border-radius: 50px;
+
+}
+.card_meta{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 150px;
+    justify-content: center;
+    width:70%;
+}
+.card_meta .card_meta_right{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    background: transparent;
+    width:70px;
+}
+.card_meta i{
+    background: transparent;
+}
+.border_shadow{
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);  
+}
+.gap5{
+  gap: 5%;
+}
+
+
+
+@media(max-width:1200px){
+.slide {
+    position: relative;
+    flex: 0 0 40%;
+    width: 100%;
+    background: transparent;
+}
+}
+@media(max-width:800px){
+.slide {
+    position: relative;
+    flex: 0 0300px;
+    width: 100%;
+    background: transparent;
+}
+
+}
+@media(max-width:800px){
+.slide {
+    position: relative;
+    flex: 0 0 300px;
+    width: 100%;
+    background: transparent;
+}
+.snapper a {
+    font-size: 20px;
+    font-weight: 400;
+}
+}
+@media(max-width:460px){
+.slide {
+    position: relative;
+    flex: 0 0 300px;
+    width: 100%;
+    background: transparent;
+}
+.snapper a {
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: -70px;
+    text-align: center;
+}
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,317 @@
+nav {
+    height: 50px;
+    align-content: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #7F5539;
+}
+
+.menu,
+ul,
+li,
+a,
+.logo ,.navbar,img,.profil,i,button,.dropdown-account,.dropdown-container,nav .bar {
+    background: transparent;
+}
+
+.logo {
+    width: 95px;
+}
+.width{
+    width: 40px;
+}
+.panier{
+    background: red;
+    color: #ddb8a0;
+    border-radius: 50px;
+    margin-left: 10px;
+    font-size: 15px;
+    width: 30px;
+    height: 25px;
+    place-content: center;
+    text-align: center;
+    position: absolute;
+    margin-left: 25px;
+}
+.navbar ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 17px;
+}
+
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+li,a,i{
+
+    color: #EDE0D4;
+}
+
+.navbar ul .menu {
+    display: flex;
+    width: 80%;
+    justify-content: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+nav input {
+    border-radius: 50px;
+    border: 2px solid #7F5539;
+    color: #7F5539;
+    background-color: rgba(230, 204, 178, 0.5);
+    height: 27px;
+}
+
+/* DropDown */
+.dropdown-container {
+    display: none;
+    justify-content: flex-end;
+}
+
+.dropdown-content {
+    margin-top: 30px;
+    border: 2px solid #7F5539;
+    background: #7F5539;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: -205px;
+    min-width: 200px;
+    z-index: 1;
+    padding: 10px 0;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+}
+
+.menu_drop {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+.menu_drop li a {
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+}
+
+nav .bar {
+    font-size: 30px;
+}
+
+nav .bar:hover,nav .bar:hover i:hover {
+    cursor: pointer;
+}
+
+/* dropdown Profil */
+.dropdown_content {
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.dropdown_content {
+    margin-top: 8px;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: -150px;
+    min-width: 200px;
+    z-index: 1;
+    padding: 10px 0;
+    background: #7F5539;
+    backdrop-filter: blur(40px);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.dropdown_content .menu_drop,
+.dropdown_content .menu_drop li,
+.dropdown_content .menu_drop li a,
+.modal-overlay button,
+.modal-overlay button i,
+.modal-overlay h2,
+.modal-overlay h6,
+.modal-overlay .close,
+.modal-overlay .btns {
+    background: transparent;
+}
+
+.dropdown-account button {
+    border: none;
+}
+
+li a:hover,
+li a i:hover{
+    border-bottom: 4px solid #EDE0D4;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.dropdown-account button img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* modals */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 50%;
+    height: 30vh;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    place-content: center;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.modal .btns {
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 10px;
+}
+
+.close button {
+    margin-top: -30px;
+    width: 40px;
+    background: transparent;
+    border-radius: 50%;
+    height: 40px;
+    border: 2px solid #7F5539;
+}
+
+.btns button:hover,
+.btns button:focus {
+    background: #593b28;
+    border: 2px solid #593b28;
+    color: white;
+}
+
+.btns button {
+    border-radius: 50px;
+    width: 200px;
+    height: 40px;
+    border: 2px solid #7F5539;
+    color: #7F5539;
+    margin-top: 7px;
+}
+
+.close button:hover,
+.close button:focus {
+    background: #ddb8a0;
+}
+
+.category .dropdown-category {
+    display: none;
+}
+.category:hover .dropdown-category,.category:focus .dropdown-category ,.dropdown-category{
+    display: flex;
+}
+.category .menu_drop li a{
+   text-transform:capitalize;
+   font-size: 20px;
+   font-weight: 400;
+}
+/* .category .dropdown_content .menu_drop li{
+    width:50% ;
+} */
+
+@media (max-width: 950px) {
+
+    li,
+    a {
+        list-style: none;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 850px) {
+    nav {
+        width: 100%;
+    }
+
+    .navbar ul .menu {
+        display: none;
+    }
+
+    .dropdown-container {
+        display: flex;
+        width: 75%;
+        justify-content: flex-end;
+    }
+
+    .dropdown-account .profil {
+        text-align: center;
+    }
+    li{
+        place-content: center;
+        place-items: center;
+    }
+    .dropdown-category{
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 500px) {
+    nav .dropdown-container {
+        width: 70%;
+    }
+}
+
+@media (max-width: 450px) {
+    nav .dropdown-container {
+        width: 60%;
+    }
+    .dropdown{
+        margin-left: 75%;
+    }
+}
+
+@media (max-width: 320px) {
+    nav .dropdown-container {
+        width: 50%;
+    }
+}

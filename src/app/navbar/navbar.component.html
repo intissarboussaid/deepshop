@@ -1,0 +1,199 @@
+<nav>
+    <div class="navbar">
+        <ul>
+            <div class="logo">
+                @if(!isAdmin){
+                <li> <a href="categoris">DeepShop</a></li>
+                }
+            </div>
+            <div class="menu">
+                <li> <a href="home_p">Home</a></li>
+                <div class="category column transparent">
+                    <li> <a  (click)="openCateogiry()">Categoris</a></li>
+                @if(isOpenCateogy){
+                <div class="dropdown-category transparent">
+                    <div class="dropdown_content transparent">
+                        <div class="menu_drop transparent column">
+                            <li><a href="categoris" >All Categories</a></li>
+                            <li><a href="Clothes&Fashion" >Clothes & Fashion</a></li>
+                            <li><a href="phone&Electronique" >Phone & Electronique</a></li>
+                            <li><a href="GamingDigitals" >Gaming & Digitals</a></li>
+                            <li><a href="Entertainement" >Sprots & Entertainement</a></li>
+                            <li><a href="SelfCareProduct" >SelfCare & Product</a></li>
+                            <li><a href="HomeEssentials" >Kitchen & Home essentials</a></li>
+                            <li><a href="BabyToy" >Baby & Toy</a></li>
+                            <li><a href="'Book&Education" >Books & Education</a></li>
+                            <li><a href="CarAccessoires" >Car & Accessoires</a></li>
+                            <li><a href="animals" >Animals</a></li>
+                            <li><a href="magasin" >Magasin</a></li>
+                        </div>
+
+                    </div>
+                </div>
+                }
+                </div>
+                
+                <li> <a href="contact">Contact</a></li>
+                <!-- <li><input type="search" placeholder=" Search               🔎︎ "></li> -->
+                @if(isUser && commandes!=null){
+                <li>
+                    <div class="column transparent width">
+                        <div class="panier">
+                            @if(commandes.cmd_item.length>99){
+                            +99
+
+                            }@else{
+                            {{commandes.cmd_item.length}}
+                            }
+                        </div>
+                        <a (click)="gotToCommandes()"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>
+
+                </li>
+                }@else {
+                <li><a (click)="gotToCommandes()"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                }
+                @if(exist == true){
+                <div class="dropdown-account">
+                    <div class="profil">
+                        <button (click)="toggleDropdownProfil()"> <img src={{src}} alt="Photo Profil"></button>
+                    </div>
+                    <div class="dropdown" *ngIf="isDropdownProfilOpen">
+                        <div class="dropdown_content">
+                            <div class="menu_drop">
+                                <!-- <li> <a (click)="profil()">Profil</a></li> -->
+                                <li><a (click)="profil()">Setting</a></li>
+                                <li><a (click)="openModal()">log out</a></li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+                @if(exist == false){
+                <li><a href="signUp"><i class="fa-solid fa-user"></i></a></li>
+                }
+            </div>
+            <div class="dropdown-container">
+                <div class="bar">
+                    <i class="fa-solid fa-bars-staggered" (click)="toggleDropdown()"></i>
+                </div>
+
+                <div class="dropdown" *ngIf="isDropdownOpen">
+                    <div class="dropdown-content">
+                        <div class="menu_drop">
+                            <li><a href="home_p">Home</a></li>
+                            <div class="category column transparent">
+                    <li> <a  (click)="openCateogiry()">Categoris</a></li>
+                @if(isOpenCateogy){
+                <div class="dropdown-category transparent">
+                    <div class="dropdown_content transparent">
+                        <div class="menu_drop transparent column">
+                            <li><a href="categoris" >All Categories</a></li>
+                            <li><a href="Clothes&Fashion" >Clothes & Fashion</a></li>
+                            <li><a href="phone&Electronique" >Phone & Electronique</a></li>
+                            <li><a href="GamingDigitals" >Gaming & Digitals</a></li>
+                            <li><a href="Entertainement" >Sprots & Entertainement</a></li>
+                            <li><a href="SelfCareProduct" >SelfCare & Product</a></li>
+                            <li><a href="HomeEssentials" >Kitchen & Home essentials</a></li>
+                            <li><a href="BabyToy" >Baby & Toy</a></li>
+                            <li><a href="Book&Education" >Books & Education</a></li>
+                            <li><a href="CarAccessoires" >Car & Accessoires</a></li>
+                            <li><a href="animals" >Animals</a></li>
+                            <li><a href="magasin" >Magasin</a></li>
+                        </div>
+
+                    </div>
+                </div>
+                }
+                </div>
+                            <li><a href="contact">Contact</a></li>
+                            @if(isUser && commandes.cmd_item.length!=0){
+                            <li>
+                                <div class="column transparent width">
+                                    <div class="panier">
+                                        @if(commandes.cmd_item.length>99){
+                                        +99
+
+                                        }@else{
+                                        {{commandes.cmd_item.length}}
+                                        }
+
+
+                                    </div>
+                                    <a (click)="gotToCommandes()"><i class="fa-solid fa-cart-shopping"></i></a>
+                                </div>
+
+                            </li>
+                            }@else {
+                            <li><a><i class="fa-solid fa-cart-shopping"></i></a></li>
+                            }
+                            @if(exist == true){
+                            <div class="dropdown-account">
+                                <div class="profil">
+                                    <button (click)="toggleDropdownProfil()"> <img src={{src}} alt="Photo Profil">
+                                    </button>
+                                </div>
+
+                                <div class="dropdown" *ngIf="isDropdownProfilOpen">
+                                    <div class="dropdown_content">
+                                        <div class="menu_drop">
+                                            <!-- <li> <a (click)="profil()">Profil</a></li> -->
+                                            <li><a (click)="profil()">Setting</a></li>
+                                            <li><a (click)="openModal()">log out</a></li>
+                                            <!-- <button mat-raised-button color="primary" >Log Out</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                            @if(exist == false){
+                            <li><a href="signUp"><i class="fa-solid fa-user"></i></a></li>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="modal-overlay" *ngIf="isModalOpen">
+    <div class="modal">
+        <div class="close">
+            <button type="button" (click)="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <h2>Confirm Logout</h2>
+        <h6>Are you sure you want to log out?</h6>
+        <div class="btns">
+            <button (click)="closeModal()">Close</button>
+            <button (click)=" logout()">Logout</button>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- @if(isOpenCateogy){
+<div class="dropdown-category transparent">
+    <div class="dropdown_content transparent">
+        <div class="menu_drop transparent">
+            <li><a href="categoris" style="color: black">All Categories</a></li>
+            <li><a href="" style="color: black">Phone & Electronique</a></li>
+            <li><a href="" style="color: black">Clothes & Fashion</a></li>
+            <li><a href="" style="color: black">Gaming & Digitals</a></li>
+            <li><a href="" style="color: black">Sprots & Entertainement</a></li>
+            <li><a href="" style="color: black">SelfCare & Product</a></li>
+            <li><a href="" style="color: black">Kitchen & Home essentials</a></li>
+            <li><a href="" style="color: black">Baby & Toy</a></li>
+            <li><a href="" style="color: black">Books & Education</a></li>
+            <li><a href="" style="color: black">Car & Accessoires</a></li>
+            <li><a href="" style="color: black">Animals</a></li>
+            <li><a href="" style="color: black">Magasin</a></li>
+        </div>
+
+    </div>
+</div>
+} -->

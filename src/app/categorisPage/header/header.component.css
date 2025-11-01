@@ -1,0 +1,126 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: #E6CCB2;
+    border-radius: 1%;
+    height: 100%;
+    position: relative;
+}
+
+.header .content_header_categoris,
+.header .content_header_categoris .text_header,
+.header .content_header_categoris .text_header h1,
+.header .content_header_categoris .img_header,
+.header .content_header_categoris img {
+    background: transparent;
+    width: 100%;
+    text-align: center;
+}
+
+.header .content_header_categoris .text_header {
+    width: 100%;
+    text-align: center;
+}
+
+.header .content_header_categoris .text_header h1 {
+    text-transform: uppercase;
+    font-size: 150px;
+    letter-spacing: 40px;
+    width: 100%;
+    text-align: center;
+    /* position: absolute; */
+    /* position: relative; */
+    margin-top: 70px;
+}
+
+.header .content_header_categoris img {
+    width: 100%;
+    position: relative;
+}
+
+/* animation */
+/* img  {
+  transform: translateX(-100%);
+  opacity: 0;
+  animation:img  1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes img {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+} */
+
+.text_header {
+    transform: translateX(100%);
+    opacity: 0;
+    animation: text_header 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes text_header {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* responsive part */
+
+
+@media(max-width:1150px) {
+    .header .content_header_categoris .text_header h1 {
+        font-size: 120px;
+        letter-spacing: 200%;
+        width: 100%;
+
+    }
+}
+
+@media(max-width:1000px) {
+    .header .content_header_categoris .text_header h1 {
+        font-size: 100px;
+        letter-spacing: 30px;
+        width: 100%;
+
+    }
+}
+
+@media(max-width:800px) {
+    .header .content_header_categoris .text_header h1 {
+        font-size: 100px;
+        letter-spacing: 20px;
+        width: 100%;
+
+    }
+}
+
+@media(max-width:760px) {
+    .header .content_header_categoris .text_header h1 {
+        font-size: 70px;
+        letter-spacing: 10px;
+        width: 100%;
+    }
+}
+
+
+
+@media(max-width:500px) {
+
+    .header .content_header_categoris .text_header h1 {
+        font-size: 40px;
+        letter-spacing: 8px;
+        width: 100%;
+    }
+}
+
+@media(max-width:300px) {
+    .header .content_header_categoris .text_header h1 {
+        font-size: 30px;
+        letter-spacing: 5px;
+        width: 100%;
+    }
+}

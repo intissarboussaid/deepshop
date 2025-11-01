@@ -1,0 +1,157 @@
+.sidebar {
+    background-color: #7F5539;
+    width: 50px;
+    height: 95vh;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    transition: width 0.3s ease, border-radius 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+    padding: 10px 0;
+    position: fixed;
+    z-index: 10000000;
+}
+
+.products,
+.menu,
+.content,
+.column,
+.title,
+h1,
+li,
+a,
+i{
+    background: transparent;
+}
+
+
+a,
+h1 {
+    display: none;
+}
+
+.content {
+    gap: 50px;
+    margin-top: 25%;
+}
+
+.center {
+    display: flex;
+    place-content: center;
+
+}
+
+.menu {
+    gap: 30px;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    display: flex;
+    gap: 10%;
+    height: 50px;
+    width: 250px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    margin-left: 10px;
+    place-items: center;
+}
+
+h1,
+i,
+a {
+    color: #EDE0D4;
+}
+.cercle{
+    width: 30px;
+    height: 30px; 
+    background-color: red; 
+    color: white; 
+    border-radius: 50px;    
+    text-align: center;
+    margin-left: 5px;
+}
+.products .product_menu{
+    display: none;
+}
+.product_menu{
+    margin-left: 10%;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 0px;
+      background-color: #EDE0D4;
+      width: 250px;
+}
+.product_menu li a{
+   color:#7F5539;
+}
+
+/* sidebar hover */
+.sidebar:hover,
+.sidebar:focus {
+    width: 250px;
+}
+
+
+.sidebar:hover h1,
+i,
+.sidebar:hover a,
+.sidebar:focus-within h1,
+.sidebar:focus-within a {
+    display: flex;
+}
+
+.menu li:hover,
+.menu li:focus {
+    background: #EDE0D4;
+    cursor: pointer;
+}
+
+li:hover i,
+li:hover a,
+li:focus i,
+li:focus a {
+    color: #7F5539;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: margin-left 0.3s ease, color 0.3s ease;
+    font-weight: 700;
+}
+
+a:hover {
+    cursor: pointer;
+}
+.products:hover .product_menu,.products:focus .product_menu{
+    display: flex;
+}
+.products:hover li,.products:focus li,.products:hover li a,.products:focus li a,.products:hover li i,.products:focus li i{
+    background: #EDE0D4;
+    cursor: pointer;
+    color: #7F5539;
+}
+
+@media (max-height: 700px) {
+    .menu {
+        gap: 20px;
+        font-size: 20px;
+    }
+
+    .content {
+        gap: 30px;
+        margin-top: 20%;
+    }
+}
+
+@media (max-height: 550px) {
+    .menu {
+        gap: 5px;
+        font-size: 20px;
+    }
+
+    .content {
+        gap: 15px;
+        margin-top: 15%;
+    }
+}

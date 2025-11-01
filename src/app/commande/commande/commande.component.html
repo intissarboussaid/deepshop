@@ -1,0 +1,532 @@
+<app-navbar></app-navbar>
+<div class="container transparent column center  gapCards ">
+    <div class="width100 start ">
+        <div class="back">
+            <button (click)="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+    </div>
+    @if(succesMessage){
+    <div class="message_succes">
+        <div class="succes_message">
+            {{succesMessage }}
+        </div>
+    </div>
+    }
+    @if(errorMessage){
+    <div class="error_message" style="position: absolute; inset-block-start: 0;inset-inline-end: 0; margin-top: 10%;">
+        <div class="error_message">
+            {{ errorMessage }}
+        </div>
+    </div>
+    }
+    @if(cmdsItem.length!=0 || ConfirmedCommandeByUser.length!=0 || ConfirmedCommandeByAdmin.length!=0 ||
+    commande!=null){
+    <div class="column transparent width100">
+        @if(commande!=0 ){
+        @if(cmdsItem.length!=0 ){
+        <div class="bag row  width100">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <div class="total">
+                Total:
+            </div>
+            <div class="center text">
+                {{commande.total}}
+            </div>
+        </div>
+        <div class="conf width100 transparent start width100">
+            <button (click)="openModalConf(commande.id_cmd)">
+                Confirm Command
+            </button>
+        </div>
+        }
+
+        }
+    </div>
+    <div class="column gap50 width100">
+        @if(commande!=null){
+        <div class="cards transparent wrap center gapCards">
+            @for(i of commande.cmd_item;track i){
+            @if(!commande.is_validated_user){
+            <div class="card">
+                <div class="content_card transparent  column gap5">
+                    <div class="row transparent width90">
+                        <div class="delete  transparent">
+                            <button class="weight" (click)="openModalDelete(i.id_cmditem)">X</button>
+                        </div>
+                        @if(isModalDeleteOpen){
+                        <div class="modal-overlay">
+                            <div class="modal">
+                                <div class="close transparent">
+                                    <button type="button " (click)="closeModal()">
+                                        <i class="fa-solid fa-xmark transparent"></i>
+                                    </button>
+                                </div>
+                                <h2 class="transparent">Confirm Trash Removal</h2>
+                                <h6 class="transparent">Are you sure you want to delete this product from the trash?
+                                </h6>
+                                <div class="btns transparent">
+                                    <button (click)="closeModal()" class="transparent">Close</button>
+                                    <button (click)="deleteProductFronCmd(i.id_cmditem,commande.id_cmd)"
+                                        class="transparent">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if(isModalConfOpen){
+                        <div class="modal-overlay">
+                            <div class="modal">
+                                <div class="close transparent">
+                                    <button type="button " (click)="closeModal()">
+                                        <i class="fa-solid fa-xmark transparent"></i>
+                                    </button>
+                                </div>
+                                <h2 class="transparent">Confirm Order</h2>
+                                <h6 class="transparent">You're about to place your order — continue
+                                </h6>
+                                <div class="btns transparent">
+                                    <button (click)="closeModal()" class="transparent">No</button>
+                                    <button (click)="openModalPromoCode()" class="transparent">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if(isModalPromoCodeOpen){
+                        <div class="modal-overlay">
+                            <div class="modal">
+                                <div class="close transparent">
+                                    <button type="button " (click)="closeModal()">
+                                        <i class="fa-solid fa-xmark transparent"></i>
+                                    </button>
+                                </div>
+                                @if(promoCode && !commande.codePromo){
+                                <h2 class="transparent">Do you have a promo code?</h2>
+                                <h6 class="transparent">If you have a promo code, please enter it here
+                                </h6>
+                                <!-- <form (ngSubmit)="submitCodePromo()" class="transparent" > -->
+                                <!-- <label for="" class="transparent">Code:</label> -->
+                                <input type="text" name="name" id="name" [(ngModel)]="name" placeholder="Code .."
+                                    required #nameRef="ngModel">
+                                <div class="btns transparent">
+                                    <button type="button" (click)="NoPromoCode()" class="transparent">No</button>
+                                    <button type="submit" class="transparent"
+                                        (click)="submitCodePromo(name)">Yes</button>
+                                </div>
+                                <!-- </form> -->
+                                @if(errorCodeMessage){
+                                <!-- <div class="error_message" > -->
+                                <div class="transparent width100 center" style="color: red;">
+                                    {{ errorCodeMessage }}
+                                </div>
+                                <!-- </div> -->
+                                }
+                                }@else if(commande.codePromo && !yesPromoCode ){
+                                    <h2 class="transparent">You’ve already added your promo code!</h2>
+                                    <h6 class="transparent">Final confirmation of your order. </h6>
+                                    <div class="btns transparent">
+                                        <button type="button" (click)="closeModal()" class="transparent">Cancel</button>
+                                    <button type="submit" class="transparent" (click)="ConfCommand()" >Confirm Order</button>
+                                    </div>
+                                    
+                                }
+                                @if(noPromoCode ){
+                                <h2 class="transparent">Confirm Order</h2>
+                                <h4 class="transparent width100 center">Total: {{commande.total}}DT</h4>
+                                <div class="btns transparent">
+                                    <button (click)="closeModal()" class="transparent">No</button>
+                                    <button (click)="ConfCommand()" class="transparent">Yes</button>
+                                </div>
+                                }
+                                @if(yesPromoCode ){
+                                <h2 class="transparent">Confirm Order</h2>
+                                <div class="transparent width100 center">
+                                    <div class="row transparent">
+                                        Total: <h4 class="transparent" style="text-decoration: line-through;">
+                                            {{commande.total}}</h4> -> <h3 class="transparent" style="color: red;">
+                                            {{newCmd.total}}</h3> <div class="transparent" style="color: black;">DT.</div>
+                                    </div>
+                                </div>
+                                <div class="btns transparent">
+                                    <button (click)="closeModal()" class="transparent">No</button>
+                                    <button (click)="ConfCommand()" class="transparent">Yes</button>
+                                </div>
+                                }
+
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    <div class="carousel_container transparent">
+                        <div class="img">
+                            <div class="carousel-wrapper transparent "
+                                [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(j of i.product.photos;track j.id_photo){
+                                <div class="carousel-slide transparent" style="width: 300px;">
+                                    <img src={{j.filePath}} alt="" class="transparent">
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns transparent">
+                        <button (click)="prevSlide(i.id_cmditem)" class="transparent">
+                            <i class="fa-solid fa-angle-left transparent"></i></button>
+                        <button (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)" class="transparent">
+
+                            <i class="fa-solid fa-angle-right transparent"></i></button>
+                    </div>
+                    <div class="details-btn center transparent">
+                        <div class="details transparent center column">
+                            <div class="name transparent ">
+                                {{i.product.name}}
+                            </div>
+
+                            <div class="row gap center width200 transparent ">
+                                <div class="color" [style.background]="i.color" [style.color]="i">
+                                </div>
+                                @if(i.size!=null){
+                                <div class="size row transparent ">
+                                    Size:
+                                    <div class="weight transparent">
+                                        {{i.size}}
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                            @if(i.product.discount_price){
+                            <div class="alert column gap15 transparent">
+                                <div class="sale row gap transparent"> Sale <div class="percent transparent">
+                                        {{i.product.discount_percent}}%</div> OFF
+                                </div>
+
+                                <div class="row gap transparent">
+                                    <div class="recent_price transparent">
+                                        {{i.product.sale_price}}{{i.product.currency}}
+                                    </div>
+                                    <div class="discount transparent">
+                                        {{i.product.discount_price}} {{i.product.currency}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            }@else{
+                            <div class="price transparent">
+                                {{i.product.sale_price}}{{i.product.currency}}
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            }
+        </div>
+        }
+        @if(ConfirmedCommandeByUser.length!=0 ){
+        <div class=" width100 start width100">
+            <h1>We're Preparing Your Order</h1>
+        </div>
+        <div class="cards transparent column start gap_mini">
+            @for(j of ConfirmedCommandeByUser;track j.id_cmd){
+            <div class="cart-summary center column  border_shadow width100">
+                <div class="end width90 transparent total">
+                    <i class="fa-solid fa-wallet"></i>: {{j.total}} TND
+                </div>
+                @for(i of j.cmd_item; track i){
+
+                <div class="mini-card">
+                    <div class="row-column center transparent ">
+                        <div class="content_card column transparent gap5 width50">
+                            <div class="carousel_container transparent">
+                                <div class="img transparent">
+                                    <div class="carousel-wrapper transparent "
+                                        [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for(j of i.product.photos;track j.id_photo){
+                                        <div class="carousel-slide transparent">
+                                            <img src={{j.filePath}} alt="" class="transparent">
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btns transparent">
+                                <button (click)="prevSlide(i.id_cmditem)" class="transparent">
+                                    <i class="fa-solid fa-angle-left transparent"></i></button>
+                                <button (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"
+                                    class="transparent">
+
+                                    <i class="fa-solid fa-angle-right transparent"></i></button>
+                            </div>
+                        </div>
+                        <div class="details-btn center transparent width100">
+                            <div class="details transparent center column">
+                                <div class="name transparent ">
+                                    {{i.product.name}}
+                                </div>
+
+                                <div class="row gap center width200 transparent ">
+                                    <div class="color" [style.background]="i.color" [style.color]="i">
+                                    </div>
+                                    @if(i.size!=null){
+                                    <div class="size row transparent ">
+                                        Size:
+                                        <div class="weight transparent">
+                                            {{i.size}}
+                                        </div>
+                                    </div>
+                                    }
+
+                                </div>
+                                @if(i.product.discount_price){
+                                <div class="alert column gap15 transparent">
+                                    <div class="sale row gap transparent"> Sale <div class="percent transparent">
+                                            {{i.product.discount_percent}}%</div> OFF
+                                    </div>
+
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{i.product.sale_price}}{{i.product.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{i.product.discount_price}} {{i.product.currency}}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{i.product.sale_price}}{{i.product.currency}}
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+
+
+
+            }
+        </div>
+        }
+        <div class="wrap center gap">
+            <div class="column">
+                @if(ConfirmedCommandeByAdmin.length>0){
+                <div class=" width100 start width100">
+                    <h1 style="margin-top: 10px; margin-bottom: 10px;">Delivered Orders</h1>
+                </div>
+                <div class="cards transparent column start  gap_mini">
+                    @for(i of ConfirmedCommandeByAdmin;track i){
+                    <div class="cart-summary center column  border_shadow width100">
+                        <div class="end width90 transparent total">
+                            <i class="fa-solid fa-wallet"></i>: {{i.total}} TND
+                        </div>
+                        <div class="mini-card">
+                            <div class="row-column  transparent ">
+                                <div class="content_card column transparent gap5 width50">
+                                    <div class="carousel_container transparent">
+                                        <div class="img transparent">
+                                            <div class="carousel-wrapper transparent "
+                                                [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                                style="display: flex; transition: transform 0.5s ease;">
+                                                @for(j of i.product.photos;track j.id_photo){
+                                                <div class="carousel-slide transparent">
+                                                    <img src={{j.filePath}} alt="" class="transparent">
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btns transparent">
+                                        <button (click)="prevSlide(i.id_cmditem)" class="transparent">
+                                            <i class="fa-solid fa-angle-left transparent"></i></button>
+                                        <button (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"
+                                            class="transparent">
+
+                                            <i class="fa-solid fa-angle-right transparent"></i></button>
+                                    </div>
+                                </div>
+                                <div class="details-btn center transparent width100">
+                                    <div class="details transparent center column">
+                                        <div class="name transparent ">
+                                            {{i.product.name}}
+                                        </div>
+
+                                        <div class="row gap center width200 transparent ">
+                                            <div class="color" [style.background]="i.color" [style.color]="i">
+                                            </div>
+                                            @if(i.size!=null){
+                                            <div class="size row transparent ">
+                                                Size:
+                                                <div class="weight transparent">
+                                                    {{i.size}}
+                                                </div>
+                                            </div>
+                                            }
+
+                                        </div>
+                                        @if(i.product.discount_price){
+                                        <div class="alert column gap15 transparent">
+                                            <div class="sale row gap transparent"> Sale <div
+                                                    class="percent transparent">
+                                                    {{i.product.discount_percent}}%</div> OFF
+                                            </div>
+
+                                            <div class="row gap transparent">
+                                                <div class="recent_price transparent">
+                                                    {{i.product.sale_price}}{{i.product.currency}}
+                                                </div>
+                                                <div class="discount transparent">
+                                                    {{i.product.discount_price}} {{i.product.currency}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        }@else{
+                                        <div class="price transparent">
+                                            {{i.product.sale_price}}{{i.product.currency}}
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    }
+                </div>
+                }
+            </div>
+            <div class="column">
+                @if(RefusedByAdmin.length>0){
+                <div class=" width100 start width100">
+                    <h1 style="margin-top: 10px; margin-bottom: 10px;">Refused Orders</h1>
+                </div>
+                <div class="cards transparent column start  gap_mini">
+                    @for(i of RefusedByAdmin;track i){
+                    <div class="cart-summary center column  border_shadow width100">
+                        <div class="end width90 transparent total">
+                            <i class="fa-solid fa-wallet"></i>: @if(i.product.discount_price){
+                            <div class="alert column gap15 transparent">
+                                <div class="row gap transparent">
+                                    <div class="price transparent">
+                                        {{i.product.discount_price}} {{i.product.currency}}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            }@else{
+                            <div class="price transparent">
+                                {{i.product.sale_price}}{{i.product.currency}}
+                            </div>
+                            }
+                        </div>
+                        <div class="mini-card">
+                            <div class="row-column  transparent ">
+                                <div class="content_card column transparent gap5 width50">
+                                    <div class="carousel_container transparent">
+                                        <div class="img transparent">
+                                            <div class="carousel-wrapper transparent "
+                                                [style.transform]="'translateX(-' + getCurrentIndex(i.id_cmditem) * 100 + '%)'"
+                                                style="display: flex; transition: transform 0.5s ease;">
+                                                @for(j of i.product.photos;track j.id_photo){
+                                                <div class="carousel-slide transparent">
+                                                    <img src={{j.filePath}} alt="" class="transparent">
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btns transparent">
+                                        <button (click)="prevSlide(i.id_cmditem)" class="transparent">
+                                            <i class="fa-solid fa-angle-left transparent"></i></button>
+                                        <button (click)="nextSlide(i.id_cmditem, i.product.photos.length - 1)"
+                                            class="transparent">
+
+                                            <i class="fa-solid fa-angle-right transparent"></i></button>
+                                    </div>
+                                </div>
+                                <div class="details-btn center transparent width100">
+                                    <div class="details transparent center column">
+                                        <div class="name transparent ">
+                                            {{i.product.name}}
+                                        </div>
+
+                                        <div class="row gap center width200 transparent ">
+                                            <div class="color" [style.background]="i.color" [style.color]="i">
+                                            </div>
+                                            @if(i.size!=null){
+                                            <div class="size row transparent ">
+                                                Size:
+                                                <div class="weight transparent">
+                                                    {{i.size}}
+                                                </div>
+                                            </div>
+                                            }
+
+                                        </div>
+                                        @if(i.product.discount_price){
+                                        <div class="alert column gap15 transparent">
+                                            <div class="sale row gap transparent"> Sale <div
+                                                    class="percent transparent">
+                                                    {{i.product.discount_percent}}%</div> OFF
+                                            </div>
+
+                                            <div class="row gap transparent">
+                                                <div class="recent_price transparent">
+                                                    {{i.product.sale_price}}{{i.product.currency}}
+                                                </div>
+                                                <div class="discount transparent">
+                                                    {{i.product.discount_price}} {{i.product.currency}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        }@else{
+                                        <div class="price transparent">
+                                            {{i.product.sale_price}}{{i.product.currency}}
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    }
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+
+    }@else{
+    <div class="empty_content center heigth70vh column">
+        <div class="big">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div class="text">
+            There are no command available at the moment.
+        </div>
+    </div>
+    }
+
+
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,1319 @@
+<div class="container">
+    <div class="content_category">
+        <!-- clothes  -->
+        <div class="title">
+            Clothes & Fashion
+        </div>
+        @if(listClothes.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i = $index; track item){
+            @if(item.type=="Clothes & Fashion") {
+            <div class="card">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                        
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- <div class="modal">
+                <div class="content_modal">
+                    <div class="img_content">
+                        <div class="carousel_container">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="details">
+                        {{item.name}}
+                    </div>
+
+                </div>
+            </div> -->
+
+            }
+
+            }
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+        <!-- selfCare  -->
+        <div class="title">
+            SelfCare & Product
+        </div>
+        @if(listSelfCare.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="SelfCare & Product" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                             <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                       
+                    </div>
+
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+
+            }
+
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+
+        }
+
+
+        <!-- phone  elec  -->
+        <div class="title">
+            Phone & Electronique
+        </div>
+        @if(listElec.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Phone & Electronique" && !item.is_delete){
+            <div class="card">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                        
+                    </div>
+
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+            }
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+
+        }
+
+        <!-- kitchen  -->
+        <div class="title">
+            Kitchen & Home essentials
+        </div>
+        @if(listKitchen.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct; let i=$index; track item){
+            @if(item.type=="Kitchen & Home essentials" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                        
+                    </div>
+
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- game  -->
+        <div class="title">
+            Gaming & Digitals
+        </div>
+        @if(listGame.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Gaming & Digitals" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                             <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                       
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- baby  -->
+
+        <div class="title">
+            Baby & Toy
+        </div>
+        @if(listBaby.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Baby & Toy" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                        @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                        }
+                        
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- empty  -->
+
+        <!-- sprots  -->
+        <div class="title">
+            Sprots & Entertainement
+        </div>
+        @if(listSprots.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct; let i=$index; track item){
+            @if(item.type=="Sprots & Entertainement" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                         @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                         }
+                        
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- books  -->
+        <div class="title">
+            Books & Education
+        </div>
+        @if(listBooks.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Books & Education" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                         @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                         }
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+
+        <!-- car  -->
+        <div class="title">
+            Car & Accessoires
+        </div>
+        @if(listCar.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Car & Accessoires" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                         @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                         }
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- animal  -->
+        <div class="title">
+            Animals
+        </div>
+        @if(listAnimals.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Animals" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                         @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                         }
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+
+        <!-- magasin  -->
+        <div class="title">
+            Magasin
+        </div>
+        @if(listMagasin.length > 0){
+        <div class="carousel_card" abindex="1" (mousedown)="startDrag($event)" (mousemove)="onDrag($event)"
+            (mouseup)="endDrag()" (mouseleave)="endDrag()">
+            @for(item of allProduct;let i=$index; track item){
+            @if(item.type=="Magasin" && !item.is_delete){
+            <div class="card ">
+                <div class="content_card ">
+                    <div class="img_content" >
+                        <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
+                            <div class="carousel-wrapper"
+                                [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
+                                style="display: flex; transition: transform 0.5s ease;">
+                                @for(i of item.photos; track i.id_photo) {
+                                <div class="carousel-slide">
+                                    <img src="photo.src" [src]="i.src" alt="">
+                                </div>
+
+
+                                }@empty {
+                                <li>There are no image.</li>
+                                }
+                            </div>
+                        </div>
+                         @if(item.photos.length>1){
+                            <div class="btns">
+                            <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
+                            <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
+                                    class="fa-solid fa-angle-right"></i></button>
+                        </div>
+                         }
+                    </div>
+                    @if(adminImages[i]){
+                    <div class="card_meta gap50">
+                        <div class="user">
+                            <div class="row">
+                                <div class="img_admin">
+                                    <img src={{adminImages[i]}} alt="Photo Profil">
+                                </div>
+                                <div class="column nom">
+                                    {{item.admin.nom}} {{item.admin.prenom}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }@else{
+
+                    <div class="card_meta ">
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="card_meta_right left">
+                            <div class="heart">
+                                @if(fav.isfav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+
+                                }@else {
+                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }}
+        </div>
+        }@else{
+        <div class="empty">
+            Coming Soon
+        </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+<div class="column nom nom">
+
+
+
+ <div> 
+ 1. Phones & Électroniques  
+ </div>
+ <div> 
+ iPhone 
+ </div>
+
+ <div> 
+ Samsung Galaxy 
+ </div>
+
+ <div> 
+ AirPods 
+ </div>
+
+ <div> 
+ Apple Watch 
+ </div>
+
+ <div> 
+ Ordinateurs (MacBook, Dell, HP) 
+ </div>
+
+ <div> 
+ Écouteurs sans fil 
+ </div>
+
+ <div> 
+ Chargeurs & power banks 
+ </div>
+
+ <div> 
+ 🥈 2. Lbis & Moda 
+ </div>
+ <div> 
+ T-shirts basiques 
+ </div>
+
+ <div> 
+ Jeans Levi’s, Zara 
+ </div>
+
+ <div> 
+ Chaussures Nike / Adidas 
+ </div>
+
+ <div> 
+ Montres (smart & classiques) 
+ </div>
+
+ <div> 
+ Sacs à main (Louis Vuitton, Guess) 
+ </div>
+
+ <div> 
+ Doudounes, vestes d’hiver 
+ </div>
+
+ <div> 
+ Casquettes, lunettes 
+ </div>
+
+ <div> 
+ 🥉 3. Produits de Beauté 
+ </div>
+ <div> 
+ Fond de teint (Maybelline, Fenty) 
+ </div>
+
+ <div> 
+ Rouges à lèvres 
+ </div>
+
+ <div> 
+ Crèmes hydratantes (Nivea, L’Oréal) 
+ </div>
+
+ <div> 
+ Parfum (Dior, Chanel) 
+ </div>
+
+ <div> 
+ Produits pour cheveux (shampoing, sérum) 
+ </div>
+
+ <div> 
+ ✅ 4. Livres & Éducation 
+ </div>
+ <div> 
+ Livres de développement personnel (ex: Atomic Habits) 
+ </div>
+
+ <div> 
+ Mangas (One Piece, Naruto) 
+ </div>
+
+ <div> 
+ Livres pour enfants 
+ </div>
+
+ <div> 
+ E-books 
+ </div>
+
+ <div> 
+ Manuels scolaires 
+ </div>
+
+ <div> 
+ 🐾 5. Produits pour Animaux 
+ </div>
+ <div> 
+ Croquettes chiens/chats 
+ </div>
+
+ <div> 
+ Jouets pour animaux 
+ </div>
+
+ <div> 
+ Laisse & colliers 
+ </div>
+
+ <div> 
+ Produits de soin (shampoing animaux) 
+ </div>
+
+ <div> 
+ Lits & paniers 
+ </div>
+
+ <div> 
+ 🍽️ 6. Cuisine & Produits Ménagers 
+ </div>
+ <div> 
+ Mixeurs, friteuses à air 
+ </div>
+
+ <div> 
+ Tapis décoratifs 
+ </div>
+
+ <div> 
+ Vaisselle & ustensiles 
+ </div>
+
+ <div> 
+ Meubles Ikea (tables, étagères) 
+ </div>
+
+ <div> 
+ Luminaires LED 
+ </div>
+
+ <div> 
+ ⚽ 7. Sport & Loisir 
+ </div>
+ <div> 
+ Tapis de yoga 
+ </div>
+
+ <div> 
+ Haltères & matériel fitness 
+ </div>
+
+ <div> 
+ Vélos, trottinettes 
+ </div>
+
+ <div> 
+ Ballons de foot 
+ </div>
+
+ <div> 
+ Tenues de sport 
+ </div>
+
+ <div> 
+ 🎮 8. Gaming & Digitals 
+ </div>
+ <div> 
+ Jeux vidéo (FIFA, GTA, Fortnite) 
+ </div>
+
+ <div> 
+ Manettes PS5 / Xbox 
+ </div>
+
+ <div> 
+ Abonnements (Netflix, Spotify, Game Pass) 
+ </div>
+
+ <div> 
+ Cartes cadeaux 
+ </div>
+
+ <div> 
+ Logiciels (Adobe, Microsoft) 
+ </div>
+
+ <div> 
+ 🚗 9. Auto & Accessoires 
+ </div>
+ <div> 
+ Huiles moteur 
+ </div>
+
+ <div> 
+ Caméras de recul 
+ </div>
+
+ <div> 
+ GPS 
+ </div>
+
+ <div> 
+ Nettoyants voiture 
+ </div>
+
+ <div> 
+ Autoradios 
+ </div>
+
+ <div> 
+ 👶 10. Bébé & Jouets 
+ </div>
+ <div> 
+ Poussettes 
+ </div>
+
+ <div> 
+ Biberons 
+ </div>
+
+ <div> 
+ Couches 
+ </div>
+
+ <div> 
+ Jouets éducatifs 
+ </div>
+
+ <div> 
+ Tapis de jeu
+ </div>
+
+</div> -->

@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="content">
+        <div class="body center transparent width100">
+            @if(isAll){
+            @if(listAll.length>0){
+            <div class="wrap center transparent">
+                @for(i of listAll; track i){
+                    @if(!i.is_delete){
+                <div class="content transparent">
+                    <div class="card transparent">
+                        <div class="content_card transparent">
+                            <div class="img_content transparent">
+                                <div class="carousel_container transparent center">
+                                    <div class="carousel-wrapper transparent"
+                                        [style.transform]="'translateX(-' + getCurrentIndex(i.id_product) * 100 + '%)'"
+                                        style="display: flex; transition: transform 0.5s ease;">
+                                        @for(j of i.photos; track j.id_photo) {
+                                        <div class="carousel-slide transparent">
+                                            <img src={{j.filePath}} alt="">
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="btns transparent center row">
+                                    <button (click)="prevSlide(i.id_product)"><i
+                                            class="fa-solid fa-angle-left transparent"></i></button>
+                                    <button (click)="nextSlide(i.id_product, i.photos.length - 1)"><i
+                                            class="fa-solid fa-angle-right transparent"></i></button>
+                                </div>
+                            </div>
+
+                            
+                            <div class="card_meta  transparent width100 center row">
+                                @if(i.admin.photo!=null){
+                                <div class="user row transparent">
+                                    <!-- <div class="row transparent"> -->
+                                        <div class="img_admin transparent">
+                                            <img src={{i.admin.photo.filePath}} alt="Photo Profil">
+                                        </div>
+                                        <div class="column nom transparent">
+                                            {{i.admin.nom}} {{i.admin.prenom}}
+                                        </div>
+                                    <!-- </div> -->
+                                </div>
+                                }@else{
+                                    <div class="user transparent" style="margin-top: 10px;">
+                                    <i class="fa-solid fa-user" style="font-size: 20px;"></i>
+                                </div>}
+                                <div class="x78zum5 row transparent">
+                                    <div class="heart transparent">
+                                @if(i.fav!=null){
+                                @if(i.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(i.id_product)"></i>
+                                }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(i.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(i.id_product)"></i>
+                                </div>
+
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            }
+            </div>
+            }@else {
+            <div class="empty_content center heigth70vh column">
+                <div class="big" style="width: 100%; font-size: 1500%;">
+                    <i class="fa-solid fa-ban transparent"></i>
+                </div>
+                <div class="text" style="color: #60402a; font-size: 18px;">
+                    No products are available here at the moment, but they will be coming soon!
+                </div>
+            </div>
+            }
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<app-footer></app-footer>

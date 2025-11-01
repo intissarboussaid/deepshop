@@ -1,0 +1,48 @@
+<div class="container_reset">
+    <div class="carousel-container">
+        <div class="carousel-slide" [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+            <div class="content content_code">
+                <form #myForm="ngForm" (ngSubmit)="GeTAccountByEmail()">
+                    <div class="email transparent">
+                        <input type="email" id="email" name="email" [(ngModel)]="email" required email
+                            placeholder="  Email" #emailpsw="ngModel" />
+                        @if (emailpsw.invalid && (emailpsw.dirty || emailpsw.touched)) {
+                        <div class="alert">
+                            @if (emailpsw.hasError('required')) {
+                            <div class="alert">
+                                Email is required.
+                            </div>
+                            }
+                            @if (emailpsw.hasError('email')) {
+                            <div class="alert">
+                                Email not valid.
+                            </div>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <button type="submit"> send</button>
+                    @if(errorEmail){
+                    <div class="message">
+                        <div class="error_message">
+                            {{ errorEmail }}
+                        </div>
+                    </div>
+                    }
+                </form>
+            </div>
+            <div class="content content_code">
+                <div class="content content_code">
+                    <form>
+                        <div class="active transparent">
+                            <h2 class="transparent">Activate your account</h2>
+                        </div>
+                        <button (click)="activeAccount()">Activate</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>

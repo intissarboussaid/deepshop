@@ -1,0 +1,364 @@
+h4 {
+  font-size: 25px;
+}
+
+.content_featured {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content_featured {
+  transform: translateX(-100%);
+  opacity: 0;
+  animation: content_featured 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes content_featured {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.content_featured .content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+}
+
+.content_featured .content img {
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: transparent;
+  margin-left: 5px;
+  margin-top: 40px;
+  border-radius: 50%;
+}
+
+.content_featured .content .img_content {
+  background: #E6CCB2;
+  border-radius: 50%;
+  width: 500px;
+  height: 500px;
+}
+
+.content_featured .content .img {
+  background: transparent;
+  width: 650px
+}
+
+.content_featured .content .text_content {
+  background: transparent;
+  margin-left: 0%;
+  width: 90%;
+  margin-top: 8%;
+}
+
+
+
+.text_content .about_us {
+  font-weight: 20;
+  font-size: 36px;
+}
+
+
+
+.text_content .btn {
+  background: transparent;
+  text-align: center;
+  margin-top: 5%;
+  margin-left: -20%;
+}
+
+.text_content .btn button {
+  width: 170px;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 50px;
+  border: #7F5539 solid 3px;
+  color: #7F5539;
+  background: transparent;
+}
+
+.text_content .btn button:hover,
+.text_content .btn button:focus {
+  border: none;
+  background: #7F5539;
+  color: white;
+  cursor: pointer;
+  
+}
+
+
+/* animation carousel */
+ .carousel {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  margin: 20px auto;
+  background: rgba(230, 204, 178,0.7);
+}
+
+.carousel-track {
+  display: flex;
+  width: 35%;
+  animation: slide 12s infinite;
+  background: transparent;
+  justify-items: center;
+}
+
+.slide {
+  flex: 1 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 8px;
+  background: transparent;
+  color: #7F5539;
+}
+
+.slide:focus, .slide:hover{
+  cursor: pointer;
+}
+/* 
+ @keyframes slide {
+  0%   { transform: translateX(0%); }
+  15%  { transform: translateX(-50%); }
+  30%  { transform: translateX(-100%); }
+  45%  { transform: translateX(-150%); }
+  60%  { transform: translateX(-200%); }
+  75% { transform: translateX(-250%); }
+  100% { transform: translateX(-300%); }
+}  
+ */
+
+
+
+@keyframes slide {
+  0%   { transform: translateX(0%); }
+  /* 16.66% { transform: translateX(0%); } */
+
+  16.67% { transform: translateX(-100%); }
+  /* 33.33% { transform: translateX(-100%); } */
+
+  33.34% { transform: translateX(-200%); }
+  /* 50%    { transform: translateX(-200%); } */
+
+  50.01% { transform: translateX(-300%); }
+  /* 66.66% { transform: translateX(-300%); } */
+
+  66.67% { transform: translateX(-400%); }
+  /* 83.33% { transform: translateX(-400%); } */
+
+  83.34% { transform: translateX(-500%); }
+  /* 100%   { transform: translateX(-500%); } */
+  
+}
+
+
+@media(max-width:1224px) {
+  .content_featured .content .text_content {
+    width: 100%;
+    margin-top: 15%;
+  }
+
+  .text_content .about_us {
+    margin-top: -15%;
+  }
+
+  .content_featured .content img {
+    width: 80%;
+    margin-left: 5px;
+    margin-top: 35px;
+    border-radius: 50%;
+  }
+
+  .content_featured .content .img_content {
+    width: 400px;
+    height: 400px;
+  }
+}
+@media(max-width:1024px) {
+.slide {
+
+  font-size: 20px;
+  font-weight: 500;
+
+}
+}
+@media(max-width:850px) {
+  .content_featured .content .img_content {
+    width: 350px;
+    height: 350px;
+  }
+
+  .content_featured .content img {
+    margin-top: 40px;
+    width: 67%;
+  }
+
+  .content_featured .content .text_content {
+    width: 100%;
+    margin-left: -9%;
+    margin-top: 5%;
+  }
+
+  .text_content .about_us {
+    font-weight: 10;
+    font-size: 28px;
+    margin-top: 10%;
+  }
+
+  .text_content .btn button {
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media(max-width:700px) {
+.content_featured {
+  width: 100%;
+  display: flex;
+}
+  .content_featured .content .text_content .about_us,
+  .content_featured .content .text_content .sub_title,
+  .content_featured .content .text_content .btn {
+    position: absolute;
+  }
+
+  .content_featured .content {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .content_featured .content .img_content {
+    position: absolute;
+    width: 90%;
+    height: 550px;
+    margin-top: 20px;
+  }
+
+  .content_featured .content .img {
+    background: transparent;
+    width: 90%;
+  }
+
+  .content_featured .content img {
+    margin-top: 80px;
+    width: 120%;
+    border-radius: 800px;
+  }
+
+  .text_content .about_us {
+    display: none;
+  }
+
+  .text_content .btn {
+    margin-left: 65%;
+    margin-top: 160px;
+  }
+
+  .text_content .title {
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 30%;
+  }
+
+  .text_content .sub_title {
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 550px;
+  }
+
+
+}
+@media(max-width:640px) {
+.slide {
+
+  font-size: 18px;
+  font-weight: 500;
+  width:400px;
+
+}
+.carousel-track {
+  width: 55%; 
+}
+}
+@media(max-width:600px) {
+  .content_featured .content .img_content {
+    height: 440px;
+  }
+
+  .content_featured .content img {
+    width: 100%;
+  }
+
+  .text_content .sub_title {
+    margin-top: 470px;
+  }
+}
+
+@media(max-width:500px) {
+  .content_featured .content .img_content {
+    height: 380px;
+  }
+
+  .text_content .btn {
+    margin-left: 55%;
+    margin-top: 125px;
+  }
+
+  .text_content .btn button {
+    font-size: 15px;
+    width: 100px;
+    height: 40px;
+  }
+  .text_content .sub_title {
+    margin-top: 370px;
+  }
+}
+
+@media(max-width:450px) {
+  .content_featured .content .img_content {
+    height: 350px;
+  }
+}
+
+@media(max-width:400px) {
+  .content_featured .content .img_content {
+    height: 300px;
+  }
+
+  .text_content .title {
+    width: 60%;
+    margin-left: 25%;
+  }
+
+  .text_content .sub_title {
+    margin-top: 270px;
+  }
+
+  .content_featured .content img {
+    margin-top: 60px;
+    margin-left: 0px;
+  }
+
+  .text_content .btn {
+    margin-top: 100px;
+  }
+}
+@media(max-width:350px) {
+  .content_featured .content .img_content {
+    height: 250px;
+  }
+}
