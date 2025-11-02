@@ -204,7 +204,7 @@ button:focus {
 }
 
 .shop {
-    width: 100%;
+    width: 70%;
     height: 50px;
     place-content: start;
     place-items: center;
@@ -488,6 +488,10 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     text-align: center;
     margin-top: 0px;
+    width: 100%;
+}
+.shop {
+    width: 100%;
 }
 }
 @media(max-width:780px) {
