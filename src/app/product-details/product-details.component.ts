@@ -84,10 +84,11 @@ export class ProductDetailsComponent {
         //         blob=>{
         //           const objectURL = URL.createObjectURL(blob);
         //           this.src = objectURL;
-        //           this.allPhotos.push(objectURL);
+        //           
         //         }
         //       )
         // })
+        this.allPhotos.push(this.photos.filePath);
         
       },
       error: err => {
