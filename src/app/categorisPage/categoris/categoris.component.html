@@ -34,52 +34,29 @@
                         }
                         
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
+                     @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
+
+                                    </div>
 
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
 
@@ -159,51 +136,29 @@
                        
                     </div>
 
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }
@@ -256,51 +211,29 @@
                         
                     </div>
 
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }
@@ -350,51 +283,29 @@
                         
                     </div>
 
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -441,51 +352,29 @@
                         }
                        
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -533,51 +422,29 @@
                         }
                         
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                     @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -626,51 +493,29 @@
                          }
                         
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                     @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -716,51 +561,29 @@
                         </div>
                          }
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -807,51 +630,29 @@
                         </div>
                          }
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -897,51 +698,29 @@
                         </div>
                          }
                     </div>
-                    @if(adminImages[i]){
-                    <div class="card_meta gap50">
-                        <div class="user">
-                            <div class="row">
-                                <div class="img_admin">
-                                    <img src={{adminImages[i]}} alt="Photo Profil">
-                                </div>
-                                <div class="column nom">
-                                    {{item.admin.nom}} {{item.admin.prenom}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }@else{
+                      @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
 
-                    <div class="card_meta ">
-                        <div class="user">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="card_meta_right left">
-                            <div class="heart">
-                                @if(item.fav!=null){
-                                @if(item.fav.isfav){
-                                <i class="fa-solid fa-heart" (click)="addFav(item.id_product)"></i>
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
                                 }
-                                }@else {
-                                <i class="fa-regular fa-heart" (click)="addFav(item.id_product)"></i>
-                                }
-                            </div>
-                            <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
-                        </div>
-                    </div>
-                    }
                 </div>
             </div>
             }}
@@ -987,7 +766,7 @@
                         </div>
                          }
                     </div>
-                    @if(adminImages[i]){
+                    <!-- @if(adminImages[i]){
                     <div class="card_meta gap50">
                         <div class="user">
                             <div class="row">
@@ -1032,7 +811,31 @@
                             <i class="fa-solid fa-cart-shopping" (click)="onSaveProduct(item.id_product)"></i>
                         </div>
                     </div>
-                    }
+                    } -->
+                  @if(item.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{item.sale_price}}{{item.currency}}
+                                        </div>
+                                        <div class="discount transparent">
+                                            {{item.discount_price}} {{item.currency}}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                }@else{
+                                <div class="price transparent">
+                                    {{item.sale_price}}{{item.currency}}
+                                </div>
+                                }
+                
                 </div>
             </div>
             }}

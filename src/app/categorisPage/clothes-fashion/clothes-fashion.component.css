@@ -156,7 +156,9 @@
     color: #7F5539;
     font-size: 20px;
     font-weight: 700;
+    margin-left: 20px;
 }
+
 @media(max-width:500px) {
     .bts button {
         width: 150px;
