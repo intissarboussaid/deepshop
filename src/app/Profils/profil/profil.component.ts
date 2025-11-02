@@ -102,11 +102,11 @@ export class ProfilComponent {
           this.description = res.description
           this.email = localStorage.getItem('email')
           if (this.img != null) {
-            this.admin.getPhotoAdmin(localStorage.getItem('id_admin')).subscribe(blob => {
-              const objectURL = URL.createObjectURL(blob);
-              console.log("content blob", blob)
-              this.img = objectURL;
-            });
+            // this.admin.getPhotoAdmin(localStorage.getItem('id_admin')).subscribe(blob => {
+              // const objectURL = URL.createObjectURL(blob);
+              // console.log("content blob", blob)
+              this.img = res.photo.filePath;
+            // });
 
           } else {
             this.img = '../../../assets/img/photo_profil.jpg'

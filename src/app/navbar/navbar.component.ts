@@ -78,12 +78,12 @@ openCateogiry(){
             this.img = account.admin.photo;
 
             if (this.img != null) {
-              this.adminService.getPhotoAdmin(localStorage.getItem('id_admin')).subscribe(
-                blob=>{
+              // this.adminService.getPhotoAdmin(localStorage.getItem('id_admin')).subscribe(
+              //   blob=>{
                   const objectURL = URL.createObjectURL(blob);
-                  this.src = objectURL;
-                }
-              )
+                  this.src = this.img.filePath;
+              //   }
+              // )
             } else {
               this.src = 'assets/img/photo_profil.jpg';
             }
