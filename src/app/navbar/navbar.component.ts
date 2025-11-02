@@ -85,7 +85,7 @@ openCateogiry(){
                 }
               )
             } else {
-              this.src = '../../assets/img/photo_profil.jpg';
+              this.src = 'assets/img/photo_profil.jpg';
             }
           } else if (account.user) {
             this.isUser=true;
@@ -98,7 +98,7 @@ openCateogiry(){
                 }
               )
             } else {
-              this.src = '../../assets/img/photo_profil.jpg';
+              this.src = 'assets/img/photo_profil.jpg';
             }
 
           } else {
@@ -111,7 +111,7 @@ openCateogiry(){
                 }
               )
             } else {
-              this.src = '../../assets/img/photo_profil.jpg';
+              this.src = 'assets/img/photo_profil.jpg';
             }
           }
 
