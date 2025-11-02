@@ -254,6 +254,8 @@ button:focus {
 
 .fav {
     cursor: pointer;
+    text-align: end;
+    margin-top: -58px;
 }
 
 .fav button i {
