@@ -79,16 +79,16 @@ export class ProductDetailsComponent {
         this.product = res;
         this.photos = this.product.photos;
         console.log("product",res)
-        // this.photos.forEach((photo:any)=>{
+        this.photos.forEach((photo:any)=>{
+        this.allPhotos.push(photo.filePath);
         //   this.photoService.getPhoto(photo.id_photo).subscribe(
         //         blob=>{
         //           const objectURL = URL.createObjectURL(blob);
         //           this.src = objectURL;
-        //           
+        //           this.allPhotos.push(objectURL);
         //         }
         //       )
-        // })
-        this.allPhotos.push(this.photos.filePath);
+        })
         
       },
       error: err => {
