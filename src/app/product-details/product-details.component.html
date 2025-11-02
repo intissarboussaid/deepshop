@@ -14,7 +14,7 @@
             </div>
         </div>
         }
-          @if(errorMessage){
+        @if(errorMessage){
         <div class="error_message"
             style="position: absolute; inset-block-start: 0;inset-inline-end: 0; margin-top: 10%;">
             <div class="error_message">
@@ -93,61 +93,65 @@
                             {{product.status}}</div>
                     </div>
                     <!-- </div> -->
+                    <div class="row transparent width100">
+                        <form (ngSubmit)="addCommande()">
+                            @if(product.color.length>0){
+                            <div class="colors flex_wrap gap">
+                                @for(item of product.color; track item){
 
-                    <form (ngSubmit)="addCommande()">
-                        @if(product.color.length>0){
-                        <div class="colors flex_wrap gap">
-                            @for(item of product.color; track item){
-
-                            <div class="color" [style.background]="item" [style.color]="item"
-                                (click)="OnSelectColor(item)" tabindex="0" [class.active]="color === item">
-                            </div>
-                            }
-                        </div>
-                        }
-                        @if(product.size.length!=0){
-                        <div class="size_content">
-                            <h5 style="margin-bottom: 10px; font-size: 20px;">
-                                Select Size :
-                            </h5>
-                            <div class="flex_wrap gap">
-                                @for(item of product.size; track item){
-                                <div class="size" (click)="OnSelectSize(item)" tabindex="0"
-                                    [class.active]="size === item">
-                                    {{item}}
+                                <div class="color" [style.background]="item" [style.color]="item"
+                                    (click)="OnSelectColor(item)" tabindex="0" [class.active]="color === item">
                                 </div>
                                 }
+                            </div>
+                            }
+                            @if(product.size.length!=0){
+                            <div class="size_content">
+                                <h5 style="margin-bottom: 10px; font-size: 20px;">
+                                    Select Size :
+                                </h5>
+                                <div class="flex_wrap gap">
+                                    @for(item of product.size; track item){
+                                    <div class="size" (click)="OnSelectSize(item)" tabindex="0"
+                                        [class.active]="size === item">
+                                        {{item}}
+                                    </div>
+                                    }
+
+                                </div>
+                            </div>
+                            }
+                            <div class="shop row gap">
+                                <div class="add_shop">
+                                    <button type="submit" [disabled]="isLoading">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                    </button>
+
+                                </div>
 
                             </div>
+                            @if(isLoading){
+                            <div class="loader"></div>
+                            }
+                        </form>
+                        <div class="fav">
+                            @if(isFav){
+                            <button (click)="addFav()" [disabled]="isLoading"><i class="fa-solid fa-heart"></i></button>
+                            @if(isLoading){
+                            <div class="loader"></div>
+                            }
+                            }@else {
+                            <button (click)="addFav()" [disabled]="isLoading"><i
+                                    class="fa-regular fa-heart"></i></button>
+                            @if(isLoading){
+                            <div class="loader"></div>
+                            }
+                            }
+
+
                         </div>
-                        }
-                        <div class="shop row gap">
-                            <div class="add_shop">
-                                <button type="submit" [disabled]="isLoading">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                </button>
-                                 @if(isLoading){
-                                <div class="loader"></div>
-                            }
-                            </div>
-                            <div class="fav">
-                                @if(isFav){
-                                <button (click)="addFav()" [disabled]="isLoading"><i class="fa-solid fa-heart"></i></button>
-                                @if(isLoading){
-                                <div class="loader"></div>
-                            }
-                                }@else {
-                                <button (click)="addFav()" [disabled]="isLoading"><i class="fa-regular fa-heart"></i></button>
-                                 @if(isLoading){
-                                <div class="loader"></div>
-                            }
-                                }
+                    </div>
 
-
-                            </div>
-                        </div>
-
-                    </form>
 
 
 
