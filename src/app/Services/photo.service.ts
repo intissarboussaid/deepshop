@@ -8,11 +8,11 @@ export class PhotoService {
   private apiUrl = 'https://deepshop-backend-1.onrender.com/api/deepinsta/photo';
   constructor(private http: HttpClient) { }
 
-  getPhotos(id: any) {
-    return this.http.get(`${this.apiUrl}/getPhotos/${id}`, { responseType: 'blob' });
-  }
+  // getPhotos(id: any) {
+  //   return this.http.get(`${this.apiUrl}/getPhotos/${id}`, { responseType: 'blob' });
+  // }
   getPhoto(id: any) {
-    return this.http.get(`${this.apiUrl}/${id}`, { responseType: 'blob' });
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
   deletePhoto(id: any) {
     return this.http.delete(`${this.apiUrl}/delete/${id}`);

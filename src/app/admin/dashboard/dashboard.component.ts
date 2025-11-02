@@ -22,14 +22,14 @@ export class DashboardComponent {
         console.log('orders', res);
         this.order = res;
         this.order.forEach((cmd: any) => {
-          cmd.product.photos.forEach((photo: any) => {
-            this.photoService.getPhoto(photo.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                photo.filePath = objectURL;
-              }
-            )
-          })
+          // cmd.product.photos.forEach((photo: any) => {
+          //   this.photoService.getPhoto(photo.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       photo.filePath = objectURL;
+          //     }
+          //   )
+          // })
         })
       }, error: (err) => {
         console.log('error cmds not not by admin', err)

@@ -320,16 +320,16 @@
                     <div class="content_comment transparent">
                         @if(i.user!=null){
                         @if(i.user.photo){
-                        <img [src]="i.user.filePath" alt="">
+                        <img src={{i.user.filePath}} alt="">
                         }@else{
-                        <img src='../../assets/img/photo_profil.jpg' alt="">
+                        <img src='assets/img/photo_profil.jpg' alt="">
                         }
                         }
                         @if(i.admin !=null){
                         @if(i.admin.photo){
-                        <img [src]="i.admin.filePath" alt="">
+                        <img src={{i.user.filePath}} alt="">
                         }@else{
-                        <img src='../../assets/img/photo_profil.jpg' alt="">
+                        <img src='assets/img/photo_profil.jpg' alt="">
                         }
                         }
 

@@ -39,11 +39,11 @@ export class HistoriqueComponent {
             this.AllList.push(product);
             this.AllList.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());    
              product.photos.forEach((image: any) => {
-              this.photoService.getPhoto(image.id_photo).subscribe(                
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  image.filePath = objectURL;
-                })
+              // this.photoService.getPhoto(image.id_photo).subscribe(                
+              //   blob => {
+              //     const objectURL = URL.createObjectURL(blob);
+              //     image.filePath = objectURL;
+              //   })
               this.commentaireService.getCommentaireByProduct(product.id_product).subscribe({
       next: (res) => {
         this.CommentaireList = res;

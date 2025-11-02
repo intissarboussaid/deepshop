@@ -109,7 +109,7 @@ export class ProfilComponent {
             // });
 
           } else {
-            this.img = '../../../assets/img/photo_profil.jpg'
+            this.img = 'assets/img/photo_profil.jpg'
           }
         },
         error: (err) => {
@@ -137,14 +137,14 @@ export class ProfilComponent {
           this.description = res.description
           this.email = localStorage.getItem('email')
           if (this.img != null) {
-            this.userService.getPhotoUser(localStorage.getItem('id_user')).subscribe(blob => {
-              const objectURL = URL.createObjectURL(blob);
-              console.log("content blob", blob)
-              this.img = objectURL;
-            });
+          //   this.userService.getPhotoUser(localStorage.getItem('id_user')).subscribe(blob => {
+          //     const objectURL = URL.createObjectURL(blob);
+          //     console.log("content blob", blob)
+              this.img = this.img.filepath;
+            // });
 
           } else {
-            this.img = '../../../assets/img/photo_profil.jpg'
+            this.img = 'assets/img/photo_profil.jpg'
           }
         },
         error: (err) => {
@@ -174,14 +174,14 @@ export class ProfilComponent {
           this.img = res.photo;
           this.email = localStorage.getItem('email')
           if (this.img != null) {
-            this.productManagerService.getPhotoPm(localStorage.getItem('id_pm')).subscribe(blob => {
-              const objectURL = URL.createObjectURL(blob);
-              console.log("content blob", blob)
-              this.img = objectURL;
-            });
+            // this.productManagerService.getPhotoPm(localStorage.getItem('id_pm')).subscribe(blob => {
+            //   const objectURL = URL.createObjectURL(blob);
+            //   console.log("content blob", blob)
+              this.img = this.img.filePath;
+            // });
 
           } else {
-            this.img = '../../../assets/img/photo_profil.jpg'
+            this.img = 'assets/img/photo_profil.jpg'
           }
         },
         error: (err) => {

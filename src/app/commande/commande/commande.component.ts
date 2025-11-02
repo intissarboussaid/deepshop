@@ -62,14 +62,14 @@ isLoading=false;
           this.cmdsItem = this.commande.cmd_item;
           console.log("user's commande not validated ....", res)
           this.commande.cmd_item.forEach((item: any) => {
-            item.product.photos.forEach((photo: any) => {
-              this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  photo.filePath = objectURL;
-                }
-              )
-            })
+            // item.product.photos.forEach((photo: any) => {
+            //   this.photoService.getPhoto(photo.id_photo).subscribe(
+            //     blob => {
+            //       const objectURL = URL.createObjectURL(blob);
+            //       photo.filePath = objectURL;
+            //     }
+            //   )
+            // })
           })
         }
 
@@ -85,14 +85,14 @@ isLoading=false;
         console.log(' commandes confirmed by user only ', this.ConfirmedCommandeByUser);
         this.ConfirmedCommandeByUser.forEach((commande: any) => {
           commande.cmd_item.forEach((cmdItem: any) => {
-            cmdItem.product.photos.forEach((photo: any) => {
-              this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  photo.filePath = objectURL;
-                }
-              )
-            })
+            // cmdItem.product.photos.forEach((photo: any) => {
+            //   this.photoService.getPhoto(photo.id_photo).subscribe(
+            //     blob => {
+            //       const objectURL = URL.createObjectURL(blob);
+            //       photo.filePath = objectURL;
+            //     }
+            //   )
+            // })
           })
 
         })
@@ -107,14 +107,14 @@ isLoading=false;
         console.log(' commandes confirmed by admin ', res);
         this.ConfirmedCommandeByAdmin = res;
         this.ConfirmedCommandeByAdmin.forEach((commande: any) => {
-          commande.product.photos.forEach((photo: any) => {
-            this.photoService.getPhoto(photo.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                photo.filePath = objectURL;
-              }
-            )
-          })
+          // commande.product.photos.forEach((photo: any) => {
+          //   this.photoService.getPhoto(photo.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       photo.filePath = objectURL;
+          //     }
+          //   )
+          // })
         })
       }, error: (err) => {
         console.log(' error commandes confirmed by user and admin ', err);
@@ -126,14 +126,14 @@ isLoading=false;
         console.log(' commandes Refused by admin ', res);
         this.RefusedByAdmin = res;
         this.RefusedByAdmin.forEach((commande: any) => {
-          commande.product.photos.forEach((photo: any) => {
-            this.photoService.getPhoto(photo.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                photo.filePath = objectURL;
-              }
-            )
-          })
+          // commande.product.photos.forEach((photo: any) => {
+          //   this.photoService.getPhoto(photo.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       photo.filePath = objectURL;
+          //     }
+          //   )
+          // })
         })
       }, error: (err) => {
         console.log(' error commandes refused admin ', err);

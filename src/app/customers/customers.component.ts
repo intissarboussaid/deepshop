@@ -39,12 +39,12 @@ export class CustomersComponent {
           console.log('all customers of this admin: ', this.allCustomers);
           this.allCustomers.forEach((user: any) => {
 
-            if (user.user.photo) {
-              this.photoService.getPhoto(user.user.photo.id_photo).subscribe(blob => {
-                const objectURL = URL.createObjectURL(blob);
-                user.user.photo.filePath = objectURL;
-              });
-            }
+            // if (user.user.photo) {
+            //   this.photoService.getPhoto(user.user.photo.id_photo).subscribe(blob => {
+            //     const objectURL = URL.createObjectURL(blob);
+            //     user.user.photo.filePath = objectURL;
+            //   });
+            // }
 
           })
         }, error: (err) => {

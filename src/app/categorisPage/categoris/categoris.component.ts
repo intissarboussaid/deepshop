@@ -94,9 +94,9 @@ export class CategorisComponent {
           const AdminPhoto=product?.admin?.photo;
         if (AdminPhoto) {
           this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
-            (blob) => {
-              const objectURL = URL.createObjectURL(blob);
-              this.adminImages[index] = objectURL;
+            (next) => {
+              // const objectURL = URL.createObjectURL(blob);
+              this.adminImages[index] = AdminPhoto.filePath;
             },
             (error) => {
               this.adminImages[index] = null;
@@ -153,12 +153,12 @@ export class CategorisComponent {
           //   // console.log('Updated photos for product:', product);
           // });
           this.product.photos.forEach((photo:any)=>{
-          this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob=>{
-                  const objectURL = URL.createObjectURL(blob);
-                  this.src = objectURL;
-                }
-              )
+          // this.photoService.getPhoto(photo.id_photo).subscribe(
+          //       blob=>{
+          //         const objectURL = URL.createObjectURL(blob);
+          //         this.src = objectURL;
+          //       }
+          //     )
         })
 
         })
@@ -168,16 +168,16 @@ export class CategorisComponent {
 
 
   }
-  getPhoto(id: any) {
-    this.photoService.getPhoto(id).subscribe(
-      blob => {
-        const objectURL = URL.createObjectURL(blob);
-        console.log("content blob", blob)
-        this.src = objectURL;
-        console.log("image", this.src)
-      }
-    )
-  }
+  // getPhoto(id: any) {
+  //   this.photoService.getPhoto(id).subscribe(
+  //     blob => {
+  //       const objectURL = URL.createObjectURL(blob);
+  //       console.log("content blob", blob)
+  //       this.src = objectURL;
+  //       console.log("image", this.src)
+  //     }
+  //   )
+  // }
   getCurrentIndex(productId: number): number {
     return this.currentIndexes[productId] ?? 0;
   }

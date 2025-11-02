@@ -79,15 +79,15 @@ export class ProductDetailsComponent {
         this.product = res;
         this.photos = this.product.photos;
         console.log("product",res)
-        this.photos.forEach((photo:any)=>{
-          this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob=>{
-                  const objectURL = URL.createObjectURL(blob);
-                  this.src = objectURL;
-                  this.allPhotos.push(objectURL);
-                }
-              )
-        })
+        // this.photos.forEach((photo:any)=>{
+        //   this.photoService.getPhoto(photo.id_photo).subscribe(
+        //         blob=>{
+        //           const objectURL = URL.createObjectURL(blob);
+        //           this.src = objectURL;
+        //           this.allPhotos.push(objectURL);
+        //         }
+        //       )
+        // })
         
       },
       error: err => {
@@ -109,18 +109,18 @@ export class ProductDetailsComponent {
         let loaded = 0;
         this.CommentaireList.forEach((commentaire: any) => {
           loaded++;
-          if(commentaire.user!=null){
-            this.photoService.getPhoto(commentaire.user.photo.id_photo).subscribe(blob => {
-            const objectURL = URL.createObjectURL(blob);
-            commentaire.user.filePath = objectURL;
-          });
-          }
-          if(commentaire.admin!=null){
-             this.photoService.getPhoto(commentaire.admin.photo.id_photo).subscribe(blob => {
-            const objectURL = URL.createObjectURL(blob);
-            commentaire.admin.filePath = objectURL;
-          });                       
-          }
+          // if(commentaire.user!=null){
+          //   this.photoService.getPhoto(commentaire.user.photo.id_photo).subscribe(blob => {
+          //   const objectURL = URL.createObjectURL(blob);
+          //   commentaire.user.filePath = objectURL;
+          // });
+          // }
+          // if(commentaire.admin!=null){
+          //    this.photoService.getPhoto(commentaire.admin.photo.id_photo).subscribe(blob => {
+          //   const objectURL = URL.createObjectURL(blob);
+          //   commentaire.admin.filePath = objectURL;
+          // });                       
+          // }
           
 
           if (loaded === this.CommentaireList.length) {

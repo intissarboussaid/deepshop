@@ -33,23 +33,24 @@ export class FavoriteComponent {
             this.prenom = fav.product.admin.prenom;
             const AdminPhoto = fav?.product?.admin?.photo;
             if (AdminPhoto) {
-              this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  AdminPhoto.filePath = objectURL;
-                }
-              );
+              // this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
+              //   blob => {
+              //     const objectURL = URL.createObjectURL(blob);
+              //     AdminPhoto.filePath = objectURL;
+              //   }
+              // );
+             AdminPhoto.filePath =  AdminPhoto.filePath;
             } else {
               this.adminImages[index] = null;
             }
-            fav.product.photos.forEach((photo: any) => {
-              this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  photo.filePath = objectURL;
-                }
-              )
-            })
+            // fav.product.photos.forEach((photo: any) => {
+            //   this.photoService.getPhoto(photo.id_photo).subscribe(
+            //     blob => {
+            //       const objectURL = URL.createObjectURL(blob);
+            //       photo.filePath = objectURL;
+            //     }
+            //   )
+            // })
           })
         }
         console.log('all favorites by user', res);
@@ -70,22 +71,22 @@ export class FavoriteComponent {
             this.prenom = fav.product.admin.prenom;
             const AdminPhoto = fav?.product?.admin?.photo;
             if (AdminPhoto) {
-              this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  AdminPhoto.filePath = objectURL;
-                }
-              );
+              // this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
+              //   blob => {
+              //     const objectURL = URL.createObjectURL(blob);
+              //     AdminPhoto.filePath = objectURL;
+              //   }
+              // );
             } else {
               this.adminImages[index] = null;
             }
             fav.product.photos.forEach((photo: any) => {
-              this.photoService.getPhoto(photo.id_photo).subscribe(
-                blob => {
-                  const objectURL = URL.createObjectURL(blob);
-                  photo.filePath = objectURL;
-                }
-              )
+              // this.photoService.getPhoto(photo.id_photo).subscribe(
+              //   blob => {
+              //     const objectURL = URL.createObjectURL(blob);
+              //     photo.filePath = objectURL;
+              //   }
+              // )
             })
           })
         }

@@ -142,15 +142,15 @@ export class AllProductsComponent {
         console.log('product', this.product);
                   this.photos = this.product.photos;
 
-          this.photos.forEach((image: { id_photo: any; src: string; }) => {
-            this.photoService.getPhoto(image.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                console.log("content blob", blob);
-                image.src = objectURL;
-              }
-            )
-          })
+          // this.photos.forEach((image: { id_photo: any; src: string; }) => {
+          //   this.photoService.getPhoto(image.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       console.log("content blob", blob);
+          //       image.src = objectURL;
+          //     }
+          //   )
+          // })
       }
     })
     console.log("id", id);
@@ -168,15 +168,15 @@ export class AllProductsComponent {
         this.product=res;
         console.log('product', this.product);
                   this.photos = this.product.photos;
-          this.photos.forEach((image: { id_photo: any; src: string; }) => {
-            this.photoService.getPhoto(image.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                console.log("content blob", blob);
-                image.src = objectURL;
-              }
-            )
-          })
+          // this.photos.forEach((image: { id_photo: any; src: string; }) => {
+          //   this.photoService.getPhoto(image.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       console.log("content blob", blob);
+          //       image.src = objectURL;
+          //     }
+          //   )
+          // })
       }
     })
     console.log("id", id);
@@ -583,14 +583,14 @@ export class AllProductsComponent {
         console.log("products", this.products);
         this.products.forEach(product => {
           this.photos = product.photos;
-          this.photos.forEach((image: { id_photo: any; src: string; }) => {
-            this.photoService.getPhoto(image.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                image.src = objectURL;
-              }
-            )
-          })
+          // this.photos.forEach((image: { id_photo: any; src: string; }) => {
+          //   this.photoService.getPhoto(image.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       image.src = objectURL;
+          //     }
+          //   )
+          // })
         })
 
 
@@ -660,36 +660,36 @@ export class AllProductsComponent {
 
   }
 
-  getPhotosProduct(id: any) {
-    this.photoService.getPhotos(id).subscribe(
-      blob => {
-        const objectURL = URL.createObjectURL(blob);
-        console.log("content blob", blob)
-        this.src = objectURL;
-      }
-    )
-  }
-  getPhoto(id: any) {
-    this.photoService.getPhoto(id).subscribe(
-      blob => {
-        const objectURL = URL.createObjectURL(blob);
-        console.log("content blob", blob)
-        this.src = objectURL;
-        console.log("image", this.src)
-      }
-    )
-  }
+  // getPhotosProduct(id: any) {
+  //   this.photoService.getPhotos(id).subscribe(
+  //     blob => {
+  //       const objectURL = URL.createObjectURL(blob);
+  //       console.log("content blob", blob)
+  //       this.src = objectURL;
+  //     }
+  //   )
+  // }
+  // getPhoto(id: any) {
+  //   this.photoService.getPhoto(id).subscribe(
+  //     blob => {
+  //       const objectURL = URL.createObjectURL(blob);
+  //       console.log("content blob", blob)
+  //       this.src = objectURL;
+  //       console.log("image", this.src)
+  //     }
+  //   )
+  // }
 
   loadProduits() {
     this.productService.GetProductsByAdmin(localStorage.getItem('id_admin')).subscribe(prods => {
       this.products = prods;
       this.products.forEach(product => {
-        product.photos.forEach((photo: { id_photo: any; src: string; }) => {
-          this.photoService.getPhoto(photo.id_photo).subscribe(blob => {
-            const objectURL = URL.createObjectURL(blob);
-            photo.src = objectURL;
-          });
-        });
+        // product.photos.forEach((photo: { id_photo: any; src: string; }) => {
+        //   this.photoService.getPhoto(photo.id_photo).subscribe(blob => {
+        //     const objectURL = URL.createObjectURL(blob);
+        //     photo.src = objectURL;
+        //   });
+        // });
       });
     });
   }

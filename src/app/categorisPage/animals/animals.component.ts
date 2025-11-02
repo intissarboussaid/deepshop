@@ -35,27 +35,27 @@ export class AnimalsComponent {
         console.log("Animals", res);
         this.listAll = res
         this.listAll.forEach((product: any) => {
-          product.photos.forEach((photo: any) => {
-            this.photoService.getPhoto(photo.id_photo).subscribe(
-              blob => {
-                const objectURL = URL.createObjectURL(blob);
-                photo.filePath = objectURL;
+          // product.photos.forEach((photo: any) => {
+          //   this.photoService.getPhoto(photo.id_photo).subscribe(
+          //     blob => {
+          //       const objectURL = URL.createObjectURL(blob);
+          //       photo.filePath = objectURL;
 
-              }
-            )
-          })                   
+          //     }
+          //   )
+          // })                   
         })
         this.listAll.forEach((product:any)=>{
           const AdminPhoto = product.admin.photo;
           if(AdminPhoto){
             console.log(" AdminPhoto", AdminPhoto);
-          this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
-            blob => {
-              const objectURL = URL.createObjectURL(blob);
-              AdminPhoto.filePath = objectURL;
+          // this.photoService.getPhoto(AdminPhoto.id_photo).subscribe(
+          //   blob => {
+          //     const objectURL = URL.createObjectURL(blob);
+          //     AdminPhoto.filePath = objectURL;
               
-            }
-          );
+          //   }
+          // );
           }
           
         })
