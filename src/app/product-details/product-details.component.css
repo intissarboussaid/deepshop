@@ -483,7 +483,13 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
 
 }
-
+@media(max-width:520px){
+    .fav {
+    cursor: pointer;
+    text-align: center;
+    margin-top: 0px;
+}
+}
 @media(max-width:780px) {
     .row-xr {
         display: flex;
