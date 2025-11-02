@@ -14,6 +14,7 @@ import { ColorsBody } from './detailsProduct';
 })
 
 export class AddProductComponent {  
+  isLoading = false;
   isclicked=false;
   cost_price = 0.0;
   sale_price = 0.0;
@@ -92,6 +93,7 @@ export class AddProductComponent {
 
   constructor(private productService: ProductService) { }
   onSubmit(form: NgForm) {
+    this.isLoading = true;
     if (form.valid && this.currencySelected != '' && this.levelSelected != '', this.productSelected != '' && this.sale_price != null) {
       const productBody = {
         cost_price: this.cost_price,
@@ -120,6 +122,7 @@ export class AddProductComponent {
       this.productService.AddProduct(localStorage.getItem('id_admin'), productBody, this.selectedFiles)
         .subscribe({
           next: (res) => {
+            this.isLoading=false;
             console.log('Product added:', res);
             localStorage.setItem('id_product', res.id_product);
             this.uploadMessage = 'Upload successful!';
@@ -133,6 +136,7 @@ export class AddProductComponent {
             window.location.reload();
           },
           error: (err) => {
+            this.isLoading=false;
             console.error('Error:', err);
             localStorage.setItem('errorMessage', 'Please select at least one image.')
             this.errorMessage = localStorage.getItem('errorMessage');
@@ -145,6 +149,7 @@ export class AddProductComponent {
       setTimeout(() => {
         this.invalid = "";
       }, 8000);
+      this.isLoading=false;
     }
 
 

@@ -19,6 +19,7 @@ export class ForgetPasswordComponent {
   psw = '';
   confirmationpsw = '';
   errorEmail="";
+  isLoading=false;
   constructor(private auth: AuthentificationService, private router: Router) { }
   prevSlide() {
     this.currentIndex = this.currentIndex === 0 ? 1 : 0;
@@ -31,6 +32,7 @@ export class ForgetPasswordComponent {
   }
 
   onSubmit(form: NgForm) {
+    this.isLoading=true
     if (form.valid) {
       const credentials = {
         code: this.code
@@ -38,6 +40,7 @@ export class ForgetPasswordComponent {
 
       this.auth.verificationCode(localStorage.getItem('email'), credentials).subscribe({
         next: (res) => {
+           this.isLoading=false;
           console.log('request response:', res);
 
           // setTimeout(() => {
@@ -47,6 +50,7 @@ export class ForgetPasswordComponent {
 
         },
         error: (err) => {
+          this.isLoading=false;
           this.error = "Invalid verification code"
           console.log('request failed:', err);
 
@@ -63,6 +67,7 @@ export class ForgetPasswordComponent {
 
 
   resetPassword(form: NgForm) {
+    this.isLoading=true;
     if (form.valid) {
       const credentials = {
         psw: this.psw,
@@ -71,6 +76,7 @@ export class ForgetPasswordComponent {
 
       this.auth.restPassword(localStorage.getItem('email'), credentials.psw,credentials.confirmationpsw).subscribe({
         next: (res) => {
+          this.isLoading=false;
           console.log('rest password: ', res);
           localStorage.setItem('email',res.email);
           localStorage.setItem('id_account',res.id_account);
@@ -80,6 +86,7 @@ export class ForgetPasswordComponent {
           
         },
         error: (err) => {
+          this.isLoading=false;
           console.log('reset password failed:', err);
           this.passwordError = "Those passwords didn't match. try again."
           setTimeout(() => {
@@ -89,6 +96,7 @@ export class ForgetPasswordComponent {
         }
       });
     } else {
+      this.isLoading=false;
       console.log(" form invalid!");
       console.log(" password", this.psw);
       console.log(" confirmation password", this.confirmationpsw);
@@ -96,11 +104,14 @@ export class ForgetPasswordComponent {
     }
   }
   GeTAccountByEmail(){
+    this.isLoading=true;
     this.auth.getEmail(this.email).subscribe({
       next:(res)=>{
+        this.isLoading=false;
         console.log("account", res);
         this.currentIndex = this.currentIndex === 1 ? 0 : 1;
       },error:(err)=>{
+        this.isLoading=false;
         console.log("error Email", err);
         this.errorEmail="No account found with this email address."
       }

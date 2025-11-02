@@ -123,15 +123,24 @@
                         }
                         <div class="shop row gap">
                             <div class="add_shop">
-                                <button type="submit">
+                                <button type="submit" [disabled]="isLoading">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
+                                 @if(isLoading){
+                                <div class="loader"></div>
+                            }
                             </div>
                             <div class="fav">
                                 @if(isFav){
-                                <button (click)="addFav()"><i class="fa-solid fa-heart"></i></button>
+                                <button (click)="addFav()" [disabled]="isLoading"><i class="fa-solid fa-heart"></i></button>
+                                @if(isLoading){
+                                <div class="loader"></div>
+                            }
                                 }@else {
-                                <button (click)="addFav()"><i class="fa-regular fa-heart"></i></button>
+                                <button (click)="addFav()" [disabled]="isLoading"><i class="fa-regular fa-heart"></i></button>
+                                 @if(isLoading){
+                                <div class="loader"></div>
+                            }
                                 }
 
 

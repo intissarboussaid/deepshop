@@ -44,6 +44,7 @@ export class ProfilComponent {
   isUser:any;
   isAdmin:any;
   isPm:any;
+ isLoading=false;
 
   openModal() {
     this.isModalOpen = true;
@@ -205,6 +206,7 @@ export class ProfilComponent {
 
   }
   onSubmitt(form: NgForm) {
+    this.isLoading=true;
     if (form.valid) {
       const adminBody = {
 
@@ -229,11 +231,13 @@ export class ProfilComponent {
       if (admin != null) {
         this.admin.updateInformations(localStorage.getItem('id_admin'), adminBody).subscribe({
           next: (res) => {
+            this.isLoading=false;
             console.log('admin', res)
             this.img = res.photo;
             console.log('photo admin', res.photo)
 
           }, error: (err) => {
+            this.isLoading=false;
             console.log('error ', err)
           }
         })
@@ -241,11 +245,13 @@ export class ProfilComponent {
       if (user != null) {
         this.userService.updateInformations(localStorage.getItem('id_user'), adminBody).subscribe({
           next: (res) => {
+            this.isLoading=false;
             console.log('User', res)
             this.img = res.photo;
             console.log('User photo', res.photo)
 
           }, error: (err) => {
+            this.isLoading=false;
             console.log('error ', err)
           }
         })
@@ -253,16 +259,19 @@ export class ProfilComponent {
       if (productManger != null) {
         this.admin.updateInformations(localStorage.getItem('id_pm'), adminBody).subscribe({
           next: (res) => {
+            this.isLoading=false;
             console.log('product manager', res)
             this.img = res.photo;
             console.log('photo PM', res.photo)
 
           }, error: (err) => {
+            this.isLoading=false;
             console.log('error ', err)
           }
         })
 
       } else {
+        this.isLoading=false;
         console.log('form invalid');
       }
     }
@@ -288,15 +297,18 @@ export class ProfilComponent {
   }
 
   uploadPhoto(): void {
+    this.isLoading=true;
     if (this.selectedFile) {
       if (localStorage.getItem('id_admin')) {
         this.admin.updateAdminPhoto(localStorage.getItem('id_admin'), this.selectedFile).subscribe({
           next: (response) => {
+            this.isLoading=false;
             console.log('Upload successful:', response);
             localStorage.setItem('uploadMessage', '✅ File uploaded successfully!');
             window.location.reload();
           },
           error: (err) => {
+            this.isLoading=false;
             console.error('Upload error:', err);
             this.uploadErrorMessage = "Something went wrong during upload.";
           }
@@ -305,12 +317,14 @@ export class ProfilComponent {
       else if (localStorage.getItem('id_user')) {
         this.userService.updateUserPhoto(localStorage.getItem('id_user'), this.selectedFile).subscribe({
           next: (response) => {
+            this.isLoading=false;
             console.log('Upload successful:', response);
             localStorage.setItem('uploadMessage', '✅ File uploaded successfully!');
             window.location.reload();
   
           },
           error: (err) => {
+            this.isLoading=false;
             console.error('Upload error:', err);
             this.uploadErrorMessage = "Something went wrong during upload.";
           }
@@ -320,12 +334,15 @@ export class ProfilComponent {
       else if (localStorage.getItem('id_pm')) {
         this.productManagerService.updatePMPhoto(localStorage.getItem('id_pm'), this.selectedFile).subscribe({
           next: (response) => {
+            this.isLoading=false;
             console.log('Upload successful:', response);
             localStorage.setItem('uploadMessage', '✅ File uploaded successfully!');
             window.location.reload();
 
           },
+          
           error: (err) => {
+            this.isLoading=false;
             console.error('Upload error:', err);
             this.uploadErrorMessage = "Something went wrong during upload.";
           }
@@ -336,7 +353,7 @@ export class ProfilComponent {
   }
 
   onSubmit() {
-
+this.isLoading=true;
     const adminBody = {
       nom: this.nom,
       prenom: this.prenom,
@@ -359,12 +376,14 @@ export class ProfilComponent {
     if (admin != null) {
       this.admin.updateInformations(localStorage.getItem('id_admin'), adminBody).subscribe({
         next: (res) => {
+          this.isLoading=false;
           console.log('admin', res);
           localStorage.setItem('editSuccess', '✅ You successfully edited your profile.');
           window.location.reload();
 
 
         }, error: (err) => {
+          this.isLoading=false;
           console.log('error ', err)
         }
       })
@@ -372,10 +391,12 @@ export class ProfilComponent {
     if (user != null) {
       this.userService.updateInformations(localStorage.getItem('id_user'), adminBody).subscribe({
         next: (res) => {
+          this.isLoading=false;
           console.log('User', res);
           localStorage.setItem('editSuccess', '✅ You successfully edited your profile.');
           window.location.reload();
         }, error: (err) => {
+          this.isLoading=false;
           console.log('error ', err)
         }
       })
@@ -383,11 +404,13 @@ export class ProfilComponent {
     if (productManger != null) {
       this.productManagerService.updateInformations(localStorage.getItem('id_pm'), adminBody).subscribe({
         next: (res) => {
+          this.isLoading=false;
           console.log('product manager', res);
           localStorage.setItem('editSuccess', '✅ You successfully edited your profile.');
           window.location.reload();
 
         }, error: (err) => {
+          this.isLoading=false;
           console.log('error ', err)
         }
       })

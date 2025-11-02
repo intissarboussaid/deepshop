@@ -96,7 +96,10 @@
                             </div>
                             <div class="btn" style="margin-top: 50px; gap: 30%;">
                                 <button type="button" (click)="closeModal()" class="close_btn">Close</button>
-                                <button type="submit" class="delete_btn">Save</button>
+                                <button type="submit" class="delete_btn" [disabled]="isLoading">Save</button>
+                                @if(isLoading){
+                    <div class="loader"></div>
+                }
                             </div>
                         </form>
 
@@ -562,7 +565,10 @@
 
                                 <div class="btn">
                                     <button type="button" (click)="closeModal()">Close</button>
-                                    <button class="submit" type="submit">save</button>
+                                    <button class="submit" type="submit" [disabled]="isLoading" >save</button>
+                                     @if(isLoading){
+                                        <div class="loader"></div>
+                                     }
                                 </div>
 
                             </form>
@@ -654,7 +660,10 @@
 
                         </div>
                         }
-                        <button class="btn_submit_add_photo" type="submit">save</button>
+                        <button class="btn_submit_add_photo" type="submit" [disabled]="isLoading">save</button>
+                        @if(isLoading){
+                    <div class="loader"></div>
+                }
                     </form>
                 </div>
                 <table class="styled-table" style="width:50%; margin-top: 30px;">

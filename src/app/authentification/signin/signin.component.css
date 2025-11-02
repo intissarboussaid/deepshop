@@ -262,7 +262,7 @@ button:focus {
 }
 
 .forget_password a {
-    margin-top: 40px;
+    margin-top: 0px;
     display: flex;
     justify-content: flex-end;
     cursor: pointer;

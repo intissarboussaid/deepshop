@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
+  isLoading=false;
   email: any;
   firstName: any;
   lastName: any;
@@ -39,6 +40,7 @@ export class ContactComponent {
     }
   }
   onSubmit() {
+    this.isLoading=true;
     const contactBody = {
       email: this.email,
       firstName: this.firstName,
@@ -48,12 +50,14 @@ export class ContactComponent {
     }
     this.contactService.sendMessage(contactBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log('conatc section  ', res);
         localStorage.setItem('successMessage',"✅ Your message has been sent successfully. Thank you for contacting us.");
         window.location.reload();
       },error:(err)=>{
         localStorage.setItem('errorMessage',"❌ Failed to send your message. Please try again later.");
         window.location.reload();
+         this.isLoading=false;
 
       }
     })

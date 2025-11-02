@@ -243,6 +243,7 @@ li a i:hover{
 
 .category .dropdown-category {
     display: none;
+    margin-top: -15px;
 }
 .category:hover .dropdown-category,.category:focus .dropdown-category ,.dropdown-category{
     display: flex;

@@ -25,6 +25,7 @@ export class CustomersComponent {
   edit = false;
   content = false;
   codePromo:any;
+  isLoading=false;
   constructor(private customersService: CustomersService, private photoService: PhotoService, private codePromoService: CodePromoService) { }
 
   ngOnInit() {
@@ -91,11 +92,13 @@ export class CustomersComponent {
     })
   }
   addCodePromo() {
+    this.isLoading=true;
     const bodyCodePromo = {
       percent: this.perecent
     }
     this.codePromoService.addCodePromo(localStorage.getItem("id_admin"), this.id_user, bodyCodePromo).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("resultat code promo: ", res);
         localStorage.setItem("successMessage", "Promo code added successfully.")
         this.successMessage = localStorage.getItem("successMessage");
@@ -107,6 +110,7 @@ export class CustomersComponent {
 
 
       }, error: (err) => {
+        this.isLoading=false;
         localStorage.setItem("errorMessage", "Your promo code is invalid.")
         this.errorMessage = localStorage.getItem("errorMessage");
 
@@ -137,7 +141,7 @@ export class CustomersComponent {
   closeModal() {
     this.isModalOpen = false;
   }
-  NotFifele() {
+  NotFifele() {   
     localStorage.setItem("errorMessage", "Your customer is not loyal.")
     this.errorMessage = localStorage.getItem("errorMessage");
     setTimeout(() => {

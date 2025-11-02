@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './commande.component.css'
 })
 export class CommandeComponent {
-
+isLoading=false;
   currentIndexes: { [photoId: number]: number } = {};
   id_cmd: any;
   commande: any;
@@ -208,27 +208,32 @@ export class CommandeComponent {
     }
   }
   deleteProductFronCmd(id_cmditem: any, id_cmd: any) {
+    this.isLoading=true;
     this.commandeService.deleteProductFromCmd(id_cmditem, id_cmd, localStorage.getItem('id_user')).subscribe({
       next: (res) => {
         console.log("delete product from commande", res);
         window.location.reload();
+        this.isLoading=false;
 
       },
       error: (err) => {
+        this.isLoading=false;
         console.log("error delete product from commande", err)
       }
     })
   }
   ConfCommand() {
-
+this.isLoading=true;
     this.commandeService.ConfCommandeByUser(localStorage.getItem('id_user')).subscribe({
       next: (res) => {
         console.log("confirmed commande", res);
         window.location.reload();
+        this.isLoading=false;
         this.closeModal();
       },
       error: (err) => {
-        console.log("confirmed commande", err)
+        console.log("confirmed commande", err);
+        this.isLoading=false;
       }
     })
 
@@ -238,13 +243,15 @@ export class CommandeComponent {
     this.location.back();
   }
   submitCodePromo(name: any) {
-
+this.isLoading=true;
     this.promoCodeService.submitCode(this.id_cmd, name).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("resultat code Promo", res);
         this.newCmd = res;
         this.YesPromoCode();
       }, error: (err) => {
+        this.isLoading=false;
         console.log("error code Promo", err);
         localStorage.setItem("errorCodeMessage", "Your promo code is invalid!");
         this.errorCodeMessage = localStorage.getItem("errorCodeMessage");

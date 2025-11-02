@@ -456,8 +456,11 @@
                     </div>
                 </div>
                 <div class="btn">
-                    <button type="submit"> save</button>
+                    <button type="submit"[disabled]="isLoading"> save</button>
                 </div>
+                @if(isLoading){
+                    <div class="loader"></div>
+                }
 
 
             </form>

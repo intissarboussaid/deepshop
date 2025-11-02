@@ -84,7 +84,10 @@
                         </div>
                         }
                         <div class="width100 transparent">
-                            <button type="submit">Send</button>
+                            <button type="submit" [disabled]="isLoading">Send</button>
+                            @if(isLoading){
+                                <div class="loader"></div>
+                            }
                         </div>
                     </form>
                 </div>

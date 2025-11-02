@@ -315,6 +315,7 @@ if(id_admin!=null){
     console.log("size selected: " ,this.size )
   }
   addCommande() {
+    this.isLoading=true;
 
     const CommandeBody = {
       color: this.color,
@@ -325,14 +326,17 @@ if(id_admin!=null){
     if(this.color!=null){
    this.commandeService.AddCommande(localStorage.getItem('id_product'), localStorage.getItem('id_user'), CommandeBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log('commande', res);
         localStorage.setItem('commandeMessage',"Command successfully added to cart");
         window.location.reload();
       }, error: (err) => {
+        this.isLoading=false;
         console.log('commande', err);
       }
     });
     }else{
+      this.isLoading=false;
      localStorage.setItem("errorMessage","Command error: missing color.")
      this.errorMessage=localStorage.getItem("errorMessage");
     }
@@ -340,15 +344,19 @@ if(id_admin!=null){
 
 
     this.commandeService.GetCommandesByProduct(localStorage.getItem('id_product')).subscribe({
+      
       next: (res) => {
+        this.isLoading=false;
         console.log('commande product', res);
       }, error: (err) => {
+        this.isLoading=false;
         console.log('commande product', err);
       }
     })
   }
 
   addFav(){
+    this.isLoading=true;
     const favBody={
       id_product:localStorage.getItem('id_product'),
       id_user:localStorage.getItem('id_user')
@@ -356,6 +364,7 @@ if(id_admin!=null){
     if(localStorage.getItem('id_user')!=null){
       this.favoriteService.AddFavByUser(localStorage.getItem('id_product'), localStorage.getItem('id_user'),{favBody}).subscribe({
       next:(res)=>{
+        this.isLoading=false;
         console.log('resultat add favorite',res);
         window.location.reload();
       }
@@ -364,6 +373,7 @@ if(id_admin!=null){
     if(localStorage.getItem('id_admin')!=null){
       this.favoriteService.AddFavByAdmin(localStorage.getItem('id_product'), localStorage.getItem('id_admin'),{favBody}).subscribe({
       next:(res)=>{
+        this.isLoading=false;
         console.log('resultat add favorite',res);
         window.location.reload();
       }

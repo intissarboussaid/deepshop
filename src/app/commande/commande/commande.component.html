@@ -67,7 +67,10 @@
                                 <div class="btns transparent">
                                     <button (click)="closeModal()" class="transparent">Close</button>
                                     <button (click)="deleteProductFronCmd(i.id_cmditem,commande.id_cmd)"
-                                        class="transparent">Delete</button>
+                                        class="transparent" [disabled]="isLoading">Delete</button>
+                                        @if(isLoading){
+                    <div class="loader"></div>
+                }
                                 </div>
                             </div>
                         </div>
@@ -109,7 +112,10 @@
                                 <div class="btns transparent">
                                     <button type="button" (click)="NoPromoCode()" class="transparent">No</button>
                                     <button type="submit" class="transparent"
-                                        (click)="submitCodePromo(name)">Yes</button>
+                                        (click)="submitCodePromo(name)" [disabled]="isLoading">Yes</button>
+                                        @if(isLoading){
+                    <div class="loader"></div>
+                }
                                 </div>
                                 <!-- </form> -->
                                 @if(errorCodeMessage){
@@ -124,7 +130,10 @@
                                     <h6 class="transparent">Final confirmation of your order. </h6>
                                     <div class="btns transparent">
                                         <button type="button" (click)="closeModal()" class="transparent">Cancel</button>
-                                    <button type="submit" class="transparent" (click)="ConfCommand()" >Confirm Order</button>
+                                    <button type="submit" class="transparent" (click)="ConfCommand()" [disabled]="isLoading" >Confirm Order</button>
+                                    @if(isLoading){
+                                        <div class="loader"></div>
+                                    }
                                     </div>
                                     
                                 }
@@ -133,7 +142,10 @@
                                 <h4 class="transparent width100 center">Total: {{commande.total}}DT</h4>
                                 <div class="btns transparent">
                                     <button (click)="closeModal()" class="transparent">No</button>
-                                    <button (click)="ConfCommand()" class="transparent">Yes</button>
+                                    <button (click)="ConfCommand()" class="transparent" [disabled]="isLoading" >Yes</button>
+                                     @if(isLoading){
+                                        <div class="loader"></div>
+                                    }
                                 </div>
                                 }
                                 @if(yesPromoCode ){
@@ -147,7 +159,10 @@
                                 </div>
                                 <div class="btns transparent">
                                     <button (click)="closeModal()" class="transparent">No</button>
-                                    <button (click)="ConfCommand()" class="transparent">Yes</button>
+                                    <button (click)="ConfCommand()" class="transparent" [disabled]="isLoading">Yes</button>
+                                    @if(isLoading){
+                                        <div class="loader"></div>
+                                    }
                                 </div>
                                 }
 

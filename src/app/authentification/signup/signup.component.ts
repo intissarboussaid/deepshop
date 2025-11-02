@@ -88,6 +88,7 @@ export class SignupComponent {
 
   }
   onSubmit(form: NgForm) {
+    this.isLoading=true
     if (form.valid) {
       const credentials = {
         email: this.email,
@@ -117,10 +118,12 @@ export class SignupComponent {
           setTimeout(() => {
             this.loginMessage = null;
           }, 10000);
+          this.isLoading=false;
 
         },
         error: (err) => {
           console.error('Login failed:', err);
+          this.isLoading=false;
           this.loginError = "Email is already registred.";
           setTimeout(() => {
             this.loginError = null;
@@ -129,6 +132,7 @@ export class SignupComponent {
       });
     } else {
       console.log(" form invalid!");
+      this.isLoading=false;
     }
   }
 }

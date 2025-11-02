@@ -52,7 +52,19 @@
                                 </div>
                                 }
                             </div>
-                            <button type="submit"> Save</button>
+                            <div class="forget_password">
+                    <a (click)="openModal()">Forgot password?</a>
+                    <!-- <button (click)="openModal()">Open Modal</button> -->
+
+                    <!-- Modal -->
+
+                </div>
+                            <button type="submit" [disabled]="isLoading"> Save</button>
+                             @if(isLoading){
+                            <div class="loader"></div>
+                        }
+                        
+
                         </div>
 
                         <div class="message" *ngIf="loginError">
@@ -62,13 +74,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="forget_password">
-                    <a (click)="openModal()">Forgot password?</a>
-                    <!-- <button (click)="openModal()">Open Modal</button> -->
-
-                    <!-- Modal -->
-
-                </div>
+                
             </div>
         </div>
 

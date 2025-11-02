@@ -66,7 +66,8 @@
                             @if(i.fidele){
                             <button (click)="openModalEdit(i.user.id_user)"><i class="fa-solid fa-pen"></i></button>
                             }@else {
-                            <button (click)="NotFifele()"><i class="fa-solid fa-pen"></i></button>
+                            <button (click)="NotFifele()" ><i class="fa-solid fa-pen"></i></button>
+                            
                             }
                             <button (click)="openModalContent(i.user.id_user)">
                                 <i class="fa-solid fa-eye"></i></button>
@@ -137,7 +138,10 @@
                         }
                     </div>
                     }
-                    <button type="submit" class=" center ">Save</button>
+                    <button type="submit" class=" center " [disabled]="isLoading">Save</button>
+                    @if(isLoading){
+                                <div class="loader"></div>
+                            }
                 </div>
 
 

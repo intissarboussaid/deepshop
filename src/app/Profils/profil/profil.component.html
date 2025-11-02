@@ -196,13 +196,14 @@
 <div class="modal-overlay" *ngIf="isModalEditPhotoOpen">
     <div class="modal">
         <div class="close">
-            <button type="button" (click)="closeEditPhotoModal()">
+            <button type="button" (click)="closeEditPhotoModal()" >
                 <i class="fa-solid fa-xmark"></i>
             </button>
+            
         </div>
         <div class="column">
             <div class="custom-file-upload">
-                    <button>
+                    <button >
                 <label for="fileInput" class="custom-file-upload">
 
                     <div class="column">
@@ -213,10 +214,14 @@
                 </label>
 
                     </button>
+                    
 
                 <p *ngIf="fileName">{{ fileName }}</p>
                 <div class="upload" >
-                    <button (click)="uploadPhoto()">Save</button>
+                    <button (click)="uploadPhoto()" [disabled]="isLoading">Save</button>
+                    @if(isLoading){
+                            <div class="loader"></div>
+                        }
                 </div>
             </div>
         </div>
@@ -326,7 +331,10 @@
                         [(ngModel)]="description" required>
                 </div>
             </div>
-            <button type="submit" class="transparent" style="width: 100px; height: 30px; border-radius: 20px; border: solid 2px #7F5539; color: #7F5539; font-size: 20px; margin-top: 5px;">save</button>
+            <button type="submit" class="transparent" style="width: 100px; height: 30px; border-radius: 20px; border: solid 2px #7F5539; color: #7F5539; font-size: 20px; margin-top: 5px;" [disabled]="isLoading" >save</button>
+            @if(isLoading){
+                            <div class="loader"></div>
+                        }
         </form>
     </div>
 </div>

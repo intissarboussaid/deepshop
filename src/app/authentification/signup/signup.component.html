@@ -92,7 +92,10 @@
                                     {{ roleError }}
                                 </div>
                             </div>
-                            <button type="submit"> Save</button>
+                            <button type="submit" [disabled]="isLoading"> Save</button>
+                            @if(isLoading){
+                            <div class="loader"></div>
+                        }
                         </div>
                         @if(myForm.invalid && myForm.submitted){
                         <div class="message" style="margin-top: 1rem;">

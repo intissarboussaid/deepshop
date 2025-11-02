@@ -41,6 +41,7 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    this.isLoading=true;
     if (form.valid) {
       const credentials = {
         email: this.email,
@@ -49,6 +50,7 @@ export class SigninComponent implements OnInit {
 
       this.authentification.getEmail(credentials.email).subscribe({
         next: (res) => {
+          
           if (res.is_enable === true) {
             console.log("account", res);
             this.authentification.login(credentials).subscribe({
@@ -68,21 +70,25 @@ export class SigninComponent implements OnInit {
                   console.log("product Manager: ",res.account.product_manager)
                   localStorage.setItem('id_admin', res.account.product_manager.id_pm)
                 }
+                this.isLoading = false;
             this.router.navigate(['/categoris']);
               },
               error: (err) => {
                 console.error('Login failed:', err.error);
                 this.loginError = "There's an error. Please try again";
+                this.isLoading = false;
               }
             });
-
+           
           } else {
+            this.isLoading = false;
             this.loginError = "This account isn't activated. Please activate it through the email we sent you";
           }
         },
         error: (err) => {
           console.log('error account', err);
           this.loginError = "Email does not exist!";
+          this.isLoading = false;
         }
       })
 
@@ -90,9 +96,11 @@ export class SigninComponent implements OnInit {
     } else {
       console.log('form invalid')
       this.loginError = "There's something missing! Please try again";
+      this.isLoading = false;
     }
   }
   onsendEmail(form: NgForm) {
+     this.isLoading=true;
     if (form.valid) {
       const email = this.email
       this.authentification.sendEmailRP(email).subscribe({
@@ -113,11 +121,13 @@ export class SigninComponent implements OnInit {
           setTimeout(() => {
             this.messageResterror = '';
           }, 9000);
+          this.isLoading = false;
           // this.router.navigate(['/forgot-password']);
         },
         error: (err) => {
           console.error('Login failed:', err.error);
           this.messageResterror = "Email does not exist!";
+          this.isLoading = false;
         }
       });
     }

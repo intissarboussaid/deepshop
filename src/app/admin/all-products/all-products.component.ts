@@ -103,6 +103,7 @@ export class AllProductsComponent {
   DeletePhotoMessage: any;
   errorDelete: any;
   isDeleteProduct=false;
+  isLoading=false;
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
@@ -697,6 +698,7 @@ export class AllProductsComponent {
     this.router.navigate(['/addProduct/', localStorage.getItem('token')])
   }
   editProduct(id: any) {
+    this.isLoading=true;
     console.log('id tesst', id);
     const productBody = {
       cost_price: this.product.cost_price,
@@ -727,13 +729,16 @@ export class AllProductsComponent {
         localStorage.setItem('DeleteMessage','You have successfully updated the product.')
       this.DeleteMessage=localStorage.getItem('DeleteMessage');
         window.location.reload();
+        this.isLoading=false;
       },
       error: (err) => {
         console.log("error edit", err);
+        this.isLoading=false;
       }
     })
   }
   OnsumbitDiscount(id:any){
+    this.isLoading=true;
 const Discount={
   discount_price: this.discount_price,
   discount_percentage: this.discount_percentage,
@@ -742,6 +747,7 @@ const Discount={
     next:(res)=>{
       localStorage.setItem('DeleteMessage','You have successfully added discount.')
       this.DeleteMessage=localStorage.getItem('DeleteMessage');
+      this.isLoading=false;
         window.location.reload();
       
     },
@@ -750,8 +756,10 @@ const Discount={
   }
 
   deleteProduct(id: any) {
+    this.isLoading=true;
     this.productService.deleteProduct(id).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log('delete product', res);
         localStorage.setItem("DeleteMessage", "You have successfully deleted the product.");
         this.DeleteMessage = localStorage.getItem("DeleteMessage");
@@ -763,6 +771,7 @@ const Discount={
         localStorage.setItem("errorDelete", "Error: Failed to delete the product.")
         this.errorDelete = localStorage.getItem("errorDelete");
         // window.location.reload();
+        this.isLoading=false;
       }
     })
   }
@@ -799,6 +808,7 @@ const Discount={
     })
   }
    onSubmit(id:any): void {
+    this.isLoading=true;
     if (this.selectedFiles.length === 0) {
       alert('Please select at least one image.');
       return;
@@ -818,10 +828,12 @@ const Discount={
         this.selectedFiles = [];
         console.log('selectedFiles', this.selectedFiles)
         window.location.reload();
+        this.isLoading=false;
       },
       error: err => {
         console.error('Upload failed', err);
         alert("Upload failed");
+        this.isLoading=false;
       }
     });
   }
