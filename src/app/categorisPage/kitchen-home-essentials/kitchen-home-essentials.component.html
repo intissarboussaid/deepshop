@@ -32,21 +32,29 @@
 
                             
                             <div class="card_meta  transparent width100 center row">
-                                @if(i.admin.photo!=null){
-                                <div class="user row transparent">
-                                    <!-- <div class="row transparent"> -->
-                                        <div class="img_admin transparent">
-                                            <img src={{i.admin.photo.filePath}} alt="Photo Profil">
+                                @if(i.discount_price){
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{i.discount_percent}}%</div>
+                                        OFF
+                                    </div>
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
+                                            {{i.sale_price}}{{i.currency}}
                                         </div>
-                                        <div class="column nom transparent">
-                                            {{i.admin.nom}} {{i.admin.prenom}}
+                                        <div class="discount transparent">
+                                            {{i.discount_price}} {{i.currency}}
                                         </div>
-                                    <!-- </div> -->
+
+                                    </div>
+
                                 </div>
+
+
                                 }@else{
-                                    <div class="user transparent" style="margin-top: 10px;">
-                                    <i class="fa-solid fa-user" style="font-size: 20px;"></i>
-                                </div>}
+                                <div class="price transparent">
+                                    {{i.sale_price}}{{i.currency}}
+                                </div>
+                                }
                                 <div class="x78zum5 row transparent">
                                     <div class="heart transparent">
                                 @if(i.fav!=null){

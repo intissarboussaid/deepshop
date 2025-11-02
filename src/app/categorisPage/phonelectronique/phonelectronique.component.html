@@ -34,16 +34,15 @@
                             <div class="card_meta  transparent width100 center row">
 
                                 @if(i.discount_price){
-                                <div class="alert column gap15">
-                                    <div class="sale row gap"> Sale <div class="percent"> {{i.discount_percent}}%</div>
+                                <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{i.discount_percent}}%</div>
                                         OFF
                                     </div>
-
-                                    <div class="row gap">
-                                        <div class="recent_price">
+                                    <div class="row gap transparent">
+                                        <div class="recent_price transparent">
                                             {{i.sale_price}}{{i.currency}}
                                         </div>
-                                        <div class="discount">
+                                        <div class="discount transparent">
                                             {{i.discount_price}} {{i.currency}}
                                         </div>
 
@@ -53,7 +52,7 @@
 
 
                                 }@else{
-                                <div class="price">
+                                <div class="price transparent">
                                     {{i.sale_price}}{{i.currency}}
                                 </div>
                                 }

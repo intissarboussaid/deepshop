@@ -129,7 +129,34 @@
     width: auto;
 }
 
+/* //:picture-in-picture */
+.sale {
+    text-align: center;
+    font-size: 25px;
+    color: #7F5539;
+}
+.percent {
+    color: #593b28;
+    /* font-size: 40px; */
+    font-weight: 700;
 
+}
+.recent_price {
+    text-decoration: line-through;
+    color: #7F5539;
+    font-size: 20px;
+    margin-top: 12px;
+}
+.discount {
+    font-size: 40px;
+    color: #593b28;
+    font-weight: 200;
+}
+.price {
+    color: #7F5539;
+    font-size: 20px;
+    font-weight: 700;
+}
 @media(max-width:500px) {
     .bts button {
         width: 150px;
