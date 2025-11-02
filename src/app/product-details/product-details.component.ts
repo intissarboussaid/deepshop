@@ -46,7 +46,7 @@ export class ProductDetailsComponent {
   size: any;
   quantity: any;
   commandeMessage:any;
-  isLoading = true;
+  isLoading = false;
   isFav=false;
   isAdmin=false;
   errorMessage:any;
@@ -79,18 +79,16 @@ export class ProductDetailsComponent {
         this.product = res;
         this.photos = this.product.photos;
         console.log("product",res)
-        const photoObservables = this.product.photos.map((photo: any) =>
-          this.photoService.getPhoto(photo.id_photo)
-        );
-        forkJoin(photoObservables).subscribe((blobs: any) => {
-          blobs.forEach((blob: any, index: any) => {
-            const objectURL = URL.createObjectURL(blob);
-            this.product.photos[index].src = objectURL;
-            this.allPhotos.push(objectURL);
-
-          });
-
-        });
+        this.photos.forEach((photo:any)=>{
+          this.photoService.getPhoto(photo.id_photo).subscribe(
+                blob=>{
+                  const objectURL = URL.createObjectURL(blob);
+                  this.src = objectURL;
+                  this.allPhotos.push(objectURL);
+                }
+              )
+        })
+        
       },
       error: err => {
       }
@@ -248,6 +246,7 @@ export class ProductDetailsComponent {
   }
 
   OnsubmitCommantaire() {
+    this.isLoading=true;
     const CommentaireBody = {
       commentaire: this.commentaire
     }
@@ -257,9 +256,11 @@ export class ProductDetailsComponent {
 if(id_user!=null){
   this.commentaireService.AddCommentaireByUser(id_product, id_user, CommentaireBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("commentaire content By user ", res)
         window.location.reload();
       }, error: (err) => {
+        this.isLoading=false;
         console.log("user content By user", err)
       }
     })
@@ -267,9 +268,11 @@ if(id_user!=null){
 if(id_admin!=null){
   this.commentaireService.AddCommentaireByAdmin(id_product, id_admin, CommentaireBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("commentaire content ByAdmin", res)
         window.location.reload();
       }, error: (err) => {
+        this.isLoading=false;
         console.log("user content ByAdmin", err)
       }
     })
@@ -281,6 +284,7 @@ if(id_admin!=null){
     console.log("selected start", this.starts)
   }
   onsubmitStarts() {
+    this.isLoading=true;
     const RatingBody = {
       starts: this.starts
     }
@@ -289,6 +293,7 @@ if(id_admin!=null){
     if(isUser!=null){
       this.ratingService.AddRating(localStorage.getItem('id_product'), isUser, RatingBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("Rating Body", res);
         window.location.reload();
       }, 
@@ -297,11 +302,13 @@ if(id_admin!=null){
     else if(isAdmin!=null){
       this.ratingService.AddRatingByAdmin(localStorage.getItem('id_product'), isAdmin, RatingBody).subscribe({
       next: (res) => {
+        this.isLoading=false;
         console.log("Rating Body", res);
         window.location.reload();
       }, 
     })
     }else{
+      this.isLoading=false;
       window.location.href='/login';
     }
     

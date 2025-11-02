@@ -142,16 +142,24 @@ export class CategorisComponent {
           if (product.type == "") {
             this.listEmptyType.push(product)
           }
-          const photoObservables = this.product.photos.map((photo: any) =>
-            this.photoService.getPhoto(photo.id_photo)
-          );
-          forkJoin(photoObservables).subscribe((blobs: any) => {
-            blobs.forEach((blob: any, index: any) => {
-              const objectURL = URL.createObjectURL(blob);
-              product.photos[index].src = objectURL;
-            });
-            // console.log('Updated photos for product:', product);
-          });
+          // const photoObservables = this.product.photos.map((photo: any) =>
+          //   this.photoService.getPhoto(photo.id_photo)
+          // );
+          // forkJoin(photoObservables).subscribe((blobs: any) => {
+          //   blobs.forEach((blob: any, index: any) => {
+          //     const objectURL = URL.createObjectURL(blob);
+          //     product.photos[index].src = objectURL;
+          //   });
+          //   // console.log('Updated photos for product:', product);
+          // });
+          this.product.photos.forEach((photo:any)=>{
+          this.photoService.getPhoto(photo.id_photo).subscribe(
+                blob=>{
+                  const objectURL = URL.createObjectURL(blob);
+                  this.src = objectURL;
+                }
+              )
+        })
 
         })
       },
