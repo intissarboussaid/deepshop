@@ -11,7 +11,7 @@
             @if(item.type=="Clothes & Fashion") {
             <div class="card">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -26,37 +26,56 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                            <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                        
+
                     </div>
-                     @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
 
-                                    </div>
+                    <div class="card_meta  transparent width100 center row">
 
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
 
@@ -110,7 +129,7 @@
             @if(item.type=="SelfCare & Product" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -127,38 +146,56 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                             <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                       
+
                     </div>
 
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }
@@ -185,7 +222,7 @@
             @if(item.type=="Phone & Electronique" && !item.is_delete){
             <div class="card">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -202,38 +239,56 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                            <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                        
+
                     </div>
 
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }
@@ -257,7 +312,7 @@
             @if(item.type=="Kitchen & Home essentials" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -274,38 +329,56 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                            <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                        
+
                     </div>
 
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -327,7 +400,7 @@
             @if(item.type=="Gaming & Digitals" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -344,37 +417,55 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                             <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                       
+
                     </div>
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -397,7 +488,7 @@
             @if(item.type=="Baby & Toy" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -414,37 +505,55 @@
                             </div>
                         </div>
                         @if(item.photos.length>1){
-                            <div class="btns">
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
                         }
-                        
+
                     </div>
-                     @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -468,7 +577,7 @@
             @if(item.type=="Sprots & Entertainement" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -484,38 +593,56 @@
                                 }
                             </div>
                         </div>
-                         @if(item.photos.length>1){
-                            <div class="btns">
+                        @if(item.photos.length>1){
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
-                         }
-                        
+                        }
+
                     </div>
-                     @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -537,7 +664,7 @@
             @if(item.type=="Books & Education" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -553,37 +680,55 @@
                                 }
                             </div>
                         </div>
-                         @if(item.photos.length>1){
-                            <div class="btns">
+                        @if(item.photos.length>1){
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
-                         }
+                        }
                     </div>
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -606,7 +751,7 @@
             @if(item.type=="Car & Accessoires" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -622,37 +767,55 @@
                                 }
                             </div>
                         </div>
-                         @if(item.photos.length>1){
-                            <div class="btns">
+                        @if(item.photos.length>1){
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
-                         }
+                        }
                     </div>
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -674,7 +837,7 @@
             @if(item.type=="Animals" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -690,37 +853,55 @@
                                 }
                             </div>
                         </div>
-                         @if(item.photos.length>1){
-                            <div class="btns">
+                        @if(item.photos.length>1){
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
-                         }
+                        }
                     </div>
-                      @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
             }}
@@ -742,7 +923,7 @@
             @if(item.type=="Magasin" && !item.is_delete){
             <div class="card ">
                 <div class="content_card ">
-                    <div class="img_content" >
+                    <div class="img_content">
                         <div class="carousel_container" (click)="onSaveProduct(item.id_product)">
                             <div class="carousel-wrapper"
                                 [style.transform]="'translateX(-' + getCurrentIndex(item.id_product) * 100 + '%)'"
@@ -758,13 +939,13 @@
                                 }
                             </div>
                         </div>
-                         @if(item.photos.length>1){
-                            <div class="btns">
+                        @if(item.photos.length>1){
+                        <div class="btns">
                             <button (click)="prevSlide(item.id_product)"><i class="fa-solid fa-angle-left"></i></button>
                             <button (click)="nextSlide(item.id_product, item.photos.length - 1)"><i
                                     class="fa-solid fa-angle-right"></i></button>
                         </div>
-                         }
+                        }
                     </div>
                     <!-- @if(adminImages[i]){
                     <div class="card_meta gap50">
@@ -812,30 +993,48 @@
                         </div>
                     </div>
                     } -->
-                  @if(item.discount_price){
-                                <div class="alert column gap15 transparent" style=" margin-left: 20px;">
-                                    <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%</div>
-                                        OFF
-                                    </div>
-                                    <div class="row gap transparent">
-                                        <div class="recent_price transparent">
-                                            {{item.sale_price}}{{item.currency}}
-                                        </div>
-                                        <div class="discount transparent">
-                                            {{item.discount_price}} {{item.currency}}
-                                        </div>
+                    <div class="card_meta  transparent width100 center row">
 
-                                    </div>
-
+                        @if(item.discount_price){
+                        <div class="alert column gap15 transparent" style=" margin-left: 10px;">
+                            <div class="sale row gap transparent"> Sale <div class="percent"> {{item.discount_percent}}%
                                 </div>
-
-
-                                }@else{
-                                <div class="price transparent">
+                                OFF
+                            </div>
+                            <div class="row gap transparent">
+                                <div class="recent_price transparent">
                                     {{item.sale_price}}{{item.currency}}
                                 </div>
+                                <div class="discount transparent">
+                                    {{item.discount_price}} {{item.currency}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        }@else{
+                        <div class="price transparent">
+                            {{item.sale_price}}{{item.currency}}
+                        </div>
+                        }
+                        <div class="x78zum5 row transparent">
+                            <div class="heart transparent">
+                                @if(item.fav!=null){
+                                @if(item.fav.isfav){
+                                <i class="fa-solid fa-heart " (click)="addFav(item.id_product)"></i>
                                 }
-                
+                                }@else {
+                                <i class="fa-regular fa-heart " (click)="addFav(item.id_product)"></i>
+                                }
+                            </div>
+                            <i class="fa-solid fa-cart-shopping " (click)="onSaveProduct(item.id_product)"></i>
+                        </div>
+
+
+                    </div>
+
                 </div>
             </div>
             }}
