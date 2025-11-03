@@ -1,6 +1,6 @@
-.content {
+/* .content {
     padding: 70px 70px;
-}
+} */
 
 .generel_information,
 .price,
@@ -47,6 +47,7 @@ label i{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     place-content: center;
     place-items: center;
+    width: 100%;
 }
 .product_media input{
     display: none;
@@ -401,5 +402,8 @@ h1{
 }
 h5{
     font-size: 18px;
+}
+button{
+    width: 250px!important;
 }
 }

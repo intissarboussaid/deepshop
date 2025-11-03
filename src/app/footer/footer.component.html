@@ -2,25 +2,25 @@
     <div class="container">
         <div class="content_footer  center">
             <div class="title">
-                <h1 (click)="home()">DEEPSHOP</h1>
+                <h1 (click)="category()">DEEPSHOP</h1>
             </div>
             <div class="menu">
                 <div class="title">
                     <h4>Menu</h4>
                 </div>
-                <div class="content">Home</div>
-                <div class="content">About Us</div>
-                <div class="content">Categoris</div>
+                <div class="content" (click)="home()">Home</div>
+                <div class="content" (click)="home()">About Us</div>
+                <div class="content" (click)="category()">Categoris</div>
             </div>
             <div class="menu">
                 <div class="title">
                     <h4>Market</h4>
                 </div>
-                <div class="content">Manage</div>
-                <div class="content">Buy Us</div>
-                <div class="content">Sell</div>
+                <div class="content" (click)="signIn() ">Manage</div>
+                <!-- <div class="content">Buy Us</div> -->
+                <div class="content" (click)="sell() ">Sell</div>
             </div>
-            <div class="menu">
+            <div class="menu" (click)="contact()">
                 <div class="title">
                     <h4>Contact</h4>
                 </div>
@@ -28,7 +28,7 @@
                 <div class="content">LinkedIn</div>
                 <div class="content">Instagram</div>
             </div>
-            <div class="menu">
+            <div class="menu" (click)="contact()">
                 <div class="title">
                     <h4>Join Us</h4>
                 </div>

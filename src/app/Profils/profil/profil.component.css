@@ -406,12 +406,12 @@ input[type="checkbox"]{
     width: 100%;
 }
 .content,.content_personnel_informations {
-    width: 100%;
+    width: 120%;
     height: 100%;
 }
 
 .personnel_informations,.contents {
-    width: 80%;
+    width: 100%;
     place-content: center;
     place-items: center;
 }

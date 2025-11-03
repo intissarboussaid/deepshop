@@ -28,9 +28,9 @@
                                     <input type="text" name="name" id="name" [(ngModel)]="name" required
                                         #nameRef="ngModel">
                                     @if (nameRef.dirty || nameRef.touched) {
-                                    <div class="alert">
+                                    <div class="alert transparent">
                                         @if (nameRef.hasError('required')) {
-                                        <div class="alert">
+                                        <div class="alert transparent">
                                             Name is required.
                                         </div>
                                         }
@@ -44,9 +44,9 @@
                                         #descriptionRef="ngModel">
                                 </textarea>
                                     @if (descriptionRef.dirty || descriptionRef.touched) {
-                                    <div class="alert">
+                                    <div class="alert transparent">
                                         @if (descriptionRef.hasError('required')) {
-                                        <div class="alert">
+                                        <div class="alert transparent">
                                             DescriptionRef is required.
                                         </div>
                                         }
@@ -60,9 +60,9 @@
                                         <input type="number" name="cost_price" id="cost_price" min="0"
                                             [(ngModel)]="cost_price" required #cost_priceRef="ngModel">
                                         @if (cost_priceRef.dirty || cost_priceRef.touched) {
-                                        <div class="alert">
+                                        <div class="alert transparent">
                                             @if (cost_priceRef.hasError('required')) {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Cost Price is required.
                                             </div>
                                             }
@@ -74,9 +74,9 @@
                                         <input type="number" name="sale_price" id="sale_price" min="0"
                                             [(ngModel)]="sale_price" required #sale_priceRef="ngModel">
                                         @if (sale_priceRef.dirty || sale_priceRef.touched) {
-                                        <div class="alert">
+                                        <div class="alert transparent">
                                             @if (sale_priceRef.hasError('required')) {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Sale Price is required.
                                             </div>
                                             }
@@ -106,7 +106,7 @@
                                             </div>
                                             }
                                             @if (currencySelected=='') {
-                                            <div class="alert">
+                                            <div class="alert transparent width100">
                                                 Currency is required.
                                             </div>
                                             }
@@ -134,7 +134,7 @@
                                             </div>
                                             }
                                             @if (levelSelected=='') {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Level is required.
                                             </div>
                                             }
@@ -191,7 +191,7 @@
                                             </div>
                                             }
                                             @if (categorySelected=='') {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Category is required.
                                             </div>
                                             }
@@ -221,7 +221,7 @@
                                             </div>
                                             }
                                             @if (productSelected=='') {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Product is required.
                                             </div>
                                             }
@@ -315,9 +315,9 @@
                                         <input name="qte" id="qte" type="number" [(ngModel)]="currentQuantity"
                                             name="quantity" min="0" required #qteRef="ngModel" />
                                         @if (qteRef.dirty || qteRef.touched) {
-                                        <div class="alert">
+                                        <div class="alert transparent">
                                             @if (qteRef.hasError('required')) {
-                                            <div class="alert">
+                                            <div class="alert transparent">
                                                 Quantity is required.
                                             </div>
                                             }
@@ -326,7 +326,7 @@
                                     </div>
                                 </div>
                                 <!-- } -->
-                                <div class="width100 center">
+                                <div class="width100 center transparent">
                                 <button class="transparent center" type="button" (click)="addColorQteSier()" style="border: 2px solid #7f5539 ;border-radius: 20px; width: 40%;height: 40px; color: #7f5539;font-size: 20px; margin-bottom: 10px" >Add color size & Quantity</button>
                                 </div>
 
@@ -396,7 +396,7 @@
                                     }
                                 </div>
                                 <!-- flavor  -->
-                                <div class="row width_100 gap_20px ">
+                                <div class="row width_100 gap_20px transparent">
                                     @if(isFlavor){
                                     <div class="column width_100">
                                         <label for="flavor">Flavor</label>
@@ -449,7 +449,7 @@
                             </div>
                         </div>
                         @if (previewUrls.length==0) {
-                        <div class="alert">
+                        <div class="alert transparent">
                             Image is required. Please select at least one image
                         </div>
                         }
@@ -467,15 +467,15 @@
         </div>
         <div class="center" style="margin-top: 15px;">
             @if(invalid!="" && submit){
-            <div class="message">
-                <div class="error_message">
+            <div class="message transparent">
+                <div class="error_message transparent">
                     {{ invalid }}
                 </div>
             </div>
             }
             @if(errorMessage){
-            <div class="message">
-                <div class="error_message">
+            <div class="message transparent">
+                <div class="error_message transparent">
                     {{ errorMessage }}
                 </div>
             </div>
